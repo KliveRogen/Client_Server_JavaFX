@@ -1,0 +1,13 @@
+#ifndef TR_VAPE_CALC_GLOBAL
+#define TR_VAPE_CALC_GLOBAL
+
+#include <QtCore/qglobal.h>
+
+#if defined(CALCELEMENT_LIBRARY)
+#  define CALCELEMENTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define CALCELEMENTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // TR_VAPE_CALC_GLOBAL
+
