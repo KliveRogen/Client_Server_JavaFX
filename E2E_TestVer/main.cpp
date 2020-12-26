@@ -55,14 +55,28 @@ struct stageProp { //структура узла/участка
     vector<int> emerNum;
     void emerRoutine(int i);
     double  Defect = 0; // Пока что отражает величину бракованной продукции
+    // Отражает состояние узла и принимает значения
+    //0 - для контроля ошибок в алгоритме
+    //1 - узел работает (нет аварий и неполадок)
+    //2 - узел остановлен (нет аварий и неполадок)
+    //3 - неполадка в узле (в узле авария, но без брака)
+    //4 - авария в узле (в узле авария, с браком) //как-то тупо звучит
+    int stageState = 0;
 };
 
 stageProp stage[NUM_STAGES+1]; //+1 из-за конечной структуры где будет всё копиться
 vector<emer> emers;
 //alarmInterrupt alarm;
 
-//Вектор с соотнесением узлов и линий
+//Вектор с соответствием узлов конкретным линиям
 vector<int> stagesInBlocks[NUM_BLOCKS];
+//Вектор с состояниями каждой линии:
+//1 - штатный (хоть один узел в линии работает, нет аварий и неполадок)
+//2 - останов (ни один узел в линии не работает, нет аварий и неполадок)
+//3 - неполадки (если число неполадок в узлах > 3, или если число аварий = 1)
+//4 - авария (если число аварий в узлах >= 2)
+vector<int> blockState(NUM_BLOCKS);
+
 
 /* Функция для проверки/обработки аварий
  * currentStage - номер текущего узла, для которого осуществляется обработка*/
@@ -193,8 +207,8 @@ void productDispensingStage(int currentStage){
 
 /*Функция проверки выходов (переменной amountProd) на корректность введенного значения
 (оно должно быть больше 0, если это не выход брака).
-Также проверяется, что при одинаковом типе продукта на входе и выходе, их разность была равна 0.
-Должна использоваться сразу после инициализации структур*/
+Также проверяется, что при одинаковом типе продукта на входе и выходе их разность была равна 0.
+Функция должна использоваться сразу после инициализации структур узлов*/
 int outputsCorrectCheck(){
     //Проверка на материальный баланс
     for (int k = 0; k < NUM_STAGES; k++){
@@ -220,32 +234,61 @@ int outputsCorrectCheck(){
     }
 }
 
-/*Функция индикации состояния узла и линий*/
+/*Функция индикации состояния узлов и линий
+(для тех и других существует 4 режима работы: штатный, останов, неполадка, авария)
+Описание режимов узлов (значение параметра stageState):
+//0 - для контроля ошибок в алгоритме
+//1 - штатный, узел работает (нет аварий и неполадок)
+//2 - останов, узел остановлен (нет аварий и неполадок)
+//3 - неполадка в узле (в узле авария, но без брака)
+//4 - авария в узле (в узле авария, с браком) //как-то тупо звучит
+
+Описание режимов линий (значение элементов в массиве blockState):
+//0 - для контроля ошибок в алгоритме
+//1 - штатный (хоть один узел в линии работает, нет аварий и неполадок)
+//2 - останов (ни один узел в линии не работает, нет аварий и неполадок)
+//3 - неполадки (если число неполадок в узлах > 3, или если число аварий = 1)
+//4 - авария (если число аварий в узлах >= 2)
+*/
 void stageIndication(){
-    int couEmersBlock=0; //счетчик аварий на линии
-    int couProblemBlock=0; //счетчик неполадок на линии
+    int currentStage=-1; //номер узла общий (для облегчения читабельности кода)
+    //currentStageInBlock - номер узла в блоке
+    int couEmersBlock=0; //счетчик аварий в узлах линии
+    int couProblemBlock=0; //счетчик неполадок в узлах линии
+    int couWorkingStages=0; //счетчик работающих узлов
 
     for (int numBlock = 0; numBlock < NUM_BLOCKS; numBlock++){
-        for (int currentStage = 0; currentStage < stagesInBlocks[numBlock].size(); currentStage++){
-            if(stage[stagesInBlocks[numBlock][currentStage]].isEmer==true && emers[(stage[stagesInBlocks[numBlock][currentStage]].isEmer)-1].isDefect==true){
+        for (int currentStageInBlock = 0; currentStageInBlock < stagesInBlocks[numBlock].size(); currentStageInBlock++){
+            currentStage = stagesInBlocks[numBlock][currentStageInBlock]; //номер узла общий (для облегчения читабельности кода)
+            if(stage[currentStage].isEmer == true && emers[(stage[currentStage].isEmer)-1].isDefect == true){
+                stage[currentStage].stageState = 4; //авария в узле
                 couEmersBlock++;
-                //printf("\nThere was the Ermergency at the stage%d in line %d!!!", currentStage+1,numBlock+1);
-            }else if (stage[stagesInBlocks[numBlock][currentStage]].isEmer==true && emers[stage[stagesInBlocks[numBlock][currentStage]].isEmer-1].isDefect==false){
-                //printf("\nThere was the Problem at the stage %d in line %d", currentStage+1,numBlock+1);
+                //printf("\nThere was the Ermergency at the stage%d in line %d!!!", currentStageInBlock+1,numBlock+1);
+            }else if (stage[currentStage].isEmer==true && emers[stage[currentStage].isEmer-1].isDefect == false){
+                stage[currentStage].stageState = 3; //неполадка в узле
+                //printf("\nThere was the Problem at the stage %d in line %d", currentStageInBlock+1,numBlock+1);
                 couProblemBlock++;
-			}
+            }else if (stage[currentStage].isWorking==false){
+                stage[currentStage].stageState = 2; //остановка узла
+            }else if (stage[currentStage].isWorking==true){
+                stage[currentStage].stageState = 1; //нормальный режим работы узла
+            }
 		}
-        if(couEmersBlock >= 2){
-            printf("\nLine %d emergency!!!", numBlock+1);
-        }else if(couEmersBlock==1){
-            printf("\nLine %d problem", numBlock+1);
+        if(couEmersBlock >= 2){ //условие аварии в линии - больше 1 аварии в узлах
+            blockState[numBlock]=4; //авария на линии
+            //printf("\nLine %d emergency!!!", numBlock+1);
+        }else if(couEmersBlock == 1 || couProblemBlock > 3){ //условие неполадки в линии - только 1 авария в узлах или больше 3 неполадок в узлах
+            blockState[numBlock]=3; //неполадка на линии
+            //printf("\nLine %d problem", numBlock+1);
+        }else if(couEmersBlock == 0 && couProblemBlock <= 3 && couWorkingStages == 0){
+            blockState[numBlock]=2; //останов линии
+        }else{
+            blockState[numBlock]=1; //нормальная работа линии
         }
-
-        if(couProblemBlock > 3){
-            printf("\nLine %d problem", numBlock+1);
-        }
+        //обнуление счетчиков
         couEmersBlock=0;
         couProblemBlock=0;
+        couWorkingStages=0;
     }
 }
 
@@ -838,7 +881,7 @@ int main()
     }
 
 
-    //Количество узлов в каждой линии
+    //Заполенение матриц соответствия узлов конкретной линии
     stagesInBlocks[0].push_back(0);
     stagesInBlocks[0].push_back(1);
     stagesInBlocks[0].push_back(2);
@@ -851,7 +894,11 @@ int main()
     stagesInBlocks[2].push_back(7);
     stagesInBlocks[2].push_back(8);
     stagesInBlocks[2].push_back(9);
-    //printf("\n eeee = %d", stagesInBlocks[1][2]);
+
+    //зануление blockState (чисто на всякий случай)
+    for(int i = 0; i < NUM_BLOCKS; i++){
+        blockState[i] = 0;
+    }
 
 
     /* Типы аварий
