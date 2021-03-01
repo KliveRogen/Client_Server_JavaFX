@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_NFEA_03DEAC" BlockName="Участок дезактивации" Tab="Сквозной расчет МФР (сборка ТВЭЛов)" Image="E2E_MFR_Standart_Block_Icon.png">
+    <Parameters>
+		<Parameter Code="mode" 		Name="Принцип работы (0=непрерывный, 1=по требованию)" 	Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="cycletime" Name="Время одного цикла, ч" 							Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="prodin1" 	Name="Получаемое: Герметичные твэлы, шт" 				Value="0.64" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="prodout1" 	Name="Производимое: Герметичные твэлы, шт" 				Value="0.56" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="prodout2" 	Name="Производимое: Бракованные твэлы, шт" 				Value="0.08" Tab="Параметры" Visible="true" Checkable="true"/>
+		<!--res-->
+		<Parameter Code="res1" 		Name="Электроэнергия, кВт" 								Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res2" 		Name="Расход сжатого воздуха, м3/ч" 					Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res3" 		Name="Расход газа N2 на атмосферу, нм3/ч" 				Value="12.06" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res4" 		Name="Расход газа N2 на пневмопочту, нм3/ч" 			Value="1.55" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res5" 		Name="Расход дезактивационных растворов, л/ч" 			Value="0.0156" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res6" 		Name="Расход сжатого воздуха на охлаждение, м3/ч" 		Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res7" 		Name="Расход кислого дезактивирующего раствора, л/ч" 	Value="0.0782" Tab="Ресурсы" Visible="true" Checkable="true"/>
+		<Parameter Code="res8" 		Name="Расход дистиллированной воды, л/ч" 				Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="U" x="10" y="-10"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

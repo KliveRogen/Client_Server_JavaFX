@@ -3,7 +3,7 @@
 GCS_FlowSeparator::GCS_FlowSeparator()
 {
 	// Расчетный тип блока
-    BlockCalcType = E_NEEDINPUT;
+    BlockCalcType = E_INITVALUES;
 
     // Параметры блока
 
@@ -41,16 +41,37 @@ void GCS_FlowSeparator::setDataNames()
 bool GCS_FlowSeparator::init(std::string &error, double h)
 {
     // Put your initialization here
-	
-	setDataNames();
+    setDataNames();
+
+    gas1VolumeFlowRateCurrent=0;
+    gas1OutputPressureCurrent=0;
+    gas1TemperatureCurrent=0;
+    gas1ActivityCurrent=0;
+    gas1ParticleFractionCurrent=0;
+    gas2VolumeFlowRateCurrent=0;
+    gas2OutputPressureCurrent=0;
+    gas2TemperatureCurrent=0;
+    gas2ActivityCurrent=0;
+    gas2ParticleFractionCurrent=0;
+
+    outGas1->setOut(0, gas1VolumeFlowRateCurrent);
+    outGas1->setOut(1, gas1OutputPressureCurrent);
+    outGas1->setOut(2, gas1TemperatureCurrent);
+    outGas1->setOut(3, gas1ActivityCurrent);
+    outGas1->setOut(4, gas1ParticleFractionCurrent);
+    outGas2->setOut(0, gas2VolumeFlowRateCurrent);
+    outGas2->setOut(1, gas2OutputPressureCurrent);
+    outGas2->setOut(2, gas2TemperatureCurrent);
+    outGas2->setOut(3, gas2ActivityCurrent);
+    outGas2->setOut(4, gas2ParticleFractionCurrent);
+
     return true;
 }
 
 bool GCS_FlowSeparator::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double gasVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction, gas1VolumeFlowRateCurrent, gas1OutputPressureCurrent, gas1TemperatureCurrent, gas1ActivityCurrent, gas1ParticleFractionCurrent,
-            gas2VolumeFlowRateCurrent, gas2OutputPressureCurrent, gas2TemperatureCurrent, gas2ActivityCurrent, gas2ParticleFractionCurrent;
+    double gasVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction;
     //считывание входных значений
     //первый поток газа
     gasVolumeFlowRate = inGas->getInput()[0];//объемный расход газа, м^3/с
@@ -70,16 +91,16 @@ bool GCS_FlowSeparator::process(double t, double h, std::string &error)
     gas1ParticleFractionCurrent=gasInputParticleFraction;//текущая объемная доля частиц в газе на первом выходе
     gas2ParticleFractionCurrent=gasInputParticleFraction;//текущая объемная доля частиц в газе на втором выходе
     //передача значений на выходной порт
-    outGas1->setOut(0, gas1VolumeFlowRateCurrent);
-    outGas1->setOut(1, gas1OutputPressureCurrent);
-    outGas1->setOut(2, gas1TemperatureCurrent);
-    outGas1->setOut(3, gas1ActivityCurrent);
-    outGas1->setOut(4, gas1ParticleFractionCurrent);
-    outGas2->setOut(0, gas2VolumeFlowRateCurrent);
-    outGas2->setOut(1, gas2OutputPressureCurrent);
-    outGas2->setOut(2, gas2TemperatureCurrent);
-    outGas2->setOut(3, gas2ActivityCurrent);
-    outGas2->setOut(4, gas2ParticleFractionCurrent);
+    outGas1->setNewOut(0, gas1VolumeFlowRateCurrent);
+    outGas1->setNewOut(1, gas1OutputPressureCurrent);
+    outGas1->setNewOut(2, gas1TemperatureCurrent);
+    outGas1->setNewOut(3, gas1ActivityCurrent);
+    outGas1->setNewOut(4, gas1ParticleFractionCurrent);
+    outGas2->setNewOut(0, gas2VolumeFlowRateCurrent);
+    outGas2->setNewOut(1, gas2OutputPressureCurrent);
+    outGas2->setNewOut(2, gas2TemperatureCurrent);
+    outGas2->setNewOut(3, gas2ActivityCurrent);
+    outGas2->setNewOut(4, gas2ParticleFractionCurrent);
     return true;
 }
 

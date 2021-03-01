@@ -22,6 +22,8 @@ public:
 private:
 	// Put your variables here
     IOutputPort *out;
+    IInputPort *in;
+    double outGasPressure, outGasFlowRate;
 };
 
 #endif // PROJECT_H

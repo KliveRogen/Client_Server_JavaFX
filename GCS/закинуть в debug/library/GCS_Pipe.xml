@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_Pipe" BlockName="Труба" Tab="Газоочистка" Image="pipe.png">
+    <Parameters>
+        <Parameter Code="pipeDiameter" Name="Диаметр трубы, м" Value="0.05" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="frictionCoef" Name="Коэффициент трения, отн. ед." Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="pipeLength" Name="Длина трубы, м" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="inGasPipe" ID="0" Dir="R" x="-7" y="21.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outGasPipe" ID="1" Dir="R" x="109" y="22.5"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

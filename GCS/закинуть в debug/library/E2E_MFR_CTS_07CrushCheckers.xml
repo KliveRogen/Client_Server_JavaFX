@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_CTS_07CrushCheckers" BlockName="Участок дробления шашек и хранения нитридной крупки" Tab="Сквозной расчет МФР (линия карботермического синтеза)" Image="E2E_MFR_Standart_Block_Icon.png">
+    <Parameters>
+        <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin1" Name="Получаемое: Термообработанные шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin2" Name="Получаемое: Термообработанные шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout1" Name="Производимое: Нитридная крупка, кг" Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout2" Name="Производимое: Скраб, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout3" Name="Производимое: Нециркулируемый скраб, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res2" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res3" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.411" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res4" Name="Расход газа N2 на атмосферу, нм3/ч" Value="0.07" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res5" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="U" x="10" y="-10"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

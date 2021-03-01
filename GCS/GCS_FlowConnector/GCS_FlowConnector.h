@@ -23,6 +23,7 @@ private:
 	// Put your variables here
     IInputPort *inGasFirst, *inGasSecond;
     IOutputPort *outGas;
+    double gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent;
 };
 
 #endif // PROJECT_H

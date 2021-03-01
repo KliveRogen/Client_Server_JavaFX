@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_AeroFilter" BlockName="Аэрозольный фильтр" Tab="Газоочистка" Image="aerofilter.png">
+    <Parameters>
+        <Parameter Code="filterCrossSectionalArea" Name="Площадь поперечного сечения, м^2" Value="0.01" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterCatchCoef" Name="Коэффициент улавливания фильтра" Value="0.4" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterPressureLossCoef" Name="Коэффициент перепада давления из-за осаждения частиц, устанавливается экспериментально Па/кг" Value="1000" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterFiberLength" Name="Длина волокон, приходящихся на единицу площади фильтрующего материала, м-1" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterResistanceForce" Name="Безразмерная сила сопротивления, действующая на единицу длины волокна" Value="20" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterInitMassParticle" Name="Начальная масса частиц на фильтре, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="maxParticleMass" Name="Максимальная масса частиц на фильтре, кг" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="inGasAeroFilter" ID="0" Dir="R" x="-8" y="25.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outGasAeroFilter" ID="1" Dir="R" x="58" y="26.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outAeroFilterParameters" ID="2" Dir="U" x="24" y="-7.5"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

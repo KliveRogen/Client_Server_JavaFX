@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_FPP_06OUTCONTROL" BlockName="Участок выходного контроля таблеток, загрузки фрагментов топливных столбов, пробок и фиксатора в оболочку твэла" Tab="Сквозной расчет МФР (линия подготовки таблеток)" Image="E2E_MFR_Standart_Block_Icon.png">
+    <Parameters>
+        <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin1" Name="Получаемое: Лодочка с отобранной партией таблеток, кг" Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin2" Name="Получаемое: Пробка и фиксатор, шт" Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout1" Name="Производимое: Комплект комплектующих для твэла подготовленный, шт" Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout2" Name="Производимое: Отбракованные таблетки, шт" Value="1800" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res2" Name="Газовая смесь, л/(кг*ч)" Value="150" Tab="Ресурсы" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="U" x="10" y="-10"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

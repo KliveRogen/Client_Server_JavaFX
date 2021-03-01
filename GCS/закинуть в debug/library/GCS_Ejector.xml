@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_Ejector" BlockName="Эжектор" Tab="Газоочистка" Image="ejector.png">
+    <Parameters>
+        <Parameter Code="ejectorLossCoef" Name="Коэффициент потерь в эжекторе" Value="0.5" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="inPassiveGasEjector" ID="0" Dir="R" x="-8" y="8.5"/>
+        <Port Input="true" Type="INFO" ToolTip="inActiveGasEjector" ID="1" Dir="R" x="-8" y="41.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outGasEjector" ID="2" Dir="R" x="58" y="27.5"/>
+    </Ports>
+    <Situations>
+        <Situation Code="calcDist" Name="Погрешность" Tab="Отказы"/>
+    </Situations>
+    <Visual_Signals/>
+</Block>

@@ -21,12 +21,15 @@ public:
 	
 private:
 	// Put your variables here
-    IInputPort *inGasValve, *inGivenPosition;
-    IOutputPort *outGasValve, *outPosition;
+    IInputPort *inGasValve, *inGivenPosition, *inFeedbackGasValve;
+    IOutputPort *outGasValve, *outPosition, *outFeedbackGasValve;
 
     double signumFunc(double argVal);
     Signal *valvePositionBar;
     double valvePositionPrev;
+    //выходы
+    double valvePositionCurrent, gasVolumeFlowRateCurrent, gasOutputPressureCurrent,
+    gasTemperatureCurrent, gasActivityCurrent,gasParticleFractionCurrent, outValvesResistance;
 };
 
 #endif // PROJECT_H

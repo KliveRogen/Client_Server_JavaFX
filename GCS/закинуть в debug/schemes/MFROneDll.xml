@@ -1,0 +1,2034 @@
+<?xml version="1.0"?>
+<Scheme Name="Сквозной расчет МФР" Tab="Сквозной расчет" Descr="" Preview="schemes//preview//schemes//preview//schemes//preview//schemes//preview//schemes//preview//schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="1" ModelingStep="1" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+    <ExtData/>
+    <Blocks>
+        <Block ID="1" x="1886" y="1497" Name_x="130" Name_y="-25" BlockType="Subsystem" BlockName="Линия КТС" Image="library//images//">
+            <Parameters>
+                <Parameter Code="Subsystem_Inputs" Name="Число входов подсистемы" Value="1" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Outputs" Name="Число выходов подсистемы" Value="7" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Width" Name="Ширина подсистемы" Value="351" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Height" Name="Высота подсистемы" Value="412" Tab="" Visible="true"/>
+            </Parameters>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="206"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="51"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="102"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="153"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="204"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="255"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="306"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="357"/>
+            </Ports>
+            <Subsystem>
+                <Blocks>
+                    
+                    <Block ID="11" x="1379" y="1465" Name_x="16.5" Name_y="28" BlockType="SubIN" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Input" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="0" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="R" ToolTip="Вход подсистемы" x="58" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="12" x="2102" y="1703" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="1" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="13" x="2102" y="1757" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="1" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="2" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="14" x="2100" y="1815" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="2" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="3" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="15" x="2100" y="1878" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="3" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="4" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="16" x="2105" y="1935" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="4" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="5" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="17" x="2104" y="1980" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="5" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="6" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="18" x="2101" y="2035" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="6" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="7" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="19" x="1349" y="1494" Name_x="10.5" Name_y="-27" BlockType="SmallStages" BlockName="Участок подготовки исходных материалов" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Модернизированный упаковочный комплект с PuO2, кг" Value="4.12" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: ТУК-44 с UO2, кг" Value="0.77" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin3" Name="Получаемое: Упаковка с углеродом, кг" Value="0.26" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: PuO2, кг" Value="4.12" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: UO2, кг" Value="0.77" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout3" Name="Производимое: C, кг" Value="0.26" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.411" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="20" x="1711" y="1495" Name_x="-8.5" Name_y="-19" BlockType="SmallStages" BlockName="Участок дозирования, смешения и грануляции" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: PuO2, кг" Value="4.12" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: UO2, кг" Value="0.77" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin3" Name="Получаемое: С , кг" Value="0.26" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin4" Name="Получаемое: Скрап от участка дробления шашек ихранения нитридной крупки, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin5" Name="Получаемое: Скрап от линии изготовления СНУП ЯТ, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Гранулят в контейнере, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход охл. воды, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.2055" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход газа N2 на атмосферу, нм3/ч" Value="65.2968" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="21" x="1349" y="1712" Name_x="-9" Name_y="-19" BlockType="SmallStages" BlockName="Участок подготовки и хранения пресс-порошка" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Гранулят в контейнере, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Упаковка StZn, кг" Value="0.00457" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Пресс-порошок, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Бракованный гранулят, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="0" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.411" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферу, нм3/ч" Value="65.2968" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="22" x="1710" y="1714" Name_x="64.5" Name_y="-22" BlockType="SmallStages" BlockName="Участок прессования шашек" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Пресс-порошок, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Бракованный гранулят, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.2055" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферу, нм3/ч" Value="65.2968" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="23" x="1350" y="1934" Name_x="-267.5" Name_y="-23" BlockType="SmallStages" BlockName="Участок хранения спрессованных и термообработанных шашек в лодочках и порожних лодочек" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.2055" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферу, нм3/ч" Value="65.2968" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="24" x="1709" y="1934" Name_x="26" Name_y="131" BlockType="SmallStages" BlockName="Участок карботермического синтеза" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Термообработанные шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Термообработанные шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.2055" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферу, нм3/ч" Value="65.2968" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа Ar2, нм3/ч" Value="24.66" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход азотно-водородной смеси, нм3/ч" Value="1.54" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res6" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="25" x="1349" y="2152" Name_x="-36" Name_y="-21" BlockType="SmallStages" BlockName="Участок дробления шашек и хранения нитридной крупки" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Термообработанные шашки из пресс-порошка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Термообработанные шашки из бракованного гранулята, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Нитридная крупка, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Скраб, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout3" Name="Производимое: Нециркулируемый скраб, кг" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход дезактивационных растворов, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" Value="0.411" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на атмосферу, нм3/ч" Value="0.07" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+					
+					<Block ID="5" x="1237" y="1312" Name_x="-18.5" Name_y="53" BlockType="E2E_MFR_CTS_COVER" BlockName="" Image="library//images//">
+                        <Parameters>
+                            <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true"/>
+                        </Parameters>
+                        <Signals>
+                            <Signal Code="cover" Name="" Type="double"/>
+                            <Signal Code="worktime" Name="" Type="double"/>
+                            <Signal Code="overtime" Name="" Type="double"/>
+                            <Signal Code="prod" Name="" Type="double"/>
+                            <Signal Code="res1" Name="" Type="double"/>
+                            <Signal Code="res2" Name="" Type="double"/>
+                            <Signal Code="res3" Name="" Type="double"/>
+                            <Signal Code="res4" Name="" Type="double"/>
+                            <Signal Code="res5" Name="" Type="double"/>
+                            <Signal Code="resRel1" Name="" Type="double"/>
+                            <Signal Code="resRel2" Name="" Type="double"/>
+                            <Signal Code="resRel3" Name="" Type="double"/>
+                            <Signal Code="resRel4" Name="" Type="double"/>
+                            <Signal Code="resRel5" Name="" Type="double"/>
+                        </Signals>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="60" y="25"/>
+                        </Ports>
+                        <Visual_Signals>
+                            <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+                                <Image Value="0" Path="E2E_MFR_CTS_COVER.png"/>
+                                <Image Value="1" Path="const.png"/>
+                            </Visual_signal>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="265"/>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="265"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="301"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="301"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="337"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="337"/>
+                            <Visual_signal Type="Value" Code="res1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="373"/>
+                            <Visual_signal Type="Value" Code="res2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="409"/>
+                            <Visual_signal Type="Value" Code="res3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="445"/>
+                            <Visual_signal Type="Value" Code="res4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="481"/>
+                            <Visual_signal Type="Value" Code="res5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1119" y="517"/>
+                            <Visual_signal Type="Value" Code="resRel1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="373"/>
+                            <Visual_signal Type="Value" Code="resRel2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="409"/>
+                            <Visual_signal Type="Value" Code="resRel3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="445"/>
+                            <Visual_signal Type="Value" Code="resRel4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="481"/>
+                            <Visual_signal Type="Value" Code="resRel5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1181" y="517"/>
+                        </Visual_Signals>
+                        <ExtData/>
+                    </Block>
+					
+                </Blocks>
+                <Links>
+                    <Link>
+                        <Begin Object="Port" Block="11" Port="0"/>
+                        <End Object="Port" Block="5" Port="0"/>
+                        <Source Block="11" Port="0"/>
+                        <Points>
+                            <Point x="1437" y="1478"/>
+                            <Point x="1452" y="1478"/>
+                            <Point x="1452" y="1337"/>
+                            <Point x="1312" y="1337"/>
+                            <Point x="1297" y="1337"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="19" Port="0"/>
+                        <End Object="Port" Block="12" Port="0"/>
+                        <Source Block="19" Port="0"/>
+                        <Points>
+                            <Point x="1359" y="1484"/>
+                            <Point x="1359" y="1469"/>
+                            <Point x="1359" y="1716"/>
+                            <Point x="2079" y="1716"/>
+                            <Point x="2094" y="1716"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="20" Port="0"/>
+                        <End Object="Port" Block="13" Port="0"/>
+                        <Source Block="20" Port="0"/>
+                        <Points>
+                            <Point x="1721" y="1485"/>
+                            <Point x="1721" y="1470"/>
+                            <Point x="1721" y="1770"/>
+                            <Point x="2079" y="1770"/>
+                            <Point x="2094" y="1770"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="21" Port="0"/>
+                        <End Object="Port" Block="14" Port="0"/>
+                        <Source Block="21" Port="0"/>
+                        <Points>
+                            <Point x="1359" y="1702"/>
+                            <Point x="1359" y="1687"/>
+                            <Point x="1359" y="1828"/>
+                            <Point x="2077" y="1828"/>
+                            <Point x="2092" y="1828"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="22" Port="0"/>
+                        <End Object="Port" Block="15" Port="0"/>
+                        <Source Block="22" Port="0"/>
+                        <Points>
+                            <Point x="1720" y="1704"/>
+                            <Point x="1720" y="1689"/>
+                            <Point x="1720" y="1891"/>
+                            <Point x="2077" y="1891"/>
+                            <Point x="2092" y="1891"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="23" Port="0"/>
+                        <End Object="Port" Block="16" Port="0"/>
+                        <Source Block="23" Port="0"/>
+                        <Points>
+                            <Point x="1360" y="1924"/>
+                            <Point x="1360" y="1909"/>
+                            <Point x="1360" y="1948"/>
+                            <Point x="2082" y="1948"/>
+                            <Point x="2097" y="1948"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="24" Port="0"/>
+                        <End Object="Port" Block="17" Port="0"/>
+                        <Source Block="24" Port="0"/>
+                        <Points>
+                            <Point x="1719" y="1924"/>
+                            <Point x="1719" y="1909"/>
+                            <Point x="1719" y="1993"/>
+                            <Point x="2081" y="1993"/>
+                            <Point x="2096" y="1993"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="25" Port="0"/>
+                        <End Object="Port" Block="18" Port="0"/>
+                        <Source Block="25" Port="0"/>
+                        <Points>
+                            <Point x="1359" y="2142"/>
+                            <Point x="1359" y="2127"/>
+                            <Point x="1359" y="2048"/>
+                            <Point x="2078" y="2048"/>
+                            <Point x="2093" y="2048"/>
+                        </Points>
+                    </Link>
+                </Links>
+                <Labels/>
+            </Subsystem>
+        </Block>
+        <Block ID="2" x="2263" y="1497" Name_x="108" Name_y="-27" BlockType="Subsystem" BlockName="Линия сборки ТВЭЛов" Image="library//images//">
+            <Parameters>
+                <Parameter Code="Subsystem_Inputs" Name="Число входов подсистемы" Value="1" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Outputs" Name="Число выходов подсистемы" Value="7" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Width" Name="Ширина подсистемы" Value="351" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Height" Name="Высота подсистемы" Value="412" Tab="" Visible="true"/>
+            </Parameters>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="206"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="51"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="102"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="153"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="204"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="255"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="306"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="357"/>
+            </Ports>
+            <Subsystem>
+                <Blocks>
+                    <Block ID="41" x="1408" y="1482" Name_x="16.5" Name_y="28" BlockType="SubIN" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Input" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="0" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="R" ToolTip="Вход подсистемы" x="58" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="42" x="2338" y="1782" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="1" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="43" x="2336" y="1836" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="1" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="2" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="44" x="2334" y="1889" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="2" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="3" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="45" x="2334" y="1942" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="3" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="4" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="46" x="2330" y="1994" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="4" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="5" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="47" x="2332" y="2047" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="5" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="6" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="48" x="2328" y="2098" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="6" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="7" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="49" x="1534" y="1575" Name_x="66.5" Name_y="-26" BlockType="SmallStages" BlockName="Участок входного контроля" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Комплект комплектующих для твэла, шт" Value="0.64" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Комплект комплектующих для твэла подготовленный, шт" Value="0.64" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="45" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход сжатого воздуха на охлаждение, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="50" x="1940" y="1572" Name_x="15.5" Name_y="-26" BlockType="SmallStages" BlockName="Участок сборки и герметизации ТВЭЛов" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Комплект комплектующих для твэла подготовленный, шт" Value="0.64" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Фрагменты топливного столба, шт" Value="6.4" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Герметчные твэлы, шт" Value="0.64" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="5.25" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа He2, нм3/ч" Value="0.049" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на атмосферу, нм3/ч" Value="12.06" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход газа N2 на пневмопочту, нм3/ч" Value="1.55" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res6" Name="Расход газа Ar2 на сварку, нм3/ч" Value="1.19" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res7" Name="Расход дезактивационных растворов, л/ч" Value="0.0156" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="51" x="1532" y="1792" Name_x="75.5" Name_y="-19" BlockType="SmallStages" BlockName="Участок дезактивации" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Герметичные твэлы, шт" Value="0.64" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Герметичные твэлы, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Бракованные твэлы, шт" Value="0.08" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферу, нм3/ч" Value="12.06" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на пневмопочту, нм3/ч" Value="1.55" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход дезактивационных растворов, л/ч" Value="0.0156" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res6" Name="Расход сжатого воздуха на охлаждение, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res7" Name="Расход кислого дезактивирующего раствора, л/ч" Value="0.0782" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res8" Name="Расход дистиллированной воды, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="52" x="1532" y="2011" Name_x="75.5" Name_y="-20" BlockType="SmallStages" BlockName="Участок термообработки" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Герметичные твэлы, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Герметичные твэлы, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="90" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход сжатого воздуха на охлаждение, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход дезактивационных растворов, л/ч" Value="0.0156" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="53" x="1941" y="1790" Name_x="109" Name_y="-24" BlockType="SmallStages" BlockName="Участок контроля" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Герметичные твэлы, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Герметичные твэлы в магазине, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Бракованные твэлы, шт" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход дезактивационных растворов, л/ч" Value="0.0156" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="54" x="1941" y="2011" Name_x="109" Name_y="-27" BlockType="SmallStages" BlockName="Участок загрузки" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Герметичные твэлы  в магазине, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Герметичные твэлы в магазине в контейнере, шт" Value="0.56" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="55" x="1531" y="2230" Name_x="15.5" Name_y="-20" BlockType="SmallStages" BlockName="Участок разделки бракованных твэлов" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Бракованные твэлы с дезактивации, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Бракованные твэлы с участка контроля, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Таблетки, кг" Value="0.5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Измельченные фрагменты твэлов, кг" Value="0.5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1.5" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход дезактивационных растворов, л/ч" Value="0.0156" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход газа N2 на атмосферы, нм3/ч" Value="12.06" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход газа N2 на пневмопочту, нм3/ч" Value="1.55" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="6" x="1312" y="1410" Name_x="-23.5" Name_y="53" BlockType="E2E_MFR_NFEA_COVER" BlockName="" Image="library//images//">
+                        <Parameters>
+                            <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true"/>
+                        </Parameters>
+                        <Signals>
+                            <Signal Code="cover" Name="" Type="double"/>
+                            <Signal Code="worktime" Name="" Type="double"/>
+                            <Signal Code="overtime" Name="" Type="double"/>
+                            <Signal Code="prod" Name="" Type="double"/>
+                            <Signal Code="res1" Name="" Type="double"/>
+                            <Signal Code="res2" Name="" Type="double"/>
+                            <Signal Code="res3" Name="" Type="double"/>
+                            <Signal Code="res4" Name="" Type="double"/>
+                            <Signal Code="res5" Name="" Type="double"/>
+                            <Signal Code="res6" Name="" Type="double"/>
+                            <Signal Code="res7" Name="" Type="double"/>
+                            <Signal Code="res8" Name="" Type="double"/>
+                            <Signal Code="resRel1" Name="" Type="double"/>
+                            <Signal Code="resRel2" Name="" Type="double"/>
+                            <Signal Code="resRel3" Name="" Type="double"/>
+                            <Signal Code="resRel4" Name="" Type="double"/>
+                            <Signal Code="resRel5" Name="" Type="double"/>
+                            <Signal Code="resRel6" Name="" Type="double"/>
+                            <Signal Code="resRel7" Name="" Type="double"/>
+                            <Signal Code="resRel8" Name="" Type="double"/>
+                        </Signals>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="60" y="25"/>
+                        </Ports>
+                        <Visual_Signals>
+                            <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+                                <Image Value="0" Path="E2E_MFR_NFEA_COVER.png"/>
+                                <Image Value="1" Path="const.png"/>
+                            </Visual_signal>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="246"/>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="246"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="282"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="282"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="318"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="318"/>
+                            <Visual_signal Type="Value" Code="res1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="356"/>
+                            <Visual_signal Type="Value" Code="res2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="393"/>
+                            <Visual_signal Type="Value" Code="res3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="429"/>
+                            <Visual_signal Type="Value" Code="res4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="464"/>
+                            <Visual_signal Type="Value" Code="res5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="500"/>
+                            <Visual_signal Type="Value" Code="res6" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="538"/>
+                            <Visual_signal Type="Value" Code="res7" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="574"/>
+                            <Visual_signal Type="Value" Code="res8" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1270" y="612"/>
+                            <Visual_signal Type="Value" Code="resRel1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="356"/>
+                            <Visual_signal Type="Value" Code="resRel2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="393"/>
+                            <Visual_signal Type="Value" Code="resRel3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="429"/>
+                            <Visual_signal Type="Value" Code="resRel4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="464"/>
+                            <Visual_signal Type="Value" Code="resRel5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="500"/>
+                            <Visual_signal Type="Value" Code="resRel6" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="538"/>
+                            <Visual_signal Type="Value" Code="resRel7" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="574"/>
+                            <Visual_signal Type="Value" Code="resRel8" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1335" y="612"/>
+                        </Visual_Signals>
+                        <ExtData/>
+                    </Block>
+                </Blocks>
+                <Links>
+                    <Link>
+                        <Begin Object="Port" Block="41" Port="0"/>
+                        <End Object="Port" Block="6" Port="0"/>
+                        <Source Block="41" Port="0"/>
+                        <Points>
+                            <Point x="1466" y="1495"/>
+                            <Point x="1481" y="1495"/>
+                            <Point x="1481" y="1435"/>
+                            <Point x="1387" y="1435"/>
+                            <Point x="1372" y="1435"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="49" Port="0"/>
+                        <End Object="Port" Block="42" Port="0"/>
+                        <Source Block="49" Port="0"/>
+                        <Points>
+                            <Point x="1544" y="1565"/>
+                            <Point x="1544" y="1550"/>
+                            <Point x="1544" y="1795"/>
+                            <Point x="2315" y="1795"/>
+                            <Point x="2330" y="1795"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="50" Port="0"/>
+                        <End Object="Port" Block="43" Port="0"/>
+                        <Source Block="50" Port="0"/>
+                        <Points>
+                            <Point x="1950" y="1562"/>
+                            <Point x="1950" y="1547"/>
+                            <Point x="1950" y="1849"/>
+                            <Point x="2313" y="1849"/>
+                            <Point x="2328" y="1849"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="51" Port="0"/>
+                        <End Object="Port" Block="44" Port="0"/>
+                        <Source Block="51" Port="0"/>
+                        <Points>
+                            <Point x="1542" y="1782"/>
+                            <Point x="1542" y="1767"/>
+                            <Point x="1542" y="1915"/>
+                            <Point x="2311" y="1915"/>
+                            <Point x="2311" y="1902"/>
+                            <Point x="2326" y="1902"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="52" Port="0"/>
+                        <End Object="Port" Block="45" Port="0"/>
+                        <Source Block="52" Port="0"/>
+                        <Points>
+                            <Point x="1542" y="2001"/>
+                            <Point x="1542" y="1986"/>
+                            <Point x="1542" y="1955"/>
+                            <Point x="2311" y="1955"/>
+                            <Point x="2326" y="1955"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="53" Port="0"/>
+                        <End Object="Port" Block="46" Port="0"/>
+                        <Source Block="53" Port="0"/>
+                        <Points>
+                            <Point x="1951" y="1780"/>
+                            <Point x="1951" y="1765"/>
+                            <Point x="1951" y="2007"/>
+                            <Point x="2307" y="2007"/>
+                            <Point x="2322" y="2007"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="54" Port="0"/>
+                        <End Object="Port" Block="47" Port="0"/>
+                        <Source Block="54" Port="0"/>
+                        <Points>
+                            <Point x="1951" y="2001"/>
+                            <Point x="1951" y="1986"/>
+                            <Point x="1951" y="2060"/>
+                            <Point x="2309" y="2060"/>
+                            <Point x="2324" y="2060"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="55" Port="0"/>
+                        <End Object="Port" Block="48" Port="0"/>
+                        <Source Block="55" Port="0"/>
+                        <Points>
+                            <Point x="1541" y="2220"/>
+                            <Point x="1541" y="2205"/>
+                            <Point x="1541" y="2111"/>
+                            <Point x="2305" y="2111"/>
+                            <Point x="2320" y="2111"/>
+                        </Points>
+                    </Link>
+                </Links>
+                <Labels/>
+            </Subsystem>
+        </Block>
+        <Block ID="3" x="1886" y="1935" Name_x="79" Name_y="-26" BlockType="Subsystem" BlockName="Линия изготовления таблеток" Image="library//images//">
+            <Parameters>
+                <Parameter Code="Subsystem_Inputs" Name="Число входов подсистемы" Value="1" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Outputs" Name="Число выходов подсистемы" Value="7" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Width" Name="Ширина подсистемы" Value="351" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Height" Name="Высота подсистемы" Value="340" Tab="" Visible="true"/>
+            </Parameters>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="170"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="42"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="84"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="126"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="168"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="210"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="252"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="359" y="294"/>
+            </Ports>
+            <Subsystem>
+                <Blocks>
+                    
+                    <Block ID="26" x="1253" y="1363" Name_x="16.5" Name_y="28" BlockType="SubIN" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Input" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="0" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="R" ToolTip="Вход подсистемы" x="58" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="27" x="2000" y="1698" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="1" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="28" x="1998" y="1753" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="1" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="2" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="29" x="1998" y="1803" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="2" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="3" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="30" x="1997" y="1854" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="3" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="4" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="31" x="1996" y="1904" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="4" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="5" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="32" x="1997" y="1953" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="5" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="6" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="33" x="1995" y="1999" Name_x="16.5" Name_y="20" BlockType="SubOUT" BlockName="6" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="7" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="34" x="1271" y="1424" Name_x="0" Name_y="-22" BlockType="SmallStages" BlockName="Участок дозирования, смешения и грануляции нитридной крупки и скрапа" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="0.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Комплект с нитридной крупкой и скрапом, кг" Value="60" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Гранулированный порошок, кг" Value="60" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="35" x="1639" y="1425" Name_x="2.5" Name_y="-23" BlockType="SmallStages" BlockName="Участок подготовки и хранения пресс-порошка" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Контейнер с гранулированным порошком, кг" Value="60" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: StZn, кг" Value="0.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Пресс-порошок, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Азот, нм3/ч" Value="150" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="36" x="1272" y="1647" Name_x="63.5" Name_y="-26" BlockType="SmallStages" BlockName="Участок прессования таблеток" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Контейнер с пресс-порошком, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Спрессованные таблетки, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Газовая смесь, л/(кг*ч)" Value="150" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="37" x="1273" y="1867" Name_x="78" Name_y="-25" BlockType="SmallStages" BlockName="Участок спекания таблеток" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="50" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Лодочки со спрессованными таблетками, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Спеченные таблетки, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="350" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Аргон, нм^3/ч" Value="12" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Охлаждающая вода, л/ч" Value="30" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Азот, нм^3/ч" Value="72" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Газовая смесь, м^3/ч" Value="8" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="38" x="1639" y="1646" Name_x="-135" Name_y="-25" BlockType="SmallStages" BlockName="Участок хранения спрессованных, спеченных таблеток и порожних лодочек" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Лодочки с таблетками, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Отобранная партия таблеток, кг" Value="60.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Газовая смесь, л/(кг*ч)" Value="150" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="39" x="1273" y="2089" Name_x="-290" Name_y="-21" BlockType="SmallStages" BlockName="Участок выходного контроля таблеток, загрузки фрагментов топливных столбов, пробок и фиксатора в оболочку твэла" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Лодочка с отобранной партией таблеток, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Пробка и фиксатор, шт" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Комплект комплектующих для твэла подготовленный, шт" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Отбракованные таблетки, шт" Value="1800" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Газовая смесь, л/(кг*ч)" Value="150" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="40" x="1639" y="1867" Name_x="-6.5" Name_y="-25" BlockType="SmallStages" BlockName="Участок переработки бракованных таблеток" Image="library//images//E2E_MFR_Standart_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Отбракованные таблетки в лодочках, шт" Value="1800" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Дробленые таблетки, кг" Value="5" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="2.1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Газовая смесь, л/(кг*ч)" Value="150" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+					
+					<Block ID="7" x="1187" y="1238" Name_x="-19.5" Name_y="53" BlockType="E2E_MFR_FPP_COVER" BlockName="" Image="library//images//">
+                        <Parameters>
+                            <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true"/>
+                        </Parameters>
+                        <Signals>
+                            <Signal Code="cover" Name="" Type="double"/>
+                            <Signal Code="worktime" Name="" Type="double"/>
+                            <Signal Code="overtime" Name="" Type="double"/>
+                            <Signal Code="prod" Name="" Type="double"/>
+                            <Signal Code="res1" Name="" Type="double"/>
+                            <Signal Code="res2" Name="" Type="double"/>
+                            <Signal Code="res3" Name="" Type="double"/>
+                            <Signal Code="res4" Name="" Type="double"/>
+                            <Signal Code="resRel1" Name="" Type="double"/>
+                            <Signal Code="resRel2" Name="" Type="double"/>
+                            <Signal Code="resRel3" Name="" Type="double"/>
+                            <Signal Code="resRel4" Name="" Type="double"/>
+                        </Signals>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="60" y="25"/>
+                        </Ports>
+                        <Visual_Signals>
+                            <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+                                <Image Value="0" Path="E2E_MFR_FPP_COVER.png"/>
+                                <Image Value="1" Path="const.png"/>
+                            </Visual_signal>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="269"/>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="269"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="305"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="305"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="340"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="340"/>
+                            <Visual_signal Type="Value" Code="res1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="378"/>
+                            <Visual_signal Type="Value" Code="res2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="415"/>
+                            <Visual_signal Type="Value" Code="res3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="451"/>
+                            <Visual_signal Type="Value" Code="res4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1080" y="487"/>
+                            <Visual_signal Type="Value" Code="resRel1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="378"/>
+                            <Visual_signal Type="Value" Code="resRel2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="415"/>
+                            <Visual_signal Type="Value" Code="resRel3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="451"/>
+                            <Visual_signal Type="Value" Code="resRel4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1145" y="487"/>
+                        </Visual_Signals>
+                        <ExtData/>
+                    </Block>
+					
+                </Blocks>
+                <Links>
+                    <Link>
+                        <Begin Object="Port" Block="34" Port="0"/>
+                        <End Object="Port" Block="27" Port="0"/>
+                        <Source Block="34" Port="0"/>
+                        <Points>
+                            <Point x="1281" y="1414"/>
+                            <Point x="1281" y="1399"/>
+                            <Point x="1281" y="1711"/>
+                            <Point x="1977" y="1711"/>
+                            <Point x="1992" y="1711"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="35" Port="0"/>
+                        <End Object="Port" Block="28" Port="0"/>
+                        <Source Block="35" Port="0"/>
+                        <Points>
+                            <Point x="1649" y="1415"/>
+                            <Point x="1649" y="1400"/>
+                            <Point x="1649" y="1766"/>
+                            <Point x="1975" y="1766"/>
+                            <Point x="1990" y="1766"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="36" Port="0"/>
+                        <End Object="Port" Block="29" Port="0"/>
+                        <Source Block="36" Port="0"/>
+                        <Points>
+                            <Point x="1282" y="1637"/>
+                            <Point x="1282" y="1622"/>
+                            <Point x="1282" y="1816"/>
+                            <Point x="1975" y="1816"/>
+                            <Point x="1990" y="1816"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="37" Port="0"/>
+                        <End Object="Port" Block="30" Port="0"/>
+                        <Source Block="37" Port="0"/>
+                        <Points>
+                            <Point x="1283" y="1857"/>
+                            <Point x="1283" y="1842"/>
+                            <Point x="1283" y="1867"/>
+                            <Point x="1974" y="1867"/>
+                            <Point x="1989" y="1867"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="38" Port="0"/>
+                        <End Object="Port" Block="31" Port="0"/>
+                        <Source Block="38" Port="0"/>
+                        <Points>
+                            <Point x="1649" y="1636"/>
+                            <Point x="1649" y="1621"/>
+                            <Point x="1649" y="1917"/>
+                            <Point x="1973" y="1917"/>
+                            <Point x="1988" y="1917"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="39" Port="0"/>
+                        <End Object="Port" Block="32" Port="0"/>
+                        <Source Block="39" Port="0"/>
+                        <Points>
+                            <Point x="1283" y="2079"/>
+                            <Point x="1283" y="2064"/>
+                            <Point x="1283" y="1966"/>
+                            <Point x="1974" y="1966"/>
+                            <Point x="1989" y="1966"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="40" Port="0"/>
+                        <End Object="Port" Block="33" Port="0"/>
+                        <Source Block="40" Port="0"/>
+                        <Points>
+                            <Point x="1649" y="1857"/>
+                            <Point x="1649" y="1842"/>
+                            <Point x="1649" y="2012"/>
+                            <Point x="1972" y="2012"/>
+                            <Point x="1987" y="2012"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="26" Port="0"/>
+                        <End Object="Port" Block="7" Port="0"/>
+                        <Source Block="26" Port="0"/>
+                        <Points>
+                            <Point x="1311" y="1376"/>
+                            <Point x="1326" y="1376"/>
+                            <Point x="1326" y="1263"/>
+                            <Point x="1262" y="1263"/>
+                            <Point x="1247" y="1263"/>
+                        </Points>
+                    </Link>
+                </Links>
+                <Labels/>
+            </Subsystem>
+        </Block>
+        <Block ID="4" x="2261" y="1933" Name_x="94" Name_y="-25" BlockType="Subsystem" BlockName="Линия сборки ТВС" Image="library//images//">
+            <Parameters>
+                <Parameter Code="Subsystem_Inputs" Name="Число входов подсистемы" Value="1" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Outputs" Name="Число выходов подсистемы" Value="5" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Width" Name="Ширина подсистемы" Value="354" Tab="" Visible="true"/>
+                <Parameter Code="Subsystem_Height" Name="Высота подсистемы" Value="340" Tab="" Visible="true"/>
+            </Parameters>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="170"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="362" y="56"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="362" y="112"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="362" y="168"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="362" y="224"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="" x="362" y="280"/>
+            </Ports>
+            <Subsystem>
+                <Blocks>
+                    <Block ID="56" x="1290" y="1300" Name_x="16.5" Name_y="28" BlockType="SubIN" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Input" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="0" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="R" ToolTip="Вход подсистемы" x="58" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="57" x="2275" y="1735" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="0" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="1" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="58" x="2273" y="1792" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="1" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="2" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="59" x="2275" y="1850" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="2" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="3" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="60" x="2276" y="1904" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="3" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="4" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="61" x="2274" y="1957" Name_x="16.5" Name_y="28" BlockType="SubOUT" BlockName="4" Image="">
+                        <Parameters>
+                            <Parameter Code="SubInOut_Type" Name="Тип порта" Value="INFO" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_In" Name="Направление" Value="Output" Tab="" Visible="true"/>
+                            <Parameter Code="SubInOut_Port" Name="Номер порта" Value="5" Tab="" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="R" ToolTip="Выход подсистемы" x="-8" y="13"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="62" x="1415" y="1402" Name_x="11" Name_y="-29" BlockType="SmallStages" BlockName="Участок входного контроля комплектующих ТВС" Image="library//images//E2E_MFR_NFBA_Small_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1.7" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Контейнер с комплектующими ТВС, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Контейнер с комплектующими ТВС, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Дефектные комплектующие, шт" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="5" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="10" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход промывной воды, м3/ч" Value="10" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="63" x="1794" y="1403" Name_x="26.5" Name_y="-25" BlockType="SmallStages" BlockName="Участок подачи твэлов и комплектующих ТВС" Image="library//images//E2E_MFR_NFBA_Small_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="1.3" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Контейнер с комплектующими ТВС , шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: ВТУК с твэлами, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Головка ТВС, головка механизма управления хвостиком, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Каркас ТВС с хвостиком в сборе, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout3" Name="Производимое: Магазин с твэлами, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="5" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход сжатого воздуха, м3/ч" Value="10" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход промывной воды, м3/ч" Value="10" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="64" x="1417" y="1694" Name_x="59.5" Name_y="-26" BlockType="SmallStages" BlockName="Участок сборки и контроля ТВС" Image="library//images//E2E_MFR_NFBA_Large_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="15.4" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Головка ТВС, гловка механизма управления хвостиком , шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Каркас ТВС с хвостиком в сборе, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin3" Name="Получаемое: Магазин с твэлами, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Готовая ТВС" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Бракованная ТВС" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="5" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход смазки для твэлов, л/ч" Value="0.0098" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход промывной воды, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход дистиллированной воды, л/ч" Value="13" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res5" Name="Расход сжатого воздуха, м3/ч" Value="0.156" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res6" Name="Расход азота, нм3/ч" Value="0.078" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="65" x="1793" y="1988" Name_x="20" Name_y="-25" BlockType="SmallStages" BlockName="Участок разборки дефектных ТВС с твэлами" Image="library//images//E2E_MFR_NFBA_Small_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="19.8" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Дефектный каркас ТВС с твэлами, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: Дефектный каркас ТВС без  твэлов, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout2" Name="Производимое: Магазин с твэлами, извлеченными из дефектного каркаса, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Расход промывной воды, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Расход  дистиллированной воды, л/ч" Value="3" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res4" Name="Расход сжатого воздуха, м3/ч" Value="0.039" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="66" x="1793" y="1693" Name_x="84.5" Name_y="-24" BlockType="SmallStages" BlockName="Участок запеналивания ТВС" Image="library//images//E2E_MFR_NFBA_Small_Block_Icon.png">
+                        <Parameters>
+                            <Parameter Code="mode" Name="Принцип работы (0=непрерывный, 1=по требованию)" Value="0" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="cycletime" Name="Время одного цикла, ч" Value="0.7" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin1" Name="Получаемое: Готовая ТВС, шт" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodin2" Name="Получаемое: Порожний пенал" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="prodout1" Name="Производимое: ТВС в пенале" Value="1" Tab="Параметры" Visible="true"/>
+                            <Parameter Code="res1" Name="Электроэнергия, кВт" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res2" Name="Сжатый воздух, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                            <Parameter Code="res3" Name="Промывная вода, л/ч" Value="1" Tab="Ресурсы" Visible="true"/>
+                        </Parameters>
+                        <Signals/>
+                        <Ports>
+                            <Port Input="false" Type="INFO" Dir="U" ToolTip="out" x="10" y="-10"/>
+                        </Ports>
+                        <ExtData/>
+                    </Block>
+                    <Block ID="8" x="1172" y="1220" Name_x="-18" Name_y="53" BlockType="E2E_MFR_NFBA_COVER" BlockName="" Image="library//images//">
+                        <Parameters>
+                            <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true"/>
+                        </Parameters>
+                        <Signals>
+                            <Signal Code="cover" Name="" Type="double"/>
+                            <Signal Code="worktime" Name="" Type="double"/>
+                            <Signal Code="overtime" Name="" Type="double"/>
+                            <Signal Code="prod" Name="" Type="double"/>
+                            <Signal Code="res1" Name="" Type="double"/>
+                            <Signal Code="res2" Name="" Type="double"/>
+                            <Signal Code="res3" Name="" Type="double"/>
+                            <Signal Code="res4" Name="" Type="double"/>
+                            <Signal Code="res5" Name="" Type="double"/>
+                            <Signal Code="resRel1" Name="" Type="double"/>
+                            <Signal Code="resRel2" Name="" Type="double"/>
+                            <Signal Code="resRel3" Name="" Type="double"/>
+                            <Signal Code="resRel4" Name="" Type="double"/>
+                            <Signal Code="resRel5" Name="" Type="double"/>
+                        </Signals>
+                        <Ports>
+                            <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="60" y="25"/>
+                        </Ports>
+                        <Visual_Signals>
+                            <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+                                <Image Value="0" Path="E2E_MFR_NFBA_COVER.png"/>
+                                <Image Value="1" Path="const.png"/>
+                            </Visual_signal>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="254"/>
+                            <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="254"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="285"/>
+                            <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="285"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="316"/>
+                            <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="316"/>
+                            <Visual_signal Type="Value" Code="res1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="347"/>
+                            <Visual_signal Type="Value" Code="res2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="377"/>
+                            <Visual_signal Type="Value" Code="res3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="407"/>
+                            <Visual_signal Type="Value" Code="res4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="440"/>
+                            <Visual_signal Type="Value" Code="res5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1350" y="474"/>
+                            <Visual_signal Type="Value" Code="resRel1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="347"/>
+                            <Visual_signal Type="Value" Code="resRel2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="377"/>
+                            <Visual_signal Type="Value" Code="resRel3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="407"/>
+                            <Visual_signal Type="Value" Code="resRel4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="440"/>
+                            <Visual_signal Type="Value" Code="resRel5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1415" y="474"/>
+                        </Visual_Signals>
+                        <ExtData/>
+                    </Block>
+                </Blocks>
+                <Links>
+                    <Link>
+                        <Begin Object="Port" Block="56" Port="0"/>
+                        <End Object="Port" Block="8" Port="0"/>
+                        <Source Block="56" Port="0"/>
+                        <Points>
+                            <Point x="1348" y="1313"/>
+                            <Point x="1363" y="1313"/>
+                            <Point x="1363" y="1245"/>
+                            <Point x="1247" y="1245"/>
+                            <Point x="1232" y="1245"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="62" Port="0"/>
+                        <End Object="Port" Block="57" Port="0"/>
+                        <Source Block="62" Port="0"/>
+                        <Points>
+                            <Point x="1425" y="1392"/>
+                            <Point x="1425" y="1377"/>
+                            <Point x="1425" y="1748"/>
+                            <Point x="2252" y="1748"/>
+                            <Point x="2267" y="1748"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="63" Port="0"/>
+                        <End Object="Port" Block="58" Port="0"/>
+                        <Source Block="63" Port="0"/>
+                        <Points>
+                            <Point x="1804" y="1393"/>
+                            <Point x="1804" y="1378"/>
+                            <Point x="1804" y="1805"/>
+                            <Point x="2250" y="1805"/>
+                            <Point x="2265" y="1805"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="64" Port="0"/>
+                        <End Object="Port" Block="59" Port="0"/>
+                        <Source Block="64" Port="0"/>
+                        <Points>
+                            <Point x="1427" y="1684"/>
+                            <Point x="1427" y="1669"/>
+                            <Point x="1427" y="1863"/>
+                            <Point x="2252" y="1863"/>
+                            <Point x="2267" y="1863"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="65" Port="0"/>
+                        <End Object="Port" Block="60" Port="0"/>
+                        <Source Block="65" Port="0"/>
+                        <Points>
+                            <Point x="1803" y="1978"/>
+                            <Point x="1803" y="1963"/>
+                            <Point x="1803" y="1917"/>
+                            <Point x="2253" y="1917"/>
+                            <Point x="2268" y="1917"/>
+                        </Points>
+                    </Link>
+                    <Link>
+                        <Begin Object="Port" Block="66" Port="0"/>
+                        <End Object="Port" Block="61" Port="0"/>
+                        <Source Block="66" Port="0"/>
+                        <Points>
+                            <Point x="1803" y="1683"/>
+                            <Point x="1803" y="1668"/>
+                            <Point x="1803" y="1970"/>
+                            <Point x="2251" y="1970"/>
+                            <Point x="2266" y="1970"/>
+                        </Points>
+                    </Link>
+                </Links>
+                <Labels/>
+            </Subsystem>
+        </Block>
+        <Block ID="9" x="3136" y="1589" Name_x="-13" Name_y="602" BlockType="E2E_MFR_CALC" BlockName="Расчетный блок" Image="library//images//E2E_MFR_CALC.png">
+            <Parameters/>
+            <Signals/>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS1" x="-10" y="0"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS2" x="-10" y="20"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS3" x="-10" y="40"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS4" x="-10" y="60"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS5" x="-10" y="80"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS6" x="-10" y="100"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inCTS7" x="-10" y="120"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP1" x="-10" y="160"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP2" x="-10" y="180"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP3" x="-10" y="200"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP4" x="-10" y="220"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP5" x="-10" y="240"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP6" x="-10" y="260"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inFPP7" x="-10" y="280"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA1" x="-10" y="320"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA2" x="-10" y="340"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA3" x="-10" y="360"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA4" x="-10" y="380"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA5" x="-10" y="400"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA6" x="-10" y="420"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFEA7" x="-10" y="440"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFBA1" x="-10" y="480"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFBA2" x="-10" y="500"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFBA3" x="-10" y="520"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFBA4" x="-10" y="540"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="inNFBA5" x="-10" y="560"/>
+                <Port Input="true" Type="INFO" Dir="D" ToolTip="inCTRL" x="50" y="-10"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="outALLvis" x="110" y="0"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="outCTSvis" x="110" y="20"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="outFPPvis" x="110" y="40"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="outNFEAvis" x="110" y="60"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="outNFBAis" x="110" y="80"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="10" x="2888" y="1416" Name_x="-7" Name_y="-40" BlockType="E2E_MFR_CALCOPT" BlockName="" Image="library//images//E2E_MFR_CALCOPT.png">
+            <Parameters>
+                <Parameter Code="initMode" Name="Начальные условия (0=запуск, 1=с исходными материалами на узлах)" Value="0" Tab="Параметры" Visible="true"/>
+                <Parameter Code="calcMode" Name="Режим расчета (0=непрерывный, 1=единоразовый)" Value="0" Tab="Параметры" Visible="true"/>
+                <Parameter Code="timeCalc" Name="Время расчета в разовом режиме" Value="0" Tab="Параметры" Visible="true"/>
+                <Parameter Code="timeMode" Name="Единицы измерения времени (0=сек, 1=мин, 2=час, 3=день, 4=мес)" Value="0" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="D" ToolTip="out" x="10" y="70"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="0" x="1834" y="1356" Name_x="-20" Name_y="53" BlockType="E2E_MFR_COVER" BlockName="" Image="library//images//">
+            <Parameters>
+                <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals>
+                <Signal Code="cover" Name="" Type="double"/>
+                <Signal Code="worktime" Name="" Type="double"/>
+                <Signal Code="overtime" Name="" Type="double"/>
+                <Signal Code="prod" Name="" Type="double"/>
+                <Signal Code="res1" Name="" Type="double"/>
+                <Signal Code="res2" Name="" Type="double"/>
+                <Signal Code="res3" Name="" Type="double"/>
+                <Signal Code="res4" Name="" Type="double"/>
+                <Signal Code="res5" Name="" Type="double"/>
+                <Signal Code="res6" Name="" Type="double"/>
+                <Signal Code="res7" Name="" Type="double"/>
+                <Signal Code="res8" Name="" Type="double"/>
+                <Signal Code="resRel1" Name="" Type="double"/>
+                <Signal Code="resRel2" Name="" Type="double"/>
+                <Signal Code="resRel3" Name="" Type="double"/>
+                <Signal Code="resRel4" Name="" Type="double"/>
+                <Signal Code="resRel5" Name="" Type="double"/>
+                <Signal Code="resRel6" Name="" Type="double"/>
+                <Signal Code="resRel7" Name="" Type="double"/>
+                <Signal Code="resRel8" Name="" Type="double"/>
+            </Signals>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="60" y="25"/>
+            </Ports>
+            <Visual_Signals>
+                <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+                    <Image Value="0" Path="E2E_MFR_COVER.png"/>
+                    <Image Value="1" Path="const.png"/>
+                </Visual_signal>
+                <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="245"/>
+                <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="287"/>
+                <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="329"/>
+                <Visual_signal Type="Value" Code="res1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="376"/>
+                <Visual_signal Type="Value" Code="res2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="419"/>
+                <Visual_signal Type="Value" Code="res3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="462"/>
+                <Visual_signal Type="Value" Code="res4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="505"/>
+                <Visual_signal Type="Value" Code="res5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="550"/>
+                <Visual_signal Type="Value" Code="res6" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="593"/>
+                <Visual_signal Type="Value" Code="res7" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="637"/>
+                <Visual_signal Type="Value" Code="res8" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1100" y="681"/>
+                <Visual_signal Type="Value" Code="worktime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="245"/>
+                <Visual_signal Type="Value" Code="overtime" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="287"/>
+                <Visual_signal Type="Value" Code="prod" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="329"/>
+                <Visual_signal Type="Value" Code="resRel1" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="376"/>
+                <Visual_signal Type="Value" Code="resRel2" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="419"/>
+                <Visual_signal Type="Value" Code="resRel3" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="462"/>
+                <Visual_signal Type="Value" Code="resRel4" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="505"/>
+                <Visual_signal Type="Value" Code="resRel5" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="550"/>
+                <Visual_signal Type="Value" Code="resRel6" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="593"/>
+                <Visual_signal Type="Value" Code="resRel7" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="637"/>
+                <Visual_signal Type="Value" Code="resRel8" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="1160" y="681"/>
+            </Visual_Signals>
+            <ExtData/>
+        </Block>
+    </Blocks>
+    <Links>
+        <Link>
+            <Begin Object="Port" Block="10" Port="0"/>
+            <End Object="Port" Block="9" Port="26"/>
+            <Source Block="10" Port="0"/>
+            <Points>
+                <Point x="2898" y="1486"/>
+                <Point x="2898" y="1501"/>
+                <Point x="2898" y="1492"/>
+                <Point x="3186" y="1492"/>
+                <Point x="3186" y="1564"/>
+                <Point x="3186" y="1579"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="9" Port="27"/>
+            <End Object="Port" Block="0" Port="0"/>
+            <Source Block="9" Port="27"/>
+            <Points>
+                <Point x="3246" y="1589"/>
+                <Point x="3261" y="1589"/>
+                <Point x="3261" y="1381"/>
+                <Point x="1909" y="1381"/>
+                <Point x="1894" y="1381"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="9" Port="28"/>
+            <End Object="Port" Block="1" Port="0"/>
+            <Source Block="9" Port="28"/>
+            <Points>
+                <Point x="3246" y="1609"/>
+                <Point x="3261" y="1609"/>
+                <Point x="3261" y="1469"/>
+                <Point x="1863" y="1469"/>
+                <Point x="1863" y="1703"/>
+                <Point x="1878" y="1703"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="1"/>
+            <End Object="Port" Block="9" Port="0"/>
+            <Source Block="1" Port="1"/>
+            <Points>
+                <Point x="2245" y="1548"/>
+                <Point x="2260" y="1548"/>
+                <Point x="2260" y="1524"/>
+                <Point x="2685.5" y="1524"/>
+                <Point x="2685.5" y="1589"/>
+                <Point x="3111" y="1589"/>
+                <Point x="3126" y="1589"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="2"/>
+            <End Object="Port" Block="9" Port="1"/>
+            <Source Block="1" Port="2"/>
+            <Points>
+                <Point x="2245" y="1599"/>
+                <Point x="2260" y="1599"/>
+                <Point x="2260" y="1576"/>
+                <Point x="2685.5" y="1576"/>
+                <Point x="2685.5" y="1609"/>
+                <Point x="3111" y="1609"/>
+                <Point x="3126" y="1609"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="3"/>
+            <End Object="Port" Block="9" Port="2"/>
+            <Source Block="1" Port="3"/>
+            <Points>
+                <Point x="2245" y="1650"/>
+                <Point x="2260" y="1650"/>
+                <Point x="2260" y="1626"/>
+                <Point x="2685.5" y="1626"/>
+                <Point x="3111" y="1629"/>
+                <Point x="3126" y="1629"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="4"/>
+            <End Object="Port" Block="9" Port="3"/>
+            <Source Block="1" Port="4"/>
+            <Points>
+                <Point x="2245" y="1701"/>
+                <Point x="2260" y="1701"/>
+                <Point x="2260" y="1682"/>
+                <Point x="2685.5" y="1682"/>
+                <Point x="2685.5" y="1649"/>
+                <Point x="3111" y="1649"/>
+                <Point x="3126" y="1649"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="5"/>
+            <End Object="Port" Block="9" Port="4"/>
+            <Source Block="1" Port="5"/>
+            <Points>
+                <Point x="2245" y="1752"/>
+                <Point x="2260" y="1752"/>
+                <Point x="2260" y="1725"/>
+                <Point x="2685.5" y="1725"/>
+                <Point x="2685.5" y="1669"/>
+                <Point x="3111" y="1669"/>
+                <Point x="3126" y="1669"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="6"/>
+            <End Object="Port" Block="9" Port="5"/>
+            <Source Block="1" Port="6"/>
+            <Points>
+                <Point x="2245" y="1803"/>
+                <Point x="2260" y="1803"/>
+                <Point x="2260" y="1783"/>
+                <Point x="2685.5" y="1783"/>
+                <Point x="2685.5" y="1689"/>
+                <Point x="3111" y="1689"/>
+                <Point x="3126" y="1689"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="7"/>
+            <End Object="Port" Block="9" Port="6"/>
+            <Source Block="1" Port="7"/>
+            <Points>
+                <Point x="2245" y="1854"/>
+                <Point x="2260" y="1854"/>
+                <Point x="2260" y="1834"/>
+                <Point x="2685.5" y="1834"/>
+                <Point x="2685.5" y="1709"/>
+                <Point x="3111" y="1709"/>
+                <Point x="3126" y="1709"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="9" Port="29"/>
+            <End Object="Port" Block="3" Port="0"/>
+            <Source Block="9" Port="29"/>
+            <Points>
+                <Point x="3246" y="1629"/>
+                <Point x="3261" y="1629"/>
+                <Point x="3261" y="2294"/>
+                <Point x="1863" y="2294"/>
+                <Point x="1863" y="2105"/>
+                <Point x="1878" y="2105"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="1"/>
+            <End Object="Port" Block="9" Port="7"/>
+            <Source Block="3" Port="1"/>
+            <Points>
+                <Point x="2245" y="1977"/>
+                <Point x="2260" y="1977"/>
+                <Point x="2685.5" y="1977"/>
+                <Point x="2685.5" y="1749"/>
+                <Point x="3111" y="1749"/>
+                <Point x="3126" y="1749"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="2"/>
+            <End Object="Port" Block="9" Port="8"/>
+            <Source Block="3" Port="2"/>
+            <Points>
+                <Point x="2245" y="2019"/>
+                <Point x="2260" y="2019"/>
+                <Point x="2685.5" y="2019"/>
+                <Point x="2685.5" y="1769"/>
+                <Point x="3111" y="1769"/>
+                <Point x="3126" y="1769"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="3"/>
+            <End Object="Port" Block="9" Port="9"/>
+            <Source Block="3" Port="3"/>
+            <Points>
+                <Point x="2245" y="2061"/>
+                <Point x="2260" y="2061"/>
+                <Point x="2685.5" y="2061"/>
+                <Point x="2685.5" y="1789"/>
+                <Point x="3111" y="1789"/>
+                <Point x="3126" y="1789"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="4"/>
+            <End Object="Port" Block="9" Port="10"/>
+            <Source Block="3" Port="4"/>
+            <Points>
+                <Point x="2245" y="2103"/>
+                <Point x="2260" y="2103"/>
+                <Point x="2685.5" y="2103"/>
+                <Point x="2685.5" y="1809"/>
+                <Point x="3111" y="1809"/>
+                <Point x="3126" y="1809"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="5"/>
+            <End Object="Port" Block="9" Port="11"/>
+            <Source Block="3" Port="5"/>
+            <Points>
+                <Point x="2245" y="2145"/>
+                <Point x="2260" y="2145"/>
+                <Point x="2685.5" y="2145"/>
+                <Point x="2685.5" y="1829"/>
+                <Point x="3111" y="1829"/>
+                <Point x="3126" y="1829"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="6"/>
+            <End Object="Port" Block="9" Port="12"/>
+            <Source Block="3" Port="6"/>
+            <Points>
+                <Point x="2245" y="2187"/>
+                <Point x="2260" y="2187"/>
+                <Point x="2685.5" y="2187"/>
+                <Point x="2685.5" y="1849"/>
+                <Point x="3111" y="1849"/>
+                <Point x="3126" y="1849"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="3" Port="7"/>
+            <End Object="Port" Block="9" Port="13"/>
+            <Source Block="3" Port="7"/>
+            <Points>
+                <Point x="2245" y="2229"/>
+                <Point x="2260" y="2229"/>
+                <Point x="2685.5" y="2229"/>
+                <Point x="2685.5" y="1869"/>
+                <Point x="3111" y="1869"/>
+                <Point x="3126" y="1869"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="7"/>
+            <End Object="Port" Block="9" Port="20"/>
+            <Source Block="2" Port="7"/>
+            <Points>
+                <Point x="2622" y="1854"/>
+                <Point x="2637" y="1854"/>
+                <Point x="2874" y="1854"/>
+                <Point x="2874" y="2029"/>
+                <Point x="3111" y="2029"/>
+                <Point x="3126" y="2029"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="6"/>
+            <End Object="Port" Block="9" Port="19"/>
+            <Source Block="2" Port="6"/>
+            <Points>
+                <Point x="2622" y="1803"/>
+                <Point x="2637" y="1803"/>
+                <Point x="2874" y="1803"/>
+                <Point x="2874" y="2009"/>
+                <Point x="3111" y="2009"/>
+                <Point x="3126" y="2009"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="5"/>
+            <End Object="Port" Block="9" Port="18"/>
+            <Source Block="2" Port="5"/>
+            <Points>
+                <Point x="2622" y="1752"/>
+                <Point x="2637" y="1752"/>
+                <Point x="2874" y="1752"/>
+                <Point x="2874" y="1989"/>
+                <Point x="3111" y="1989"/>
+                <Point x="3126" y="1989"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="4"/>
+            <End Object="Port" Block="9" Port="17"/>
+            <Source Block="2" Port="4"/>
+            <Points>
+                <Point x="2622" y="1701"/>
+                <Point x="2637" y="1701"/>
+                <Point x="2874" y="1701"/>
+                <Point x="2874" y="1969"/>
+                <Point x="3111" y="1969"/>
+                <Point x="3126" y="1969"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="3"/>
+            <End Object="Port" Block="9" Port="16"/>
+            <Source Block="2" Port="3"/>
+            <Points>
+                <Point x="2622" y="1650"/>
+                <Point x="2637" y="1650"/>
+                <Point x="2874" y="1650"/>
+                <Point x="2874" y="1949"/>
+                <Point x="3111" y="1949"/>
+                <Point x="3126" y="1949"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="2"/>
+            <End Object="Port" Block="9" Port="15"/>
+            <Source Block="2" Port="2"/>
+            <Points>
+                <Point x="2622" y="1599"/>
+                <Point x="2637" y="1599"/>
+                <Point x="2874" y="1599"/>
+                <Point x="2874" y="1929"/>
+                <Point x="3111" y="1929"/>
+                <Point x="3126" y="1929"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="1"/>
+            <End Object="Port" Block="9" Port="14"/>
+            <Source Block="2" Port="1"/>
+            <Points>
+                <Point x="2622" y="1548"/>
+                <Point x="2637" y="1548"/>
+                <Point x="2874" y="1548"/>
+                <Point x="2874" y="1909"/>
+                <Point x="3111" y="1909"/>
+                <Point x="3126" y="1909"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="9" Port="30"/>
+            <End Object="Port" Block="2" Port="0"/>
+            <Source Block="9" Port="30"/>
+            <Points>
+                <Point x="3246" y="1649"/>
+                <Point x="3261" y="1649"/>
+                <Point x="3261" y="2214"/>
+                <Point x="2240" y="2214"/>
+                <Point x="2240" y="1703"/>
+                <Point x="2255" y="1703"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="9" Port="31"/>
+            <End Object="Port" Block="4" Port="0"/>
+            <Source Block="9" Port="31"/>
+            <Points>
+                <Point x="3246" y="1669"/>
+                <Point x="3261" y="1669"/>
+                <Point x="3261" y="2258"/>
+                <Point x="2238" y="2258"/>
+                <Point x="2238" y="2103"/>
+                <Point x="2253" y="2103"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="1"/>
+            <End Object="Port" Block="9" Port="21"/>
+            <Source Block="4" Port="1"/>
+            <Points>
+                <Point x="2623" y="1989"/>
+                <Point x="2638" y="1989"/>
+                <Point x="2875.5" y="1989"/>
+                <Point x="2875.5" y="2069"/>
+                <Point x="3111" y="2069"/>
+                <Point x="3126" y="2069"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="2"/>
+            <End Object="Port" Block="9" Port="22"/>
+            <Source Block="4" Port="2"/>
+            <Points>
+                <Point x="2623" y="2045"/>
+                <Point x="2638" y="2045"/>
+                <Point x="2875.5" y="2045"/>
+                <Point x="2875.5" y="2089"/>
+                <Point x="3111" y="2089"/>
+                <Point x="3126" y="2089"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="3"/>
+            <End Object="Port" Block="9" Port="23"/>
+            <Source Block="4" Port="3"/>
+            <Points>
+                <Point x="2623" y="2101"/>
+                <Point x="2638" y="2101"/>
+                <Point x="2875.5" y="2101"/>
+                <Point x="2875.5" y="2109"/>
+                <Point x="3111" y="2109"/>
+                <Point x="3126" y="2109"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="4"/>
+            <End Object="Port" Block="9" Port="24"/>
+            <Source Block="4" Port="4"/>
+            <Points>
+                <Point x="2623" y="2157"/>
+                <Point x="2638" y="2157"/>
+                <Point x="2875.5" y="2157"/>
+                <Point x="2875.5" y="2129"/>
+                <Point x="3111" y="2129"/>
+                <Point x="3126" y="2129"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="5"/>
+            <End Object="Port" Block="9" Port="25"/>
+            <Source Block="4" Port="5"/>
+            <Points>
+                <Point x="2623" y="2213"/>
+                <Point x="2638" y="2213"/>
+                <Point x="2875.5" y="2213"/>
+                <Point x="2875.5" y="2149"/>
+                <Point x="3111" y="2149"/>
+                <Point x="3126" y="2149"/>
+            </Points>
+        </Link>
+    </Links>
+    <Labels/>
+</Scheme>

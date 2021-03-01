@@ -25,6 +25,7 @@ private:
     IOutputPort *outGasAeroFilter, *outAeroFilterParameters;
 
     double filterParticleNumberPrev, filterActivityCurrent, gasDecayRate, particleDensity, particleMolarMass, gasViscosity;
+    double gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent;
 
 
 };

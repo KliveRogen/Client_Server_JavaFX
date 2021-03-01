@@ -3,7 +3,7 @@
 GCS_FlowConnector::GCS_FlowConnector()
 {
 	// Расчетный тип блока
-    BlockCalcType = E_NEEDINPUT;
+    BlockCalcType = E_INITVALUES;
 
     // Параметры блока
 
@@ -22,13 +22,13 @@ GCS_FlowConnector::GCS_FlowConnector()
 void GCS_FlowConnector::setDataNames()
 {
     //выходные параметры газа
-    std::vector<std::string> outGasName;
-    outGasName.push_back("Объемный расход, м^3/с");
-    outGasName.push_back("Давление, Па");
-    outGasName.push_back("Температура, °C");
-    outGasName.push_back("Объемная активность газа, Бк/м^3");
-    outGasName.push_back("Объемная доля частиц в газе, отн. ед.");
-    outGas->setDataNames(outGasName);
+    std::vector<std::string> dn1;
+    dn1.push_back("Объемный расход, м^3/с");
+    dn1.push_back("Давление, Па");
+    dn1.push_back("Температура, °C");
+    dn1.push_back("Объемная активность газа, Бк/м^3");
+    dn1.push_back("Объемная доля частиц в газе, отн. ед.");
+    outGas->setDataNames(dn1);
 }
 bool GCS_FlowConnector::init(std::string &error, double h)
 {
@@ -40,7 +40,21 @@ bool GCS_FlowConnector::init(std::string &error, double h)
         }
     }
     // Put your initialization here
-	setDataNames();
+    setDataNames();
+
+    gasVolumeFlowRateCurrent=0;
+    gasOutputPressureCurrent=0;
+    gasTemperatureCurrent=0;
+    gasActivityCurrent=0;
+    gasParticleFractionCurrent=0;
+
+    outGas->setOut(0, gasVolumeFlowRateCurrent);
+    outGas->setOut(1, gasOutputPressureCurrent);
+    outGas->setOut(2, gasTemperatureCurrent);
+    outGas->setOut(3, gasActivityCurrent);
+    outGas->setOut(4, gasParticleFractionCurrent);
+
+
     return true;
 }
 bool GCS_FlowConnector::process(double t, double h, std::string &error)
@@ -49,8 +63,7 @@ bool GCS_FlowConnector::process(double t, double h, std::string &error)
 
     double gasFirstVolumeFlowRate, gasFirstInputPressure, gasFirstInputTemperature, gasFirstInputActivity,
             gasFirstInputParticleFraction, gasSecondVolumeFlowRate, gasSecondInputPressure, gasSecondInputTemperature, gasSecondInputActivity,
-            gasSecondInputParticleFraction, gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent,
-            gasParticleFractionCurrent;
+            gasSecondInputParticleFraction;
 
     //считывание входных значений
     gasFirstVolumeFlowRate = inGasFirst->getInput()[0];//объемный расход первого потока газа, м^3/с
@@ -75,11 +88,14 @@ bool GCS_FlowConnector::process(double t, double h, std::string &error)
     gasParticleFractionCurrent=gasFirstVolumeFlowRate/gasVolumeFlowRateCurrent*gasFirstInputParticleFraction+
             gasSecondVolumeFlowRate/gasVolumeFlowRateCurrent*gasSecondInputParticleFraction;//текущая объемная доля частиц в газе на выходе
     //передача значений на выходные порты
-    outGas->setOut(0, gasVolumeFlowRateCurrent);
-    outGas->setOut(1, gasOutputPressureCurrent);
-    outGas->setOut(2, gasTemperatureCurrent);
-    outGas->setOut(3, gasActivityCurrent);
-    outGas->setOut(4, gasParticleFractionCurrent);
+    outGas->setNewOut(0, gasVolumeFlowRateCurrent);
+    outGas->setNewOut(1, gasOutputPressureCurrent);
+    outGas->setNewOut(2, gasTemperatureCurrent);
+    outGas->setNewOut(3, gasActivityCurrent);
+    outGas->setNewOut(4, gasParticleFractionCurrent);
+
+
+
     return true;
 }
 ICalcElement *Create()

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_NFEA_COVER" BlockName="Экран ТВЭЛ" Tab="Сквозной расчет МФР" Image="const.png">
+    <Parameters>
+        <Parameter Code="CODE" Name="Включение экрана" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals>
+        <Signal Code="cover" Name="" Type="double" Tab="Сигналы"/>
+		<!--1-->
+		<!--Signal Code="err1" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err2" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err3" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err4" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err5" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err6" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err7" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err8" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err9" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err10" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err11" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err12" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err13" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err14" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err15" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err16" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err17" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err18" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err19" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err20" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err21" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err22" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err23" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err24" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err25" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err26" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err27" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="err28" Name="" Type="double" Tab="Сигналы"/-->
+		<!--workparam-->
+		<Signal Code="worktime" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="overtime" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="prod" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res1" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res2" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res3" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res4" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res5" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res6" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res7" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="res8" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel1" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel2" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel3" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel4" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel5" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel6" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel7" Name="" Type="double" Tab="Сигналы"/>
+		<Signal Code="resRel8" Name="" Type="double" Tab="Сигналы"/>
+    </Signals>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="in" ID="0" Dir="L" x="60" y="25"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals>
+        <Visual_signal Type="Image" Code="cover" Value="0" x="50" y="50">
+            <Image Value="0" Path="E2E_MFR_NFEA_COVER.png"/>
+            <Image Value="1" Path="const.png"/>
+        </Visual_signal>
+		<!--1-->
+		<!--Visual_signal Code="err1" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="232"/>
+		<Visual_signal Code="err2" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="251"/>
+		<Visual_signal Code="err3" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="272"/>
+		<Visual_signal Code="err4" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="294"/>
+		<Visual_signal Code="err5" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="318"/>
+		<Visual_signal Code="err6" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="370"/>
+		<Visual_signal Code="err7" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="398"/>
+		<Visual_signal Code="err8" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="424"/>
+		<Visual_signal Code="err9" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="452"/>
+		<Visual_signal Code="err10" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="482"/>
+		<Visual_signal Code="err11" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="551"/>
+		<Visual_signal Code="err12" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="585"/>
+		<Visual_signal Code="err13" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="621"/>
+		<Visual_signal Code="err14" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="680"/>
+		<Visual_signal Code="err15" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="705"/>
+		<Visual_signal Code="err16" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="730"/>
+		<Visual_signal Code="err17" Type="Value" Unit="" Quantity="3" SizeFont="10" x="295" y="761"/>
+		<Visual_signal Code="err18" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="222"/>
+		<Visual_signal Code="err19" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="249"/>
+		<Visual_signal Code="err20" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="275"/>
+		<Visual_signal Code="err21" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="298"/>
+		<Visual_signal Code="err22" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="383"/>
+		<Visual_signal Code="err23" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="418"/>
+		<Visual_signal Code="err24" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="447"/>
+		<Visual_signal Code="err25" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="476"/>
+		<Visual_signal Code="err26" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="516"/>
+		<Visual_signal Code="err27" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="604"/>
+		<Visual_signal Code="err28" Type="Value" Unit="" Quantity="3" SizeFont="10" x="677" y="655"/-->
+		<!--calc-->
+		<Visual_signal Code="worktime" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="250"/>
+		<Visual_signal Code="worktime" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="250"/>
+		<Visual_signal Code="overtime" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="286"/>
+		<Visual_signal Code="overtime" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="286"/>
+		<Visual_signal Code="prod" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="322"/>
+		<Visual_signal Code="prod" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="322"/>
+		<Visual_signal Code="res1" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="358"/>
+		<Visual_signal Code="res2" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="394"/>
+		<Visual_signal Code="res3" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="430"/>
+		<Visual_signal Code="res4" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="466"/>
+		<Visual_signal Code="res5" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="502"/>
+		<Visual_signal Code="res6" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="540"/>
+		<Visual_signal Code="res7" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="578"/>
+		<Visual_signal Code="res8" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1245" y="616"/>
+		<Visual_signal Code="resRel1" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="358"/>
+		<Visual_signal Code="resRel2" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="394"/>
+		<Visual_signal Code="resRel3" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="430"/>
+		<Visual_signal Code="resRel4" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="466"/>
+		<Visual_signal Code="resRel5" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="502"/>
+		<Visual_signal Code="resRel6" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="540"/>
+		<Visual_signal Code="resRel7" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="578"/>
+		<Visual_signal Code="resRel8" Type="Value" Unit="" Quantity="3" SizeFont="10" x="1310" y="616"/>
+    </Visual_Signals>
+</Block>

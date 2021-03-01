@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_CTS_02DOSMIXGRAN" BlockName="Участок дозирования, смешения и грануляции" Tab="Сквозной расчет МФР (линия карботермического синтеза)" Image="E2E_MFR_Standart_Block_Icon.png">
+    <Parameters>
+        <Parameter Code="mode" 			Name="Принцип работы (0=непрерывный, 1=по требованию)" 								Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="cycletime" 	Name="Время одного цикла, ч" 														Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin1" 		Name="Получаемое: PuO2, кг" 														Value="4.12" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin2" 		Name="Получаемое: UO2, кг" 															Value="0.77" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin3" 		Name="Получаемое: С , кг" 															Value="0.26" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin4" 		Name="Получаемое: Скрап от участка дробления шашек ихранения нитридной крупки, кг" 	Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodin5" 		Name="Получаемое: Скрап от линии изготовления СНУП ЯТ, кг" 							Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="prodout1" 		Name="Производимое: Гранулят в контейнере, кг" 										Value="5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="res1" 			Name="Электроэнергия, кВт" 															Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res2" 			Name="Расход дезактивационных растворов, л/ч" 										Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res3" 			Name="Расход охл. воды, л/ч" 														Value="1" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res4" 			Name="Расход газа N2 на пневмопочту и пневмопривод, нм3/ч" 							Value="0.2055" Tab="Ресурсы" Visible="true" Checkable="true"/>
+        <Parameter Code="res5" 			Name="Расход газа N2 на атмосферу, нм3/ч" 											Value="65.2968" Tab="Ресурсы" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="U" x="10" y="-10"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

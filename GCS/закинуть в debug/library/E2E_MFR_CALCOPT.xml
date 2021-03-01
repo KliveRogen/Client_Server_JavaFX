@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="E2E_MFR_CALCOPT" BlockName="Настройки расчета" Tab="Сквозной расчет МФР" Image="E2E_MFR_CALCOPT.png">
+    <Parameters>
+		<Parameter Code="initMode" Name="Начальные условия (0=запуск, 1=с исходными материалами на узлах)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="calcMode" Name="Режим расчета (0=непрерывный, 1=единоразовый)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="timeCalc" Name="Время расчета в разовом режиме" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="timeMode" Name="Единицы измерения времени (0=сек, 1=мин, 2=час, 3=день, 4=мес)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="D" x="10" y="70"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

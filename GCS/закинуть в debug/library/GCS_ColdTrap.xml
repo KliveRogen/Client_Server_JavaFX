@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_ColdTrap" BlockName="Холодная ловушка" Tab="Газоочистка" Image="coldTrap.png">
+    <Parameters>
+        <Parameter Code="coldTrapTemperature" Name="Температура холодной ловушки, °C" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapTempCoef" Name="Коэффициент изменения темературы в холодной ловушке (от 0 до 1)" Value="0.9" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapTubeCrossSectionalArea" Name="Площадь поперечного сечения трубки ловушки, м^2" Value="0.008" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapNetPenetrateCoef" Name="Проницаемость сетки холодной ловушки" Value="1e-6" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapTubeEffLength" Name="Длина трубки холодной ловушки, м" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapVolume" Name="Объем холодной ловушки, м^3" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapParticleCatchCoef" Name="Коэффициент улавливания частиц холодной ловушкой, отн. ед." Value="0.001" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="coldTrapInitMassParticle" Name="Начальная масса частиц на холодной ловушке, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="maxParticleMass" Name="Максимальная масса частиц на холодной ловушке, кг" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+		
+    </Parameters>
+    <Signals/>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="inGasColdTrap" ID="0" Dir="R" x="-8" y="25.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outGasColdTrap" ID="1" Dir="R" x="58" y="26.5"/>
+        <Port Input="false" Type="INFO" ToolTip="outColdTrapParameters" ID="2" Dir="U" x="24" y="-7.5"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals/>
+</Block>

@@ -41,18 +41,20 @@ SUBDIRS = Port \
     MP_CR_Syringe \
     CMN_Mux \
     CMN_Demux \
-    CMN_Demux_alt \
     MP_EX_TankPump \
     MP_EX_Branch \
     CMN_Summator \
     MP_EX_EXTRACTOR \
-    #TR_EXTRACTOR \
-    #TR_EXTRACTOR_2 \
+    TR_EXTRACTOR \
+    TR_EXTRACTOR_2 \
     #TR_REEXTRACTOR \
-    #TR_EXTRACTOR_4 \
+    TR_EXTRACTOR_4 \
     From_OPC \
     To_OPC \
     TEST_AvariikaTest \
     TR_VAPE \
     TR_REF \
-    HYDR
+    HYDR \
+    ScaleTester \
+    E2E_MFR\
+    GCS
