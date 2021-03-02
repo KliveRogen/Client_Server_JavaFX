@@ -6,6 +6,9 @@
         <Port Input="true" Type="INFO" ToolTip="inGas" ID="0" Dir="R" x="-7" y="25.5"/>
         <Port Input="false" Type="INFO" ToolTip="outGas1" ID="1" Dir="R" x="58" y="9.5"/>
         <Port Input="false" Type="INFO" ToolTip="outGas2" ID="2" Dir="R" x="58" y="41.5"/>
+		<Port Input="true" Type="INFO" ToolTip="inFeedback1" ID="3" Dir="L" x="58" y="0"/>
+		<Port Input="true" Type="INFO" ToolTip="inFeedback2" ID="4" Dir="L" x="58" y="50"/>
+		<Port Input="false" Type="INFO" ToolTip="outFeedback" ID="5" Dir="L" x="-9" y="48"/>
     </Ports>
     <Situations/>
     <Visual_Signals/>
