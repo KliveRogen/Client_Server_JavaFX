@@ -11,9 +11,9 @@
     </Parameters>
     <Signals/>
     <Ports>
-        <Port Input="true" Type="INFO" ToolTip="inGasAeroFilter" ID="0" Dir="R" x="-8" y="25.5"/>
-        <Port Input="false" Type="INFO" ToolTip="outGasAeroFilter" ID="1" Dir="R" x="58" y="26.5"/>
-        <Port Input="false" Type="INFO" ToolTip="outAeroFilterParameters" ID="2" Dir="U" x="24" y="-7.5"/>
+        <Port Input="true" Type="INFO" ToolTip="Входной газовый поток" ID="0" Dir="R" x="-8" y="25.5"/>
+        <Port Input="false" Type="INFO" ToolTip="Выходной газовый поток" ID="1" Dir="R" x="58" y="26.5"/>
+        <Port Input="false" Type="INFO" ToolTip="Выходные парметры фильтра" ID="2" Dir="U" x="24" y="-7.5"/>
     </Ports>
     <Situations/>
     <Visual_Signals/>

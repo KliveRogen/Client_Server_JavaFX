@@ -10,8 +10,8 @@
     </Parameters>
     <Signals/>
     <Ports>
-        <Port Input="false" Type="INFO" ToolTip="out" ID="0" Dir="R" x="59" y="15"/>
-		<Port Input="true" Type="INFO" ToolTip="in" ID="1" Dir="L" x="58" y="37"/>
+        <Port Input="false" Type="INFO" ToolTip="Выходной поток газа" ID="0" Dir="R" x="59" y="15"/>
+		<Port Input="true" Type="INFO" ToolTip="Входной коэффициент сопротивления (от 0 до 1)" ID="1" Dir="L" x="58" y="37"/>
     </Ports>
     <Situations/>
     <Visual_Signals/>

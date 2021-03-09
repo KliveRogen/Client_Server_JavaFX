@@ -104,7 +104,7 @@ bool GCS_ControlValve::process(double t, double h, std::string &error)
     gasInputActivity = inGasValve->getInput()[3];//активность газа, Бк
     gasInputParticleFraction = inGasValve->getInput()[4];//объемная доля частиц в газе, отн. ед.
     valvePositionGiven = inGivenPosition->getInput()[0]; //заданная позиция клапана (от 0 до 1)
-    inValvesResistance = inFeedbackGasValve->getInput()[0]; //общее сопротивление от вентилей на линии
+    inValvesResistance = inFeedbackGasValve->getInput()[0]; //общий коэффициент сопротивления от вентилей на линии (от 0 до 1)
 
     signArg = valvePositionGiven-valvePositionPrev; //направление движения (открывается или закрывается клапан)
     //решение уравнения клапана методом Эйлера
@@ -132,6 +132,9 @@ bool GCS_ControlValve::process(double t, double h, std::string &error)
 
     //рассчет общего сопротивленя клапанов
     outValvesResistance=inValvesResistance+(1-valvePositionCurrent);
+    if (outValvesResistance > 1){
+        outValvesResistance=1;
+    }
 
 
     //передача значений на выходные порты

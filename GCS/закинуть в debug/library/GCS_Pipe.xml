@@ -7,8 +7,8 @@
     </Parameters>
     <Signals/>
     <Ports>
-        <Port Input="true" Type="INFO" ToolTip="inGasPipe" ID="0" Dir="R" x="-7" y="21.5"/>
-        <Port Input="false" Type="INFO" ToolTip="outGasPipe" ID="1" Dir="R" x="109" y="22.5"/>
+        <Port Input="true" Type="INFO" ToolTip="Входной поток газа" ID="0" Dir="R" x="-7" y="21.5"/>
+        <Port Input="false" Type="INFO" ToolTip="Выходной поток газа" ID="1" Dir="R" x="109" y="22.5"/>
     </Ports>
     <Situations/>
     <Visual_Signals/>
