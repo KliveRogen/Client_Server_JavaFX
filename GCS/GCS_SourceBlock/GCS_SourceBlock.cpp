@@ -1,4 +1,5 @@
 #include "GCS_SourceBlock.h"
+#include "../constants_list.h"
 
 GCS_SourceBlock::GCS_SourceBlock()
 {
@@ -59,11 +60,17 @@ bool GCS_SourceBlock::init(std::string &error, double h)
 
 bool GCS_SourceBlock::process(double t, double h, std::string &error)
 {
-    // Put your calculations here
+    //считывание исходных параметров блока
+    gasTemperature = paramToDouble("gasTemperature");
+    gasActivity = paramToDouble("gasActivity");
+    particleFraction = paramToDouble("particleFraction");
+    gasPressure = paramToDouble("gasPressure");
+    gasFlowRate = paramToDouble("gasFlowRate");
+    pumpMaxPressure = paramToDouble("pumpMaxPressure");
     //Проверка на соответствие давлений
     if ((paramToDouble("pumpMaxPressure") < paramToDouble("gasPressure"))
             || (paramToDouble("pumpMaxPressure") == paramToDouble("gasPressure") && paramToDouble("gasFlowRate") != 0)){
-        error = "Давления насоса имеют неправильное соотношение";
+        error = "Заданные давления насоса имеют неправильное соотношение";
         return false;
     }
     //вывод параметров на выходной порт и проверка
@@ -73,22 +80,26 @@ bool GCS_SourceBlock::process(double t, double h, std::string &error)
             return false;
         }  
     }
-
     double inValvesResistance, characteristicSlope;
     inValvesResistance = in->getInput()[0]; //общее сопротивление от клапанов
     if (inValvesResistance>1){
         inValvesResistance=1;
     }
-
-    characteristicSlope = (paramToDouble("gasPressure")-paramToDouble("pumpMaxPressure"))/paramToDouble("gasFlowRate"); //вычисление коэффциента наклона кривой напроно-расходной характеристики
-    outGasFlowRate=(1-inValvesResistance)*paramToDouble("gasFlowRate");//объемный расход через насос,м^3/c
-    outGasPressure=outGasFlowRate*characteristicSlope+paramToDouble("pumpMaxPressure");//давление на выходе насоса, Па
-
-    out->setNewOut(0,outGasFlowRate);
-    out->setNewOut(1,outGasPressure);
-    out->setNewOut(2,paramToDouble("gasTemperature"));
-    out->setNewOut(3,paramToDouble("gasActivity"));
-    out->setNewOut(4,paramToDouble("particleFraction"));
+    characteristicSlope = (gasPressure - pumpMaxPressure) / gasFlowRate; //вычисление коэффциента наклона кривой напроно-расходной характеристики насоса
+    gasFlowRate = (1 - inValvesResistance) * gasFlowRate;//объемный расход через насос,м^3/c
+    gasPressure = gasFlowRate * characteristicSlope + pumpMaxPressure;//давление на выходе насоса, Па
+    //НЕОБХОДИМО ПОДУМАТЬ О ЛОГИЧНОСТИ ЭТОГО. Ведь газ может и не иметь скорости, но быть статичным с какими-то параметрами. В общем нужно бы уточнить
+    if (gasFlowRate == 0){
+        gasActivity = 0;
+        particleFraction = 0;
+        gasTemperature = 0;
+    }
+    //вывод параметров газа
+    out->setNewOut(0, gasFlowRate);
+    out->setNewOut(1, gasPressure);
+    out->setNewOut(2, gasTemperature);
+    out->setNewOut(3, gasActivity);
+    out->setNewOut(4, particleFraction);
 
     return true;
 }

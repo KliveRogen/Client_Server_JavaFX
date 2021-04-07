@@ -14,7 +14,8 @@ SOURCES += GCS_PinchValve.cpp
 
 HEADERS += GCS_PinchValve.h \
     ../../include/IPort.h \
-    ../../CalcElement/CalcElement.h
+    ../../CalcElement/CalcElement.h \
+    ../constants_list.h
 
 unix {
     target.path = /usr/lib

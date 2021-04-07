@@ -16,7 +16,8 @@ SOURCES += \
 HEADERS += \
     ../../include/IPort.h \
     ../../CalcElement/CalcElement.h \
-    GCS_Pipe.h
+    GCS_Pipe.h \
+    ../constants_list.h
 
 unix {
     target.path = /usr/lib

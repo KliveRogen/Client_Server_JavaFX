@@ -1,4 +1,5 @@
 #include "GCS_FlowSeparator.h"
+#include "../constants_list.h"
 
 GCS_FlowSeparator::GCS_FlowSeparator()
 {
@@ -16,7 +17,6 @@ GCS_FlowSeparator::GCS_FlowSeparator()
     inFeedback1 = createInputPort(3, "UNKNOWN_NAME", "INFO");
     inFeedback2 = createInputPort(4, "UNKNOWN_NAME", "INFO");
     outFeedback = createOutputPort(5, "UNKNOWN_NAME", "INFO");
-
 
 	// Отказы блока
 
@@ -44,7 +44,6 @@ void GCS_FlowSeparator::setDataNames()
     std::vector<std::string> outFeedbackName;
     outFeedbackName.push_back("Общее сопротивление");
     outFeedback->setDataNames(outFeedbackName);
-
 }
 
 bool GCS_FlowSeparator::init(std::string &error, double h)
@@ -92,7 +91,6 @@ bool GCS_FlowSeparator::process(double t, double h, std::string &error)
     gasInputParticleFraction = inGas->getInput()[4];//объемная доля частиц в газе, отн. ед.
     inputResistance1 = inFeedback1->getInput()[0];//сопротивление от потока 1
     inputResistance2 = inFeedback2->getInput()[0];//сопротивление от потока 2
-
     //расчет параметров газа
     if(inputResistance1==inputResistance2){
         outResistance=inputResistance1;
@@ -107,7 +105,6 @@ bool GCS_FlowSeparator::process(double t, double h, std::string &error)
         gas1VolumeFlowRateCurrent = (1-inputResistance1)*gasVolumeFlowRate/2; //текущий объемный расход на первом выходе, м^3/с
         gas2VolumeFlowRateCurrent = (1+inputResistance1)*gasVolumeFlowRate/2; //текущий объемный расход на втором выходе, м^3/с
     }
-
     gas1OutputPressureCurrent= gasInputPressure;//текущее давление на первом выходе, Па
     gas2OutputPressureCurrent = gasInputPressure;//текущее давление на втором выходе, Па
     gas1TemperatureCurrent=gasInputTemperature;//текущая температура газа на первом выходе

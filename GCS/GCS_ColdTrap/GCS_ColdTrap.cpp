@@ -1,5 +1,8 @@
 #include "GCS_ColdTrap.h"
+#include "../constants_list.h"
 #include <cmath>
+#define GAS_CONSTANT 8.314
+#define AVOGADRO_CONSTANT 6.022e23
 
 GCS_ColdTrap::GCS_ColdTrap()
 {
@@ -16,12 +19,6 @@ GCS_ColdTrap::GCS_ColdTrap()
 	createParameter("coldTrapParticleCatchCoef", "0.001");
     createParameter("coldTrapInitMassParticle", "0");
     createParameter("maxParticleMass", "10");
-
-
-
-
-
-
 
 	// Сигналы блока
 
@@ -61,14 +58,8 @@ bool GCS_ColdTrap::init(std::string &error, double h)
             return false;
         }
     }
-    //постоянные параметры газа
-    particleDensity = 100;//плотность частиц, кг/м^3
-    particleMolarMass = 0.012;//молярная масса оседающей частицы, кг/моль
-    gasSpecificConstant = 287; // удельная газовая постоянная, Дж/(кг*К)
-    gasDecayRate = 2.3e-6; //постоянная распада,с-1;
-    gasViscosity = 1.78e-5; //вязкость газа, Па*с;
     //подсчет начального количества частиц на фильтре
-    coldTrapParticleNumberPrev = paramToDouble("coldTrapInitMassParticle")*6.22*pow(10,23)/particleMolarMass;
+    coldTrapParticleNumberPrev = paramToDouble("coldTrapInitMassParticle") * AVOGADRO_CONSTANT / particleMolarMass;
 	setDataNames();
     return true;
 }
@@ -94,51 +85,52 @@ bool GCS_ColdTrap::process(double t, double h, std::string &error)
     coldTrapTempCoef = paramToDouble("coldTrapTempCoef"); //температурный коэф. (от 0 до 1)
     coldTrapTubeCrossSectionalArea = paramToDouble("coldTrapTubeCrossSectionalArea"); //площадь поперечного сечения трубки ловушки, м^2
     coldTrapNetPenetrateCoef = paramToDouble("coldTrapNetPenetrateCoef");//проницаемость сетки
-    coldTrapTubeEffLength=paramToDouble("coldTrapTubeEffLength");//длина, на протяжении которой измеряется перепад давления, м;
-    coldTrapVolume = paramToDouble("coldTrapVolume"); //объем холодной ловушки;
+    coldTrapTubeEffLength = paramToDouble("coldTrapTubeEffLength");//длина, на протяжении которой измеряется перепад давления, м
+    coldTrapVolume = paramToDouble("coldTrapVolume"); //объем холодной ловушки, м^3
     coldTrapParticleCatchCoef = paramToDouble("coldTrapParticleCatchCoef"); //коэффициент улавливания частиц
     maxParticleMass = paramToDouble("maxParticleMass"); //максимальная масса частиц на ловушке, кг
     //рассчет дополнительных параметров
-    particleInitNumberAir=particleDensity*1*gasInputParticleFraction*6.22*pow(10,23)/particleMolarMass; //начальное число частиц в кубическом метре воздуха 1/м^3;
+    particleInitNumberAir = particleDensity * coldTrapVolume * gasInputParticleFraction * AVOGADRO_CONSTANT / particleMolarMass; //начальное число частиц в кубическом метре воздуха 1/м^3;
     gasAirActivity=gasInputActivity  * coldTrapVolume;//активность газа в воздухе
-    gasDensity = gasInputPressure/(gasSpecificConstant*(coldTrapTemperature+273));//плотность газа, кг/м3
+    gasDensity = gasInputPressure / (gasSpecificConstant * (coldTrapTemperature + 273));//плотность газа, кг/м3
     gasMassFlowRate = gasInputVolumeFlowRate * gasDensity; //массовый расход, кг/с
     //решение усовершенствованным методом Эйлера (количество частиц на фильтре)
-    coldTrapParticleNumberDerivative1 = ((-gasDecayRate*coldTrapParticleNumberPrev)+gasInputVolumeFlowRate*coldTrapParticleCatchCoef*particleInitNumberAir);
-    coldTrapParticleNumberPrime = coldTrapParticleNumberPrev+h*coldTrapParticleNumberDerivative1;
-    coldTrapParticleNumberDerivative2 = ((-gasDecayRate*coldTrapParticleNumberPrime)+gasInputVolumeFlowRate*coldTrapParticleCatchCoef*particleInitNumberAir);
-    coldTrapParticleNumberCurrent = coldTrapParticleNumberPrev+(h/2)*( coldTrapParticleNumberDerivative1+ coldTrapParticleNumberDerivative2);
+    coldTrapParticleNumberDerivative1 = ((-gasDecayRate * coldTrapParticleNumberPrev) + gasInputVolumeFlowRate * coldTrapParticleCatchCoef * particleInitNumberAir);
+    coldTrapParticleNumberPrime = coldTrapParticleNumberPrev + h * coldTrapParticleNumberDerivative1;
+    coldTrapParticleNumberDerivative2 = ((-gasDecayRate * coldTrapParticleNumberPrime) + gasInputVolumeFlowRate * coldTrapParticleCatchCoef * particleInitNumberAir);
+    coldTrapParticleNumberCurrent = coldTrapParticleNumberPrev + (h / 2) * (coldTrapParticleNumberDerivative1 + coldTrapParticleNumberDerivative2);
     coldTrapParticleNumberPrev = coldTrapParticleNumberCurrent;
     //расчет массы частиц на холодной ловушке
-    particleMassCurrent = particleMolarMass*coldTrapParticleNumberCurrent/6.22/pow(10,23);
+    particleMassCurrent = particleMolarMass * coldTrapParticleNumberCurrent / AVOGADRO_CONSTANT;
     if (particleMassCurrent > maxParticleMass){
         particleMassCurrent = maxParticleMass;
     }
     //расчет накопленной активности на холодной ловушке с учетом заполненности ловушки
     if (particleMassCurrent < maxParticleMass){
-        coldTrapActivityCurrent = gasInputVolumeFlowRate*coldTrapParticleCatchCoef*gasAirActivity/gasDecayRate* (1-exp(-gasDecayRate*t));
+        coldTrapActivityCurrent = gasInputVolumeFlowRate * coldTrapParticleCatchCoef * gasAirActivity / gasDecayRate * (1 - exp(-gasDecayRate * t));
     }
     fillCoef = 1-particleMassCurrent/maxParticleMass;//коэффициент заполненности
-    gasActivityCurrent = gasInputActivity*(1-coldTrapParticleCatchCoef*fillCoef); //текущая активность газа, Бк
+    gasActivityCurrent = gasInputActivity * (1 - coldTrapParticleCatchCoef * fillCoef); //текущая активность газа, Бк
     if (gasActivityCurrent < 0){
         gasActivityCurrent = 0;
     }
     //расчет перепада давления в ловушке
-    gasColdTrapPressureLoss = gasViscosity * coldTrapTubeEffLength * gasMassFlowRate/coldTrapNetPenetrateCoef/gasDensity/coldTrapTubeCrossSectionalArea;
+    gasColdTrapPressureLoss = gasViscosity * coldTrapTubeEffLength * gasMassFlowRate / coldTrapNetPenetrateCoef / gasDensity / coldTrapTubeCrossSectionalArea;
     //выходное давление ловушки
     gasOutputPressureCurrent = gasInputPressure - gasColdTrapPressureLoss;
-    if(gasOutputPressureCurrent<gasInputPressure/2){//учет того, что давление не может так просто упасть до нуля
-        gasOutputPressureCurrent = gasInputPressure/2;
+    //ограничение минимального давления
+    if (gasOutputPressureCurrent < minPressure){
+        gasOutputPressureCurrent = minPressure;
     }
     //текущая температура ловушки
-    gasTemperatureCurrent = (1-coldTrapTempCoef)*(gasInputTemperature - coldTrapTemperature)+coldTrapTemperature;
+    gasTemperatureCurrent = (1 - coldTrapTempCoef)*(gasInputTemperature - coldTrapTemperature) + coldTrapTemperature;
     //текущая объемная доля частиц в газе
-    gasParticleFractionCurrent = gasInputParticleFraction - gasInputParticleFraction*coldTrapParticleCatchCoef*fillCoef;
+    gasParticleFractionCurrent = gasInputParticleFraction - gasInputParticleFraction * coldTrapParticleCatchCoef * fillCoef;
     if (gasParticleFractionCurrent < 0){
         gasParticleFractionCurrent = 0;
     }
     //текущий расход газа
-    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate*(1-gasInputParticleFraction*coldTrapParticleCatchCoef*fillCoef);
+    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate * (1 - gasInputParticleFraction * coldTrapParticleCatchCoef * fillCoef);
     outGasColdTrap->setOut(0, gasVolumeFlowRateCurrent);
     outGasColdTrap->setOut(1, gasOutputPressureCurrent);
     outGasColdTrap->setOut(2, gasTemperatureCurrent);

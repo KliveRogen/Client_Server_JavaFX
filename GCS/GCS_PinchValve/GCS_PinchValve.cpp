@@ -1,4 +1,5 @@
 #include "GCS_PinchValve.h"
+#include "../constants_list.h"
 
 GCS_PinchValve::GCS_PinchValve()
 {
@@ -60,19 +61,24 @@ bool GCS_PinchValve::init(std::string &error, double h)
     setDataNames();
     //проверка корректности параметров
     for (int i = 0; i < (int)Parameters.size(); i++){
-        if (paramToDouble(Parameters[i])<0){
+        if (paramToDouble(Parameters[i]) < 0){
             error = "Ошибка в заполнении исходных данных!";
             return false;
         }
     }
-    //проверка правильности входного значения положения (0 или 1)
-    if (paramToDouble("valveInitPos")!=0 && paramToDouble("valveInitPos")!=1){
-        error = "Ошибка в значении начального положения клапана!";
+    //проверка правильности начального значения положения клапана (от 0 до 1)
+    if (paramToDouble("valveInitPos") < 0 || paramToDouble("valveInitPos") > 1){
+        error = "Ошибка в значении начального положения клапана!\nОно должно быть в диапазоне от 0 до 1.";
         return false;
     }
-    valvePositionPrev = paramToDouble("valveInitPos");
-
-    valvePositionCurrent=0;
+    //преобразование некорректно введеных условий
+    if (paramToDouble("valveInitPos") < 0.5){
+        valvePositionPrev = 0;
+        valvePositionCurrent=0;
+    }else{
+        valvePositionPrev = 1;
+        valvePositionCurrent=1;
+    }
     gasVolumeFlowRateCurrent=0;
     gasOutputPressureCurrent=0;
     gasTemperatureCurrent=0;
@@ -95,10 +101,9 @@ bool GCS_PinchValve::init(std::string &error, double h)
 bool GCS_PinchValve::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double valvePositionGiven, valveTimeOpen, valveTransferCoef, valvePositionDerivative, valveInitPos,
+    double valvePositionGiven, valveTimeOpen, valveTransferCoef, valvePositionDerivative,
             gasInputVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction,signArg,
                inValvesResistance;
-    valveInitPos = paramToDouble("valveInitPos"); //начальная позиция клапана, от 0 до 1
     valveTimeOpen = paramToDouble("valveTimeOpen"); //время открытия клапана, с
     valveTransferCoef = paramToDouble("valveTransferCoef"); //передаточный коэффициент клапана
     //считывание значений на входе
@@ -109,56 +114,54 @@ bool GCS_PinchValve::process(double t, double h, std::string &error)
     gasInputParticleFraction = inGasValve->getInput()[4];//объемная доля частиц в газе, отн. ед.
     valvePositionGiven = inGivenPosition->getInput()[0]; //заданная позиция клапана (0 или 1)
     inValvesResistance = inFeedbackGasValve->getInput()[0]; //общий коэффициент сопротивления от вентилей на линии (от 0 до 1)
-
     //проверка заданного положения клапана
-    if (valvePositionGiven!=0 && valvePositionGiven!=1){
-        error = "Ошибка в значении заданного положения клапана!";
+    if (valvePositionGiven < 0 || valvePositionGiven > 1){
+        error = "Ошибка в значении заданного положения клапана!\nОно должно быть в диапазоне от 0 до 1.";
         return false;
+    }
+    //преобразование некорректно введеных условий
+    if (valvePositionGiven < 0.5){
+        valvePositionGiven = 0;
+    }else{
+        valvePositionGiven = 1;
     }
     signArg = valvePositionGiven-valvePositionPrev; //направление движения (открывается или закрывается клапан)
     //решение уравнения клапана методом Эйлера
-    valvePositionDerivative = valveTransferCoef*signumFunc(signArg)/valveTimeOpen;
-    valvePositionCurrent = valvePositionPrev + valvePositionDerivative*h;
-    //эта часть чтобы убрать статическую ошибку от signumFunc
-    if(valvePositionGiven>valveInitPos && valvePositionCurrent > valvePositionGiven){
-        valvePositionCurrent=valvePositionGiven;
-    }else if(valvePositionGiven<valveInitPos && valvePositionCurrent < valvePositionGiven){
-        valvePositionCurrent=valvePositionGiven;
+    valvePositionDerivative = valveTransferCoef * signumFunc(signArg) / valveTimeOpen;
+    valvePositionCurrent = valvePositionPrev + valvePositionDerivative * h;
+    //условие для устранения статической ошибки из-за signumFunc
+    if (valvePositionCurrent > valvePositionPrev && valvePositionCurrent > valvePositionGiven){
+        valvePositionCurrent = valvePositionGiven;
+    }else if (valvePositionCurrent < valvePositionPrev && valvePositionCurrent < valvePositionGiven){
+        valvePositionCurrent = valvePositionGiven;
     }
-    //решение усовершенствованным методом Эйлера
-    /* //тут в принципе особой разницы нет - что обычный Эйлер, что этот не очень работают из-за signumFunc. Оставлю на всякий случай
-    valvePosPrime=valvePrevPos+h*(valveTransferCoef*signumFunc(valveGivenPos-valvePrevPos)/valveTimeOpen);
-    valveCurrentPos = valvePrevPos + (h/2)*((valveTransferCoef*signumFunc(valveGivenPos-valvePrevPos)/valveTimeOpen)+(valveTransferCoef*signumFunc(valveGivenPos-valvePosPrime)/valveTimeOpen));
-    */
     gasVolumeFlowRateCurrent = gasInputVolumeFlowRate * valvePositionCurrent;
     gasOutputPressureCurrent = gasInputPressure * valvePositionCurrent;//текущее давление на выходе фильтра, Па
-    if(gasOutputPressureCurrent<gasInputPressure/2){//учет того, что давление не может так просто упасть до нуля
-        gasOutputPressureCurrent = gasInputPressure/2;
+    //ограничение минимального давления
+    if (gasOutputPressureCurrent < minPressure){
+        gasOutputPressureCurrent = minPressure;
     }
     gasTemperatureCurrent = gasInputTemperature;//текущая температура газа на выходе
     gasActivityCurrent = gasInputActivity;//текущая активность газа на выходе
     gasParticleFractionCurrent = gasInputParticleFraction;//текущая объемная доля частиц на выходе
 
     //рассчет общего сопротивленя клапанов
-    outValvesResistance=inValvesResistance+(1-valvePositionCurrent);
+    outValvesResistance = 1 - ((1 - inValvesResistance) * valvePositionCurrent);
     if (outValvesResistance > 1){
-        outValvesResistance=1;
+        outValvesResistance = 1;
     }
-
     //передача значений на выходные порты
     outPosition->setNewOut(0,valvePositionCurrent);
     valvePositionPrev = valvePositionCurrent;
-
 
     outGasValve->setNewOut(0, gasVolumeFlowRateCurrent);
     outGasValve->setNewOut(1, gasOutputPressureCurrent);
     outGasValve->setNewOut(2, gasTemperatureCurrent);
     outGasValve->setNewOut(3, gasActivityCurrent);
     outGasValve->setNewOut(4, gasParticleFractionCurrent);
-
     outFeedbackGasValve->setNewOut(0, outValvesResistance);
-
-    valvePositionBar->Value.doubleVal = valvePositionCurrent*100;
+    //передача значения положения клапана на шкалу
+    valvePositionBar->Value.doubleVal = valvePositionCurrent * 100;
     return true;
 }
 

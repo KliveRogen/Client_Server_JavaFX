@@ -14,7 +14,8 @@ SOURCES += GCS_FlowConnector.cpp
 
 HEADERS += GCS_FlowConnector.h \
     ../../include/IPort.h \
-    ../../CalcElement/CalcElement.h
+    ../../CalcElement/CalcElement.h \
+    ../constants_list.h
 
 unix {
     target.path = /usr/lib

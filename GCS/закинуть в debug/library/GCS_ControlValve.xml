@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Block BlockType="GCS_ControlValve" BlockName="Регулирующий клапан" Tab="Газоочистка" Image="valve.png">
+<Block BlockType="GCS_ControlValve" BlockName="Регулирующий клапан" Tab="Газоочистка" Image="controlValve.png">
     <Parameters>
         <Parameter Code="valveTimeOpen" Name="Время открытия клапана, с" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="valveTransferCoef" Name="Коэффициент передачи клапана" Value="1" Tab="Параметры" Visible="true" Checkable="true"/>

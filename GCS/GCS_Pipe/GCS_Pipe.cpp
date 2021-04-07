@@ -1,5 +1,6 @@
 #include "GCS_Pipe.h"
 #include <cmath>
+#include "../constants_list.h"
 
 GCS_Pipe::GCS_Pipe()
 {
@@ -50,7 +51,7 @@ bool GCS_Pipe::process(double t, double h, std::string &error)
 {
     // Put your calculations here
     double gasInputVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction, gasOutputPressureCurrent, gasPressureLoss,
-            gasVolumeFlowRateCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent, gasDensity, pipeDiameter, frictionCoef, pipeLength;
+            gasVolumeFlowRateCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent, pipeDiameter, frictionCoef, pipeLength;
     //считывание значений на входе
     gasInputVolumeFlowRate = inGasPipe->getInput()[0];//объемный расход газа, м^3/с
     gasInputPressure = inGasPipe->getInput()[1];//давление газа, Па
@@ -61,15 +62,17 @@ bool GCS_Pipe::process(double t, double h, std::string &error)
     pipeDiameter = paramToDouble("pipeDiameter"); //диаметр трубы, м
     frictionCoef = paramToDouble("frictionCoef"); //коэффициент трения
     pipeLength = paramToDouble("pipeLength"); //длина трубы, м
-    //постоянные параметры газа
-    gasDensity = 1; //плотность газа, кг/м^3
     //рассчет выходных параметров
-    gasPressureLoss = frictionCoef*pow(gasInputVolumeFlowRate, 2)*gasDensity*pipeLength/pow(pipeDiameter,5);//перепад давления в трубе, Па
-    gasOutputPressureCurrent = gasInputPressure-gasPressureLoss;//текущее давление на выходе трубы, Па
-    gasVolumeFlowRateCurrent=gasInputVolumeFlowRate;//текущий об. расх. газа на выходе трубы, м^3/с
-    gasTemperatureCurrent=gasInputTemperature;//текущая температура газа на выходе трубы, град. Цел.
-    gasActivityCurrent=gasInputActivity;//текущая температура на выходе трубы, град. Цел.
-    gasParticleFractionCurrent=gasInputParticleFraction;//текущая доля частиц на выходе трубы
+    gasPressureLoss = frictionCoef * pow(gasInputVolumeFlowRate, 2) * gasDensity * pipeLength / pow(pipeDiameter, 5);//перепад давления в трубе, Па
+    gasOutputPressureCurrent = gasInputPressure - gasPressureLoss;//текущее давление на выходе трубы, Па
+    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate;//текущий об. расх. газа на выходе трубы, м^3/с
+    gasTemperatureCurrent = gasInputTemperature;//текущая температура газа на выходе трубы, град. Цел.
+    gasActivityCurrent = gasInputActivity;//текущая температура на выходе трубы, град. Цел.
+    gasParticleFractionCurrent = gasInputParticleFraction;//текущая доля частиц на выходе трубы
+    //ограничение минимального давления
+    if (gasOutputPressureCurrent < minPressure){
+        gasOutputPressureCurrent = minPressure;
+    }
     outGasPipe->setOut(0, gasVolumeFlowRateCurrent);
     outGasPipe->setOut(1, gasOutputPressureCurrent);
     outGasPipe->setOut(2, gasTemperatureCurrent);

@@ -24,7 +24,7 @@ private:
     IInputPort *inGasColdTrap;
     IOutputPort *outGasColdTrap, *outColdTrapParameters;
 
-    double coldTrapParticleNumberPrev, coldTrapActivityCurrent, particleDensity, particleMolarMass, gasSpecificConstant, gasDecayRate, gasViscosity;
+    double coldTrapParticleNumberPrev, coldTrapActivityCurrent;
 
 };
 

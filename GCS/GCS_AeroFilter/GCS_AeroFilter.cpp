@@ -1,5 +1,8 @@
 #include "GCS_AeroFilter.h"
+#include "../constants_list.h"
 #include <cmath>
+#define GAS_CONSTANT 8.314
+#define AVOGADRO_CONSTANT 6.022e23
 
 GCS_AeroFilter::GCS_AeroFilter()
 {
@@ -53,13 +56,8 @@ bool GCS_AeroFilter::init(std::string &error, double h)
             return false;
         }
     }
-    //постоянные параметры газа
-    gasDecayRate = 2.3e-6;//постоянная распада нуклида,с-1
-    particleDensity = 100;//плотность частиц, кг/м^3
-    particleMolarMass = 0.012;//молярная масса оседающей частицы, кг/моль
-    gasViscosity = 1.78e-5;//µ – вязкость газа, Па*с;
     //рассчет начального количества частиц на фильтре
-    filterParticleNumberPrev = paramToDouble("filterInitMassParticle")*6.22*pow(10,23)/particleMolarMass;
+    filterParticleNumberPrev = paramToDouble("filterInitMassParticle") * AVOGADRO_CONSTANT / particleMolarMass;
 	setDataNames();
     return true;
 }
@@ -86,44 +84,44 @@ bool GCS_AeroFilter::process(double t, double h, std::string &error)
     filterFiberLength = paramToDouble("filterFiberLength");//длина волокон, приходящихся на единицу площади фильтрующего материала, м-1
     filterResistanceForce = paramToDouble("filterResistanceForce");//безразмерная сила сопротивления, действующая на единицу длины волокна    
     maxParticleMass = paramToDouble("maxParticleMass"); //максимальная масса частиц на фильтре, кг
-
     //расчет дополнительных параметров
-    particleInitNumberAir=particleDensity*1*gasInputParticleFraction*6.22*pow(10,23)/particleMolarMass; //начальное число частиц в кубическом метре воздуха 1/м^3;
-    gasVelocity=gasInputVolumeFlowRate/filterCrossSectionalArea; //скорость потока, м/с;
-    gasFilterConstantPressureLoss=gasVelocity*gasViscosity*filterFiberLength*filterResistanceForce; //постоянный перепад давления на фильтре, Па
+    particleInitNumberAir = particleDensity * filterVolume * gasInputParticleFraction * AVOGADRO_CONSTANT / particleMolarMass; //начальное число частиц в кубическом метре воздуха 1/м^3;
+    gasVelocity = gasInputVolumeFlowRate / filterCrossSectionalArea; //скорость потока, м/с;
+    gasFilterConstantPressureLoss = gasVelocity * gasViscosity * filterFiberLength * filterResistanceForce; //постоянный перепад давления на фильтре, Па
     //решение уравнения количества частиц на фильтре (Усовершенствованный метод Эйлера)
-    filterParticleNumberDerivative1=((-gasDecayRate*filterParticleNumberPrev)+gasInputVolumeFlowRate*filterCatchCoef*particleInitNumberAir);
-    filterParticleNumberPrime=filterParticleNumberPrev+h*filterParticleNumberDerivative1;
-    filterParticleNumberDerivative2=((-gasDecayRate*filterParticleNumberPrime)+gasInputVolumeFlowRate*filterCatchCoef*particleInitNumberAir);
-    filterParticleNumberCurrent=filterParticleNumberPrev+(h/2)*( filterParticleNumberDerivative1+ filterParticleNumberDerivative2);
+    filterParticleNumberDerivative1 = ((-gasDecayRate * filterParticleNumberPrev) + gasInputVolumeFlowRate * filterCatchCoef * particleInitNumberAir);
+    filterParticleNumberPrime = filterParticleNumberPrev + h * filterParticleNumberDerivative1;
+    filterParticleNumberDerivative2 =((-gasDecayRate * filterParticleNumberPrime) + gasInputVolumeFlowRate * filterCatchCoef * particleInitNumberAir);
+    filterParticleNumberCurrent = filterParticleNumberPrev + (h / 2) * (filterParticleNumberDerivative1 + filterParticleNumberDerivative2);
     filterParticleNumberPrev = filterParticleNumberCurrent;
     //расчет массы частиц на фильтре
-    particleMassCurrent = particleMolarMass*filterParticleNumberCurrent/6.22/pow(10,23);
+    particleMassCurrent = particleMolarMass * filterParticleNumberCurrent / AVOGADRO_CONSTANT;
     //условие достижения максимальной массы
-    if (particleMassCurrent>maxParticleMass){
-        particleMassCurrent=maxParticleMass;
+    if (particleMassCurrent > maxParticleMass){
+        particleMassCurrent = maxParticleMass;
     }
-    fillCoef = 1-particleMassCurrent/maxParticleMass;//коэффициент заполненности
+    fillCoef = 1 - particleMassCurrent / maxParticleMass;//коэффициент заполненности
     //расчет активности на фильтре. Если фильтр забился, то активность больше не накапливается
-    if (particleMassCurrent<maxParticleMass){
-        filterActivityCurrent = gasInputVolumeFlowRate*filterCatchCoef*gasInputActivity/gasDecayRate* (1-exp(-gasDecayRate*t));
+    if (particleMassCurrent < maxParticleMass){
+        filterActivityCurrent = gasInputVolumeFlowRate * filterCatchCoef * gasInputActivity / gasDecayRate * (1 - exp(-gasDecayRate * t));
     }
     //текущая активность газа на выходе
-    gasActivityCurrent = gasInputActivity*(1-filterCatchCoef*fillCoef);
-    if (gasActivityCurrent<0){
-        gasActivityCurrent=0;
+    gasActivityCurrent = gasInputActivity * (1 - filterCatchCoef * fillCoef);
+    if (gasActivityCurrent < 0){
+        gasActivityCurrent = 0;
     }
-    gasFilterParticlePressureLoss= filterPressureLossCoef*particleMassCurrent;//падение давления за счет накопления массы частиц, Па
-    gasOutputPressureCurrent= gasInputPressure-gasFilterConstantPressureLoss-gasFilterParticlePressureLoss; //текущее давление на выходе фильтра, Па
-    if(gasOutputPressureCurrent<gasInputPressure/2){//учет того, что давление не может так просто упасть до нуля
-        gasOutputPressureCurrent = gasInputPressure/2;
+    gasFilterParticlePressureLoss = filterPressureLossCoef * particleMassCurrent;//падение давления за счет накопления массы частиц, Па
+    gasOutputPressureCurrent = gasInputPressure - gasFilterConstantPressureLoss - gasFilterParticlePressureLoss; //текущее давление на выходе фильтра, Па
+    //ограничение минимального давления
+    if (gasOutputPressureCurrent < minPressure){
+        gasOutputPressureCurrent = minPressure;
     }
     //текущая объемная доля частиц на выходе
-    gasParticleFractionCurrent = gasInputParticleFraction - gasInputParticleFraction*filterCatchCoef*fillCoef;
-    if (gasParticleFractionCurrent<0){
-        gasParticleFractionCurrent=0;
+    gasParticleFractionCurrent = gasInputParticleFraction - gasInputParticleFraction * filterCatchCoef * fillCoef;
+    if (gasParticleFractionCurrent < 0){
+        gasParticleFractionCurrent = 0;
     }
-    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate*(1-gasInputParticleFraction*filterCatchCoef*fillCoef);//текущий объемный расход газа на выходе
+    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate * (1 - gasInputParticleFraction * filterCatchCoef * fillCoef);//текущий объемный расход газа на выходе
     gasTemperatureCurrent = gasInputTemperature;//текущая температура газа на выходе
     //передача значений на выходные порты
     outGasAeroFilter->setOut(0, gasVolumeFlowRateCurrent);

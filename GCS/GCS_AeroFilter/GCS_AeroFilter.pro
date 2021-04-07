@@ -14,7 +14,8 @@ SOURCES += GCS_AeroFilter.cpp
 
 HEADERS += GCS_AeroFilter.h \
     ../../include/IPort.h \
-    ../../CalcElement/CalcElement.h
+    ../../CalcElement/CalcElement.h \
+    ../constants_list.h
 
 unix {
     target.path = /usr/lib

@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="1" ModelingStep="0.001" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+    <ExtData/>
+    <Blocks>
+        <Block ID="3" x="1620" y="1475" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+            <Parameters>
+                <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals>
+                <Signal Code="ConstValue" Name="Константа" Type="double"/>
+            </Signals>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной" x="57" y="27"/>
+            </Ports>
+            <Visual_Signals>
+                <Visual_signal Type="Value" Code="ConstValue" Height="10" Width="10" Quantity="5" SizeFont="10" Unit=" " x="10" y="30"/>
+            </Visual_Signals>
+            <ExtData/>
+        </Block>
+        <Block ID="4" x="1619" y="1400" Name_x="-62" Name_y="50" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+            <Parameters>
+                <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.036" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasTemperature" Name="Температура газа, °C" Value="20" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasActivity" Name="Объемная активность газа, Бк/м^3" Value="10000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="particleFraction" Name="Объемная доля частиц в газе, отн. ед." Value="0.005" Tab="Параметры" Visible="true"/>
+                <Parameter Code="pumpMaxPressure" Name="Макс. давление насоса, Па" Value="300000" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="out" x="59" y="15"/>
+                <Port Input="true" Type="INFO" Dir="L" ToolTip="in" x="58" y="37"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="0" x="1834" y="1517" Name_x="-59.5" Name_y="53" BlockType="GCS_FlowConnector" BlockName="Соединитель потоков" Image="library//images//connector.png">
+            <Parameters/>
+            <Signals/>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="Входной газовый поток 1" x="-8" y="8.5"/>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="Входной газовый поток 2" x="-8" y="41.5"/>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной газовый поток" x="58" y="26.5"/>
+            </Ports>
+            <Situations>
+                <Situation Code="calcDist" Name="Погрешность" Tab="Отказы"/>
+            </Situations>
+            <ExtData/>
+        </Block>
+        <Block ID="1" x="1622" y="1577" Name_x="-60" Name_y="53" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+            <Parameters>
+                <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.026" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasTemperature" Name="Температура газа, °C" Value="500" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasActivity" Name="Объемная активность газа, Бк/м^3" Value="10000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="particleFraction" Name="Объемная доля частиц в газе, отн. ед." Value="0.005" Tab="Параметры" Visible="true"/>
+                <Parameter Code="pumpMaxPressure" Name="Макс. давление насоса, Па" Value="300000" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной поток газа" x="59" y="15"/>
+                <Port Input="true" Type="INFO" Dir="L" ToolTip="Входной коэффициент сопротивления (от 0 до 1)" x="58" y="37"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="2" x="1621" y="1662" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+            <Parameters>
+                <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals>
+                <Signal Code="ConstValue" Name="Константа" Type="double"/>
+            </Signals>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной" x="57" y="27"/>
+            </Ports>
+            <Visual_Signals>
+                <Visual_signal Type="Value" Code="ConstValue" Height="10" Width="10" Quantity="5" SizeFont="10" Unit=" " x="10" y="30"/>
+            </Visual_Signals>
+            <ExtData/>
+        </Block>
+        <Block ID="5" x="1958" y="1508" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+            <Parameters>
+                <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
+                <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
+                <Parameter Code="FORMAT" Name="Экспоненциальный формат вывода чисел" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSTOP" Name="Верхняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSBOT" Name="Нижняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="14"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="6" x="1837" y="1402" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+            <Parameters>
+                <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
+                <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
+                <Parameter Code="FORMAT" Name="Экспоненциальный формат вывода чисел" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSTOP" Name="Верхняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSBOT" Name="Нижняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="14"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="7" x="1818" y="1627" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+            <Parameters>
+                <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
+                <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
+                <Parameter Code="FORMAT" Name="Экспоненциальный формат вывода чисел" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSTOP" Name="Верхняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+                <Parameter Code="SENSBOT" Name="Нижняя граница чувствительности" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-8" y="14"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+    </Blocks>
+    <Links>
+        <Link>
+            <Begin Object="Port" Block="3" Port="0"/>
+            <End Object="Port" Block="4" Port="1"/>
+            <Source Block="3" Port="0"/>
+            <Points>
+                <Point x="1677" y="1502"/>
+                <Point x="1692" y="1502"/>
+                <Point x="1732" y="1502"/>
+                <Point x="1732" y="1437"/>
+                <Point x="1692" y="1437"/>
+                <Point x="1677" y="1437"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="0"/>
+            <End Object="Port" Block="1" Port="1"/>
+            <Source Block="2" Port="0"/>
+            <Points>
+                <Point x="1678" y="1689"/>
+                <Point x="1693" y="1689"/>
+                <Point x="1734" y="1689"/>
+                <Point x="1734" y="1614"/>
+                <Point x="1695" y="1614"/>
+                <Point x="1680" y="1614"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="4" Port="0"/>
+            <End Object="Node" ID="0"/>
+            <Source Block="4" Port="0"/>
+            <Points>
+                <Point x="1678" y="1415"/>
+                <Point x="1693" y="1415"/>
+                <Point x="1763.5" y="1415"/>
+                <Point x="1763.5" y="1416"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="1" Port="0"/>
+            <End Object="Node" ID="1"/>
+            <Source Block="1" Port="0"/>
+            <Points>
+                <Point x="1681" y="1592"/>
+                <Point x="1696" y="1592"/>
+                <Point x="1764" y="1592"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="0" Port="2"/>
+            <End Object="Port" Block="5" Port="0"/>
+            <Source Block="0" Port="2"/>
+            <Points>
+                <Point x="1892" y="1543.5"/>
+                <Point x="1907" y="1543.5"/>
+                <Point x="1932.5" y="1543.5"/>
+                <Point x="1932.5" y="1522"/>
+                <Point x="1935" y="1522"/>
+                <Point x="1950" y="1522"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="0"/>
+            <End Object="Port" Block="0" Port="0"/>
+            <Source Block="4" Port="0"/>
+            <Points>
+                <Point x="1763.5" y="1416"/>
+                <Point x="1763.5" y="1525.5"/>
+                <Point x="1811" y="1525.5"/>
+                <Point x="1826" y="1525.5"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="0"/>
+            <End Object="Port" Block="6" Port="0"/>
+            <Source Block="4" Port="0"/>
+            <Points>
+                <Point x="1763.5" y="1416"/>
+                <Point x="1814" y="1416"/>
+                <Point x="1829" y="1416"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="1"/>
+            <End Object="Port" Block="0" Port="1"/>
+            <Source Block="1" Port="0"/>
+            <Points>
+                <Point x="1764" y="1592"/>
+                <Point x="1764" y="1558.5"/>
+                <Point x="1811" y="1558.5"/>
+                <Point x="1826" y="1558.5"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="1"/>
+            <End Object="Port" Block="7" Port="0"/>
+            <Source Block="1" Port="0"/>
+            <Points>
+                <Point x="1764" y="1592"/>
+                <Point x="1764" y="1641"/>
+                <Point x="1795" y="1641"/>
+                <Point x="1810" y="1641"/>
+            </Points>
+        </Link>
+    </Links>
+    <Labels/>
+</Scheme>

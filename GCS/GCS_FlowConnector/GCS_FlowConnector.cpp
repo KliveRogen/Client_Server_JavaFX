@@ -1,4 +1,5 @@
 #include "GCS_FlowConnector.h"
+#include "../constants_list.h"
 
 GCS_FlowConnector::GCS_FlowConnector()
 {
@@ -54,7 +55,6 @@ bool GCS_FlowConnector::init(std::string &error, double h)
     outGas->setOut(3, gasActivityCurrent);
     outGas->setOut(4, gasParticleFractionCurrent);
 
-
     return true;
 }
 bool GCS_FlowConnector::process(double t, double h, std::string &error)
@@ -93,8 +93,6 @@ bool GCS_FlowConnector::process(double t, double h, std::string &error)
     outGas->setNewOut(2, gasTemperatureCurrent);
     outGas->setNewOut(3, gasActivityCurrent);
     outGas->setNewOut(4, gasParticleFractionCurrent);
-
-
 
     return true;
 }

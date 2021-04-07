@@ -1,4 +1,5 @@
 #include "GCS_ControlValve.h"
+#include "../constants_list.h"
 
 GCS_ControlValve::GCS_ControlValve()
 {
@@ -33,7 +34,6 @@ double GCS_ControlValve::signumFunc(double argVal)
     return 0;
 }
 
-
 void GCS_ControlValve::setDataNames()
 {
     //выходные параметры газа
@@ -65,9 +65,14 @@ bool GCS_ControlValve::init(std::string &error, double h)
             return false;
         }
     }
+    //проверка правильности начального значения положения клапана (от 0 до 1)
+    if (paramToDouble("valveInitPos") < 0 || paramToDouble("valveInitPos") > 1){
+        error = "Ошибка в значении начального положения клапана!\nОно должно быть в диапазоне от 0 до 1.";
+        return false;
+    }
     valvePositionPrev = paramToDouble("valveInitPos");
 
-    valvePositionCurrent=0;
+    valvePositionCurrent = paramToDouble("valveInitPos");
     gasVolumeFlowRateCurrent=0;
     gasOutputPressureCurrent=0;
     gasTemperatureCurrent=0;
@@ -75,15 +80,14 @@ bool GCS_ControlValve::init(std::string &error, double h)
     gasParticleFractionCurrent=0;
     outValvesResistance=0;
 
-   outPosition->setOut(0,valvePositionCurrent);
-   outGasValve->setOut(0, gasVolumeFlowRateCurrent);
-   outGasValve->setOut(1, gasOutputPressureCurrent);
-   outGasValve->setOut(2, gasTemperatureCurrent);
-   outGasValve->setOut(3, gasActivityCurrent);
-   outGasValve->setOut(4, gasParticleFractionCurrent);
+    outPosition->setOut(0,valvePositionCurrent);
+    outGasValve->setOut(0, gasVolumeFlowRateCurrent);
+    outGasValve->setOut(1, gasOutputPressureCurrent);
+    outGasValve->setOut(2, gasTemperatureCurrent);
+    outGasValve->setOut(3, gasActivityCurrent);
+    outGasValve->setOut(4, gasParticleFractionCurrent);
 
-   outFeedbackGasValve->setOut(0, outValvesResistance);
-
+    outFeedbackGasValve->setOut(0, outValvesResistance);
 
     return true;
 }
@@ -91,10 +95,10 @@ bool GCS_ControlValve::init(std::string &error, double h)
 bool GCS_ControlValve::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double valvePositionGiven, valveTimeOpen, valveTransferCoef, valvePositionDerivative, valveInitPos,
+    double valvePositionGiven, valveTimeOpen, valveTransferCoef, valvePositionDerivative,
             gasInputVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction,signArg,
                inValvesResistance;
-    valveInitPos = paramToDouble("valveInitPos"); //начальная позиция клапана, от 0 до 1
+
     valveTimeOpen = paramToDouble("valveTimeOpen"); //время открытия клапана, с
     valveTransferCoef = paramToDouble("valveTransferCoef"); //передаточный коэффициент клапана
     //считывание значений на входе
@@ -105,52 +109,52 @@ bool GCS_ControlValve::process(double t, double h, std::string &error)
     gasInputParticleFraction = inGasValve->getInput()[4];//объемная доля частиц в газе, отн. ед.
     valvePositionGiven = inGivenPosition->getInput()[0]; //заданная позиция клапана (от 0 до 1)
     inValvesResistance = inFeedbackGasValve->getInput()[0]; //общий коэффициент сопротивления от вентилей на линии (от 0 до 1)
-
+    //проверка заданного положения клапана
+    if (valvePositionGiven < 0 || valvePositionGiven > 1){
+        error = "Ошибка в значении заданного положения клапана!\nОно должно быть в диапазоне от 0 до 1.";
+        return false;
+    }
     signArg = valvePositionGiven-valvePositionPrev; //направление движения (открывается или закрывается клапан)
     //решение уравнения клапана методом Эйлера
-    valvePositionDerivative = valveTransferCoef*signumFunc(signArg)/valveTimeOpen;
-    valvePositionCurrent = valvePositionPrev + valvePositionDerivative*h;
-    //эта часть чтобы убрать статическую ошибку от signumFunc
-    if(valvePositionGiven>valveInitPos && valvePositionCurrent > valvePositionGiven){
-        valvePositionCurrent=valvePositionGiven;
-    }else if(valvePositionGiven<valveInitPos && valvePositionCurrent < valvePositionGiven){
-        valvePositionCurrent=valvePositionGiven;
+    valvePositionDerivative = valveTransferCoef * signumFunc(signArg) / valveTimeOpen;
+    valvePositionCurrent = valvePositionPrev + valvePositionDerivative * h;
+    if (valvePositionCurrent < 0){
+        valvePositionCurrent = 0;
+    }else if (valvePositionCurrent > 1){
+        valvePositionCurrent = 1;
     }
-    //решение усовершенствованным методом Эйлера
-    /* //тут в принципе особой разницы нет - что обычный Эйлер, что этот не очень работают из-за signumFunc. Оставлю на всякий случай
-    valvePosPrime=valvePrevPos+h*(valveTransferCoef*signumFunc(valveGivenPos-valvePrevPos)/valveTimeOpen);
-    valveCurrentPos = valvePrevPos + (h/2)*((valveTransferCoef*signumFunc(valveGivenPos-valvePrevPos)/valveTimeOpen)+(valveTransferCoef*signumFunc(valveGivenPos-valvePosPrime)/valveTimeOpen));
-    */
-    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate;
+    //условие для устранения статической ошибки из-за signumFunc
+    if (valvePositionCurrent > valvePositionPrev && valvePositionCurrent > valvePositionGiven){
+        valvePositionCurrent = valvePositionGiven;
+    }else if (valvePositionCurrent < valvePositionPrev && valvePositionCurrent < valvePositionGiven){
+        valvePositionCurrent = valvePositionGiven;
+    }
+    gasVolumeFlowRateCurrent = gasInputVolumeFlowRate; //расход изменится на след. итерации с помощью блока насоса
     gasOutputPressureCurrent = gasInputPressure * valvePositionCurrent;//текущее давление на выходе фильтра, Па
-    if(gasOutputPressureCurrent<gasInputPressure/2){//учет того, что давление не может так просто упасть до нуля
-        gasOutputPressureCurrent = gasInputPressure/2;
+    //ограничение минимального давления
+    if (gasOutputPressureCurrent < minPressure){
+        gasOutputPressureCurrent = minPressure;
     }
-    gasTemperatureCurrent = gasInputTemperature;//текущая температура газа на выходе
-    gasActivityCurrent = gasInputActivity;//текущая активность газа на выходе
-    gasParticleFractionCurrent = gasInputParticleFraction;//текущая объемная доля частиц на выходе
+    gasTemperatureCurrent = gasInputTemperature; //текущая температура газа на выходе
+    gasActivityCurrent = gasInputActivity; //текущая активность газа на выходе
+    gasParticleFractionCurrent = gasInputParticleFraction; //текущая объемная доля частиц на выходе
 
     //рассчет общего сопротивленя клапанов
-    outValvesResistance=inValvesResistance+(1-valvePositionCurrent);
+    outValvesResistance = 1 - ((1 - inValvesResistance) * valvePositionCurrent);
     if (outValvesResistance > 1){
-        outValvesResistance=1;
+        outValvesResistance = 1;
     }
-
-
     //передача значений на выходные порты
-    outPosition->setNewOut(0,valvePositionCurrent);
+    outPosition->setNewOut(0, valvePositionCurrent);
     valvePositionPrev = valvePositionCurrent;
-
-
     outGasValve->setNewOut(0, gasVolumeFlowRateCurrent);
     outGasValve->setNewOut(1, gasOutputPressureCurrent);
     outGasValve->setNewOut(2, gasTemperatureCurrent);
     outGasValve->setNewOut(3, gasActivityCurrent);
     outGasValve->setNewOut(4, gasParticleFractionCurrent);
-
     outFeedbackGasValve->setNewOut(0, outValvesResistance);
-
-    valvePositionBar->Value.doubleVal = valvePositionCurrent*100;
+    //передача значения положения клапана на шкалу
+    valvePositionBar->Value.doubleVal = valvePositionCurrent * 100;
     return true;
 }
 

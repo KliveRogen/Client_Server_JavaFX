@@ -1,5 +1,9 @@
 #include "GCS_Ejector.h"
 #include "math.h"
+#include "../constants_list.h"
+#define GAS_CONSTANT 8.314
+#define AVOGADRO_CONSTANT 6.022e23
+
 
 GCS_Ejector::GCS_Ejector()
 {
@@ -41,19 +45,10 @@ void GCS_Ejector::setDataNames()
     outMixingGasName.push_back("Объемная активность газа, Бк/м^3");
     outMixingGasName.push_back("Объемная доля частиц в газе, отн. ед.");
     outMixingGas->setDataNames(outMixingGasName);
-
     //выходные параметры эжектора
     std::vector<std::string> outEjectorParametersName;
     outEjectorParametersName.push_back("Коэффициент эжекции");
-
-
-
     outEjectorParameters->setDataNames(outEjectorParametersName);
-
-
-
-
-
 }
 bool GCS_Ejector::init(std::string &error, double h)
 {
@@ -65,10 +60,6 @@ bool GCS_Ejector::init(std::string &error, double h)
             return false;
         }
     }
-
-    gasConstant = 8.314; //газовая постоянная
-    // Put your initialization here
-
     return true;
 }
 bool GCS_Ejector::process(double t, double h, std::string &error)
@@ -113,6 +104,11 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     activeGasInputTemperature = inActiveGas->getInput()[2];//температура эжектирующего газа, град. Цел.
     activeGasInputActivity = inActiveGas->getInput()[3];//активность эжектирующего газа, Бк
     activeGasInputParticleFraction = inActiveGas->getInput()[4];//объемная доля частиц в эжектирующем газе, отн. ед.
+    //проверка соотношения давлений перед соплами
+    if (activeGasInputPressure < passiveGasInputPressure){
+        error = "Ошибка в значении давления активного газа!";
+    }
+
     //расчет эжектора
     //расчет доп параметров для входных газов
     //скорости потока
@@ -122,9 +118,9 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     passiveGasTotalTemperature = (passiveGasInputTemperature + 273) + pow(passiveGasSpeed,2) / (2 * passiveGasSpecificHeat);   //температура торможения эжектируемого газа, К
     activeGasTotalTemperature = (activeGasInputTemperature + 273) + pow(activeGasSpeed,2) / (2 * activeGasSpecificHeat);   //температура торможения эжектирующего газа, К
     //приведенные скорости
-    passiveGasSpecificSpeed = passiveGasSpeed / sqrt(2 * passiveGasHeatCapacityRatio * gasConstant *
+    passiveGasSpecificSpeed = passiveGasSpeed / sqrt(2 * passiveGasHeatCapacityRatio * GAS_CONSTANT *
                                passiveGasTotalTemperature / ((passiveGasHeatCapacityRatio + 1) * passiveGasMolarMass)); //приведенная скорость эжектируемого газа
-    activeGasSpecificSpeed = activeGasSpeed / sqrt(2 * activeGasHeatCapacityRatio * gasConstant *
+    activeGasSpecificSpeed = activeGasSpeed / sqrt(2 * activeGasHeatCapacityRatio * GAS_CONSTANT *
                                activeGasTotalTemperature / ((activeGasHeatCapacityRatio + 1) * activeGasMolarMass)); //приведенная скорость эжектирующего газа
     //отношение температур торможения эжектируемого и эжектирующего потоков
     temperatureRatio = passiveGasTotalTemperature / activeGasTotalTemperature;
@@ -153,15 +149,13 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     //полное давление для смеси газов, Па
     mixingGasTotalPressure = activeGasTotalPressure * (sqrt((ejectionCoef + 1) * (ejectionCoef * temperatureRatio + 1)) / (1 + passiveGasNozzleArea/activeGasNozzleArea)) * activeGasSpecificFlowRate / mixingGasSpecificFlowRate;
     //статическое давление для смести газов, Па
-
-
     mixingGasOutputPressureCurrent = mixingGasTotalPressure * pow(1 - (mixingGasHeatCapacityRatio - 1) / (mixingGasHeatCapacityRatio + 1) * pow(mixingGasSpecificSpeed, 2), (mixingGasHeatCapacityRatio/(mixingGasHeatCapacityRatio-1)));
     //температура торможения смеси газов, К
     mixingGasTotalTemperature = (activeGasInputTemperature + 273) * (ejectionCoef * temperatureRatio + 1) / (ejectionCoef + 1);
     //текущая температура смеси газов, град Цельсия
     mixingGasTemperatureCurrent = - 273 + mixingGasTotalTemperature * (1 - (mixingGasHeatCapacityRatio - 1) / (mixingGasHeatCapacityRatio + 1) * pow(mixingGasSpecificSpeed, 2));
     //скорость смеси газов
-    mixingGasSpeed = mixingGasSpecificSpeed * sqrt(2 * mixingGasHeatCapacityRatio / (mixingGasHeatCapacityRatio + 1) * gasConstant / mixingGasMolarMass * mixingGasTotalTemperature);
+    mixingGasSpeed = mixingGasSpecificSpeed * sqrt(2 * mixingGasHeatCapacityRatio / (mixingGasHeatCapacityRatio + 1) * GAS_CONSTANT / mixingGasMolarMass * mixingGasTotalTemperature);
     //объемный расход смеси газов, м^3/с
     mixingGasVolumeFlowRateCurrent = mixingGasSpeed * (mixingChamberArea / 1000000);
     //активность смеси газов, Бк
@@ -170,24 +164,17 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     //объемная доля частиц в смеси газов, отн. ед.
     mixingGasParticleFractionCurrent = (passiveGasVolumeFlowRate * passiveGasInputParticleFraction + activeGasVolumeFlowRate * activeGasInputParticleFraction) /
             (passiveGasVolumeFlowRate + activeGasVolumeFlowRate);
-
-
     //передача значений на выходные порты
     outMixingGas->setOut(0, mixingGasVolumeFlowRateCurrent);//объемный расход смеси газов, м^3/с
     outMixingGas->setOut(1, mixingGasOutputPressureCurrent);//давление смеси газов, Па
     outMixingGas->setOut(2, mixingGasTemperatureCurrent);//температура смеси газов, град. Цел.
     outMixingGas->setOut(3, mixingGasActivityCurrent);//активность смеси газов, Бк
     outMixingGas->setOut(4, mixingGasParticleFractionCurrent);//объемная доля частиц в смеси газов, отн. ед.
-
     outEjectorParameters->setOut(0, ejectionCoef);//коэффициент эжекции
     outEjectorParameters->setOut(1, passiveGasSpeed);//коэффициент эжекции
     outEjectorParameters->setOut(2, activeGasSpeed);//коэффициент эжекции
     outEjectorParameters->setOut(3, passiveGasTotalTemperature);//коэффициент эжекции
     outEjectorParameters->setOut(4, activeGasTotalTemperature);//коэффициент эжекции
-
-
-
-
     return true;
 }
 ICalcElement *Create()

@@ -23,8 +23,6 @@ private:
 	// Put your variables here
     IInputPort *inPassiveGas, *inActiveGas;
     IOutputPort *outMixingGas, *outEjectorParameters;
-
-    double gasConstant;
 };
 
 #endif // PROJECT_H
