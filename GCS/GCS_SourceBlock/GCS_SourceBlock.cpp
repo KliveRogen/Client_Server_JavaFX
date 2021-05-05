@@ -90,6 +90,7 @@ bool GCS_SourceBlock::process(double t, double h, std::string &error)
     gasPressure = gasFlowRate * characteristicSlope + pumpMaxPressure;//давление на выходе насоса, Па
     //НЕОБХОДИМО ПОДУМАТЬ О ЛОГИЧНОСТИ ЭТОГО. Ведь газ может и не иметь скорости, но быть статичным с какими-то параметрами. В общем нужно бы уточнить
     if (gasFlowRate == 0){
+        gasPressure = pumpMaxPressure;
         gasActivity = 0;
         particleFraction = 0;
         gasTemperature = 0;

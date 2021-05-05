@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_SensorVolumeFlowRate" BlockName="Датчик объемного расхода" Tab="Газоочистка" Image="SensorVolumeFlowRate.png">
+    <Parameters>
+        <Parameter Code="physicalUnits" Name="Единицы измерения (0 - м^3/с, 1 - л/с, 2 - м^3/ч, 3 - л/ч)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="minimumValue" Name="Нижняя граница чувствительности (в указанных ед. изм.)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="maximumValue" Name="Верхняя граница чувствительности (в указанных ед. изм.)" Value="0.5" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="divisionValue" Name="Цена деления (в указанных ед. изм.)" Value="0.00001" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals>
+        <Signal Code="flowRateValue" Name="Значение расхода" Type="double" Tab="Сигналы"/>
+		<Signal Code="sensorFlowRateUnit" Name="Единицы измерения" Type="double" Tab="Сигналы"/>
+    </Signals>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="Вход датчика" ID="0" Dir="R" x="-8" y="27"/>
+		<Port Input="false" Type="INFO" ToolTip="Выход датчика" ID="1" Dir="R" x="168" y="27"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals>
+        <Visual_signal Code="flowRateValue" Type="Value" Unit="" Quantity="10" SizeFont="10" x="15" y="39"/>
+		<Visual_signal Type="Image" Code="sensorFlowRateUnit" Value="0" x="121" y="0">
+            <Image Value="0" Path="SensorFlowRateM3perS.png"/>
+            <Image Value="1" Path="SensorFlowRateLitrperS.png"/>
+            <Image Value="2" Path="SensorFlowRateM3perHour.png"/>
+			<Image Value="3" Path="SensorFlowRateLitrperHour.png"/>
+        </Visual_signal>
+    </Visual_Signals>
+</Block>

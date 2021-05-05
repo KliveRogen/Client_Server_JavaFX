@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="1" ModelingStep="0.001" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+    <ExtData/>
+    <Blocks>
+        <Block ID="0" x="1861" y="1406" Name_x="13" Name_y="54" BlockType="GCS_SensorPressure" BlockName="Датчик давления" Image="library//images//SensorPressurePascal.png">
+            <Parameters>
+                <Parameter Code="physicalUnits" Name="Единицы измерения (1-Па, 2-бар, 3-атм)" Value="0" Tab="Параметры" Visible="true"/>
+                <Parameter Code="minimumValue" Name="Минимально измеряемое давление (в указанных ед. изм.)" Value="3000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="maximumValue" Name="Максимально измеряемое давление (в указанных ед. изм.)" Value="1000000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="divisionValue" Name="Цена деления (в указанных ед. изм.)" Value="0.1" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals>
+                <Signal Code="pressureValue" Name="Значение давления" Type="double"/>
+                <Signal Code="sensorPressureUnit" Name="Единицы измерения" Type="double"/>
+            </Signals>
+            <Ports>
+                <Port Input="true" Type="INFO" Dir="R" ToolTip="Вход датчика" x="-8" y="27"/>
+            </Ports>
+            <Visual_Signals>
+                <Visual_signal Type="Value" Code="pressureValue" Height="10" Width="10" Quantity="3" SizeFont="10" Unit="" x="15" y="39"/>
+                <Visual_signal Type="Image" Code="sensorPressureUnit" Value="0" x="121" y="0">
+                    <Image Value="0" Path="SensosrPressureUnitPascal.png"/>
+                    <Image Value="1" Path="SensosrPressureUnitBar.png"/>
+                    <Image Value="2" Path="SensosrPressureUnitAtm.png"/>
+                </Visual_signal>
+            </Visual_Signals>
+            <ExtData/>
+        </Block>
+        <Block ID="1" x="1547" y="1466" Name_x="-60" Name_y="53" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+            <Parameters>
+                <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.026" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasTemperature" Name="Температура газа, °C" Value="500" Tab="Параметры" Visible="true"/>
+                <Parameter Code="gasActivity" Name="Объемная активность газа, Бк/м^3" Value="10000" Tab="Параметры" Visible="true"/>
+                <Parameter Code="particleFraction" Name="Объемная доля частиц в газе, отн. ед." Value="0.005" Tab="Параметры" Visible="true"/>
+                <Parameter Code="pumpMaxPressure" Name="Макс. давление насоса, Па" Value="300000" Tab="Параметры" Visible="true"/>
+            </Parameters>
+            <Signals/>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной поток газа" x="59" y="15"/>
+                <Port Input="true" Type="INFO" Dir="L" ToolTip="Входной коэффициент сопротивления (от 0 до 1)" x="58" y="37"/>
+            </Ports>
+            <ExtData/>
+        </Block>
+        <Block ID="2" x="1738" y="1607" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+            <Parameters>
+                <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
+            </Parameters>
+            <Signals>
+                <Signal Code="ConstValue" Name="Константа" Type="double"/>
+            </Signals>
+            <Ports>
+                <Port Input="false" Type="INFO" Dir="R" ToolTip="Выходной" x="57" y="27"/>
+            </Ports>
+            <Visual_Signals>
+                <Visual_signal Type="Value" Code="ConstValue" Height="10" Width="10" Quantity="5" SizeFont="10" Unit=" " x="10" y="30"/>
+            </Visual_Signals>
+            <ExtData/>
+        </Block>
+    </Blocks>
+    <Links>
+        <Link>
+            <Begin Object="Port" Block="1" Port="0"/>
+            <End Object="Port" Block="0" Port="0"/>
+            <Source Block="1" Port="0"/>
+            <Points>
+                <Point x="1606" y="1481"/>
+                <Point x="1621" y="1481"/>
+                <Point x="1729.5" y="1481"/>
+                <Point x="1729.5" y="1433"/>
+                <Point x="1838" y="1433"/>
+                <Point x="1853" y="1433"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Port" Block="2" Port="0"/>
+            <End Object="Port" Block="1" Port="1"/>
+            <Source Block="2" Port="0"/>
+            <Points>
+                <Point x="1795" y="1634"/>
+                <Point x="1810" y="1634"/>
+                <Point x="1810" y="1503"/>
+                <Point x="1620" y="1503"/>
+                <Point x="1605" y="1503"/>
+            </Points>
+        </Link>
+    </Links>
+    <Labels/>
+</Scheme>

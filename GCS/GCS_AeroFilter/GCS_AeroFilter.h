@@ -21,11 +21,15 @@ public:
 	
 private:
 	// Put your variables here
-    IInputPort *inGasAeroFilter;
-    IOutputPort *outGasAeroFilter, *outAeroFilterParameters;
+    IInputPort *inGasAeroFilter, *inFeedbackFilter;
+    IOutputPort *outGasAeroFilter, *outAeroFilterParameters, *outFeedbackFilter;
 
-    double filterParticleNumberPrev, filterActivityCurrent;
-    double gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent;
+    double signumFunc(double argVal);
+    double inertionFunc(double operationTime, double valueGiven, double valuePrev,  double step);
+    double filterParticleNumberPrev, filterActivityCurrent, situationFilterBrakePrev, timeCounter, particleMassPrev, gasPressurePrev, gasFlowRatePrev, gasParticleFractionPrev, gasActivityPrev, filterActivityPrev, timeCounterFilterBreak, timeCounterFilterClog;
+    double gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent, particleMassPrevWork, filterActivityPrevWork,
+    situationFilterClogPrev, filterResistantPrev, outFilterResistance, filterResistantCurrent;
+    int flagFilterBreak, flagFilterClog;
 
 
 };

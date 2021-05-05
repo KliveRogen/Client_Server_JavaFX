@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Block BlockType="GCS_SensorPressure" BlockName="Датчик давления" Tab="Газоочистка" Image="SensorPressurePascal.png">
+    <Parameters>
+        <Parameter Code="physicalUnits" Name="Единицы измерения (0 - Па, 1 - бар, 2 - атм)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="minimumValue" Name="Нижняя граница чувствительности (в указанных ед. изм.)" Value="3000" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="maximumValue" Name="Верхняя граница чувствительности (в указанных ед. изм.)" Value="1000000" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="divisionValue" Name="Цена деления (в указанных ед. изм.)" Value="0.1" Tab="Параметры" Visible="true" Checkable="true"/>
+    </Parameters>
+    <Signals>
+        <Signal Code="pressureValue" Name="Значение давления" Type="double" Tab="Сигналы"/>
+		<Signal Code="sensorPressureUnit" Name="Единицы измерения" Type="double" Tab="Сигналы"/>
+    </Signals>
+    <Ports>
+        <Port Input="true" Type="INFO" ToolTip="Вход датчика" ID="0" Dir="R" x="-8" y="27"/>
+		<Port Input="false" Type="INFO" ToolTip="Выход датчика" ID="1" Dir="R" x="168" y="27"/>
+    </Ports>
+    <Situations/>
+    <Visual_Signals>
+        <Visual_signal Code="pressureValue" Type="Value" Unit="" Quantity="10" SizeFont="10" x="15" y="39"/>
+		<Visual_signal Type="Image" Code="sensorPressureUnit" Value="0" x="121" y="0">
+            <Image Value="0" Path="SensorPressureUnitPascal.png"/>
+            <Image Value="1" Path="SensorPressureUnitBar.png"/>
+            <Image Value="2" Path="SensorPressureUnitAtm.png"/>
+        </Visual_signal>
+    </Visual_Signals>
+</Block>

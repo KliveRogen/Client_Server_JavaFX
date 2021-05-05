@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="200" ModelingStep="0.1" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="200" ModelingStep="0.1" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
     <ExtData/>
     <Blocks>
-        <Block ID="4" x="1690" y="1399" Name_x="-114" Name_y="51" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+        <Block ID="4" x="1690" y="1399" Name_x="-31" Name_y="-37" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
             <Parameters>
                 <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.026" Tab="Параметры" Visible="true"/>
                 <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
@@ -21,7 +21,7 @@
         <Block ID="0" x="1815" y="1388" Name_x="-34.5" Name_y="50" BlockType="GCS_ColdTrap" BlockName="Холодная ловушка" Image="library//images//coldTrap.png">
             <Parameters>
                 <Parameter Code="coldTrapTemperature" Name="Температура холодной ловушки, °C" Value="2" Tab="Параметры" Visible="true"/>
-                <Parameter Code="coldTrapTempCoef" Name="Коэффициент изменения темературы в холодной ловушке (от 0 до 1)" Value="09" Tab="Параметры" Visible="true"/>
+                <Parameter Code="coldTrapTempCoef" Name="Коэффициент изменения темературы в холодной ловушке (от 0 до 1)" Value="0.9" Tab="Параметры" Visible="true"/>
                 <Parameter Code="coldTrapTubeCrossSectionalArea" Name="Площадь поперечного сечения трубки ловушки, м^2" Value="0.008" Tab="Параметры" Visible="true"/>
                 <Parameter Code="coldTrapNetPenetrateCoef" Name="Проницаемость сетки холодной ловушки" Value="1e-6" Tab="Параметры" Visible="true"/>
                 <Parameter Code="coldTrapTubeEffLength" Name="Длина трубки холодной ловушки, м" Value="10" Tab="Параметры" Visible="true"/>
@@ -153,6 +153,7 @@
                 <Parameter Code="filterResistanceForce" Name="Безразмерная сила сопротивления, действующая на единицу длины волокна" Value="20" Tab="Параметры" Visible="true"/>
                 <Parameter Code="filterInitMassParticle" Name="Начальная масса частиц на фильтре, кг" Value="0" Tab="Параметры" Visible="true"/>
                 <Parameter Code="maxParticleMass" Name="Максимальная масса частиц на фильтре, кг" Value="10" Tab="Параметры" Visible="true"/>
+                <Parameter Code="filterVolume" Name="Внутренний объем фильтра, м^3" Value="1" Tab="Параметры" Visible="true"/>
             </Parameters>
             <Signals/>
             <Ports>
@@ -171,6 +172,7 @@
                 <Parameter Code="filterResistanceForce" Name="Безразмерная сила сопротивления, действующая на единицу длины волокна" Value="20" Tab="Параметры" Visible="true"/>
                 <Parameter Code="filterInitMassParticle" Name="Начальная масса частиц на фильтре, кг" Value="0" Tab="Параметры" Visible="true"/>
                 <Parameter Code="maxParticleMass" Name="Максимальная масса частиц на фильтре, кг" Value="10" Tab="Параметры" Visible="true"/>
+                <Parameter Code="filterVolume" Name="Внутренний объем фильтра, м^3" Value="1" Tab="Параметры" Visible="true"/>
             </Parameters>
             <Signals/>
             <Ports>
@@ -320,7 +322,7 @@
             </Situations>
             <ExtData/>
         </Block>
-        <Block ID="18" x="2936" y="1515" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="18" x="2936" y="1515" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -334,7 +336,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="19" x="1911" y="1110" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="19" x="1911" y="1110" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="2" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -348,7 +350,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="20" x="1798" y="1520" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="20" x="1798" y="1520" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -362,7 +364,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="21" x="1917" y="1163" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="21" x="1917" y="1163" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -376,7 +378,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="22" x="2216" y="1717" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="22" x="2216" y="1717" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -390,7 +392,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="23" x="2658" y="1198" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="23" x="2658" y="1198" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="2" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -404,7 +406,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="24" x="2645" y="1251" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="24" x="2645" y="1251" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -418,7 +420,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="25" x="2623" y="1347" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="25" x="2623" y="1347" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="2" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -432,7 +434,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="26" x="2878" y="1606" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="26" x="2878" y="1606" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -446,7 +448,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="27" x="2943" y="1384" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="27" x="2943" y="1384" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="1" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -460,7 +462,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="28" x="2449" y="1102" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="28" x="2449" y="1102" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -474,7 +476,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="29" x="2863" y="1420" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="29" x="2863" y="1420" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -488,7 +490,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="30" x="2832" y="1706" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="30" x="2832" y="1706" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -506,13 +508,12 @@
     <Links>
         <Link>
             <Begin Object="Port" Block="0" Port="1"/>
-            <End Object="Port" Block="1" Port="0"/>
+            <End Object="Node" ID="1"/>
             <Source Block="0" Port="1"/>
             <Points>
                 <Point x="1873" y="1414.5"/>
                 <Point x="1888" y="1414.5"/>
-                <Point x="1915" y="1414.5"/>
-                <Point x="1930" y="1414.5"/>
+                <Point x="1909" y="1414.5"/>
             </Points>
         </Link>
         <Link>
@@ -527,12 +528,13 @@
         </Link>
         <Link>
             <Begin Object="Port" Block="1" Port="1"/>
-            <End Object="Node" ID="1"/>
+            <End Object="Port" Block="2" Port="0"/>
             <Source Block="1" Port="1"/>
             <Points>
                 <Point x="2046" y="1415.5"/>
                 <Point x="2061" y="1415.5"/>
-                <Point x="2062" y="1415.5"/>
+                <Point x="2100" y="1415.5"/>
+                <Point x="2115" y="1415.5"/>
             </Points>
         </Link>
         <Link>
@@ -813,28 +815,6 @@
             </Points>
         </Link>
         <Link>
-            <Begin Object="Node" ID="1"/>
-            <End Object="Port" Block="2" Port="0"/>
-            <Source Block="1" Port="1"/>
-            <Points>
-                <Point x="2062" y="1415.5"/>
-                <Point x="2100" y="1415.5"/>
-                <Point x="2115" y="1415.5"/>
-            </Points>
-        </Link>
-        <Link>
-            <Begin Object="Node" ID="1"/>
-            <End Object="Port" Block="21" Port="0"/>
-            <Source Block="1" Port="1"/>
-            <Points>
-                <Point x="2062" y="1415.5"/>
-                <Point x="2062" y="1272"/>
-                <Point x="1894" y="1272"/>
-                <Point x="1894" y="1177"/>
-                <Point x="1909" y="1177"/>
-            </Points>
-        </Link>
-        <Link>
             <Begin Object="Node" ID="2"/>
             <End Object="Port" Block="14" Port="0"/>
             <Source Block="13" Port="0"/>
@@ -1005,6 +985,28 @@
                 <Point x="2762.67" y="1720"/>
                 <Point x="2809" y="1720"/>
                 <Point x="2824" y="1720"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="1"/>
+            <End Object="Port" Block="1" Port="0"/>
+            <Source Block="0" Port="1"/>
+            <Points>
+                <Point x="1909" y="1414.5"/>
+                <Point x="1915" y="1414.5"/>
+                <Point x="1930" y="1414.5"/>
+            </Points>
+        </Link>
+        <Link>
+            <Begin Object="Node" ID="1"/>
+            <End Object="Port" Block="21" Port="0"/>
+            <Source Block="0" Port="1"/>
+            <Points>
+                <Point x="1909" y="1414.5"/>
+                <Point x="1909" y="1295.75"/>
+                <Point x="1894" y="1295.75"/>
+                <Point x="1894" y="1177"/>
+                <Point x="1909" y="1177"/>
             </Points>
         </Link>
     </Links>
