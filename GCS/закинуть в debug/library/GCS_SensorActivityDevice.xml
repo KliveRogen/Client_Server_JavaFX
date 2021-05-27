@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Block BlockType="GCS_SensorActivity" BlockName="Датчик объемной активности" Tab="Газоочистка" Image="SensorActivity.png">
+<Block BlockType="GCS_SensorActivityDevice" BlockName="Датчик активности устройства" Tab="Газоочистка" Image="SensorActivityDevice.png">
     <Parameters>
-        <Parameter Code="physicalUnits" Name="Единицы измерения (0 - Бк/м^3, 1 - нКи/м^3)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="physicalUnits" Name="Единицы измерения (0 - Бк, 1 - нКи)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="minimumValue" Name="Нижняя граница чувствительности (в указанных ед. изм.)" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="maximumValue" Name="Верхняя граница чувствительности (в указанных ед. изм.)" Value="10000000" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="divisionValue" Name="Цена деления (в указанных ед. изм.)" Value="0.1" Tab="Параметры" Visible="true" Checkable="true"/>
@@ -21,8 +21,8 @@
     <Visual_Signals>
         <Visual_signal Code="activityValue" Type="Value" Unit="" Quantity="10" SizeFont="10" x="15" y="39"/>
 		<Visual_signal Type="Image" Code="sensorActivityUnit" Value="0" x="100" y="0">
-            <Image Value="0" Path="sensorActivityUnitBKperM3.png"/>
-            <Image Value="1" Path="sensorActivityUnitNKperM3.png"/>
+            <Image Value="0" Path="sensorActivityUnitBK.png"/>
+            <Image Value="1" Path="sensorActivityUnitNK.png"/>
         </Visual_signal>
     </Visual_Signals>
 </Block>

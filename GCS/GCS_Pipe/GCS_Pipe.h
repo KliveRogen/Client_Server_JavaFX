@@ -21,8 +21,12 @@ public:
 	
 private:
 	// Put your variables here
-    IOutputPort *outGasPipe;
-    IInputPort *inGasPipe;
+    IOutputPort *outGasPipe, *outFeedback;
+    IInputPort *inGasPipe, *inFeedback;
+
+    double signumFunc(double argVal);
+    double situationClogPrev, resistantPrev, outResistance, resistantCurrent, timeCounterClog;
+    int flagClog;
 };
 
 

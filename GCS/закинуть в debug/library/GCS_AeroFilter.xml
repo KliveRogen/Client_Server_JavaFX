@@ -3,7 +3,7 @@
     <Parameters>
         <Parameter Code="filterCrossSectionalArea" Name="Площадь поперечного сечения, м^2" Value="0.01" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="filterCatchCoef" Name="Коэффициент улавливания фильтра" Value="0.4" Tab="Параметры" Visible="true" Checkable="true"/>
-        <Parameter Code="filterPressureLossCoef" Name="Коэффициент перепада давления из-за осаждения частиц, устанавливается экспериментально Па/кг" Value="1000" Tab="Параметры" Visible="true" Checkable="true"/>
+        <Parameter Code="filterPressureLossCoef" Name="Коэффициент перепада давления из-за осаждения частиц, Па/кг" Value="1000" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="filterFiberLength" Name="Длина волокон, приходящихся на единицу площади фильтрующего материала, м-1" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="filterResistanceForce" Name="Безразмерная сила сопротивления, действующая на единицу длины волокна" Value="20" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="filterInitMassParticle" Name="Начальная масса частиц на фильтре, кг" Value="0" Tab="Параметры" Visible="true" Checkable="true"/>

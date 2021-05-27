@@ -22,6 +22,7 @@ GCS_Ejector::GCS_Ejector()
     createParameter("activeGasSpecificHeat", "1000"); //Удельная теплоемкость эжектирующего газа, Дж/(кг*К)
     createParameter("passiveGasHeatCapacityRatio", "1.4"); //Показатель адиабады для эжектируемого газа
     createParameter("activeGasHeatCapacityRatio", "1.4"); //Показатель адиабады для эжектирующего газа
+    createParameter("timeClog", "50"); //время, за которое происходит авария
 
 	// Сигналы блока
 
@@ -31,10 +32,21 @@ GCS_Ejector::GCS_Ejector()
     outMixingGas=createOutputPort(2, "UNKNOWN_NAME", "INFO");
     outEjectorParameters=createOutputPort(3, "UNKNOWN_NAME", "INFO");
 
+    inFeedback = createInputPort(4, "UNKNOWN_NAME", "INFO"); // учет коэф. сопротвиления сопротивлений
+    outFeedback = createOutputPort(5, "UNKNOWN_NAME", "INFO");
+
 	// Отказы блока
-	createSituation("calcDist");
+    createSituation("ejectorClog");
 
 }
+
+double GCS_Ejector::signumFunc(double argVal)
+{
+    if (argVal > 0.0) return 1.0;
+    if (argVal < 0.0) return -1.0;
+    return 0;
+}
+
 void GCS_Ejector::setDataNames()
 {
     //выходные параметры газа
@@ -49,10 +61,13 @@ void GCS_Ejector::setDataNames()
     std::vector<std::string> outEjectorParametersName;
     outEjectorParametersName.push_back("Коэффициент эжекции");
     outEjectorParameters->setDataNames(outEjectorParametersName);
+    //выход обратной связи
+    std::vector<std::string> outFeedbackName;
+    outFeedbackName.push_back("Общий коэффициент сопротивления");
+    outFeedback->setDataNames(outFeedbackName);
 }
 bool GCS_Ejector::init(std::string &error, double h)
 {
-    setDataNames();
     //проверка корректности параметров
     for (int i = 0; i < (int)Parameters.size(); i++){
         if (paramToDouble(Parameters[i])<0){
@@ -60,6 +75,13 @@ bool GCS_Ejector::init(std::string &error, double h)
             return false;
         }
     }
+    situationClogPrev = 0;
+    flagClog = 0;
+    resistantPrev = 0;
+    outResistance = 0;
+    resistantCurrent = 0;
+    timeCounterClog = 0;
+    setDataNames();
     return true;
 }
 bool GCS_Ejector::process(double t, double h, std::string &error)
@@ -80,6 +102,8 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
             activeGasSpeed,activeGasTotalTemperature, activeGasSpecificSpeed, activeGasSpecificImpulse, activeGasSpecificFlowRate,
             activeGasTotalPressure, mixingGasSpecificSpeed, mixingGasSpecificFlowRate, mixingGasTotalPressure, mixingGasTotalTemperature,
             mixingGasSpeed, mixingGasSpecificImpulse, mixingGasHeatCapacityRatio, mixingGasMolarMass;
+    //перменные для обратной связи
+    double  timeClog, inResistance, signArg, resistantDerivative;
     //параметры эжектора и газов
     passiveGasDensity = paramToDouble("passiveGasDensity");
     activeGasDensity = paramToDouble("activeGasDensity");
@@ -92,6 +116,69 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     activeGasSpecificHeat = paramToDouble("activeGasSpecificHeat");
     passiveGasHeatCapacityRatio = paramToDouble("passiveGasHeatCapacityRatio");
     activeGasHeatCapacityRatio = paramToDouble("activeGasHeatCapacityRatio");
+    //время аварии
+    timeClog = paramToDouble("timeClog");
+    //проверка на нажатие/отжатие кнопки аварии
+    if (situationClogPrev != isSituationActive("ejectorClog")){
+        if (isSituationActive("ejectorClog") > situationClogPrev){
+            flagClog = 1;
+        }else if (isSituationActive("ejectorClog") < situationClogPrev){
+            flagClog = -1;
+        }
+    }
+    //проверка на состояние флага аварии для реализации инерции
+    if (flagClog == 1){
+        timeCounterClog = timeCounterClog + h;
+        if (timeCounterClog > timeClog + 5){
+            flagClog = 0;
+            timeCounterClog = 0;
+        }
+
+        signArg = 1-resistantPrev; //направление движения (открывается или закрывается клапан)
+        //решение уравнения клапана методом Эйлера
+        resistantDerivative = signumFunc(signArg) / timeClog;
+        resistantCurrent = resistantPrev + resistantDerivative * h;
+        if (resistantCurrent < 0){
+            resistantCurrent = 0;
+        }else if (resistantCurrent > 1){
+            resistantCurrent = 1;
+        }
+        //условие для устранения статической ошибки из-за signumFunc
+        if (resistantCurrent > resistantPrev && resistantCurrent > 1){
+            resistantCurrent = 1;
+        }else if (resistantCurrent < resistantPrev && resistantCurrent < 1){
+            resistantCurrent = 1;
+        }
+    }else if (flagClog == -1){
+        timeCounterClog = timeCounterClog + h;
+        if (timeCounterClog > timeClog + 5){
+            flagClog = 0;
+            timeCounterClog = 0;
+        }
+
+        signArg = 0-resistantPrev; //направление движения (открывается или закрывается клапан)
+        //решение уравнения клапана методом Эйлера
+        resistantDerivative = signumFunc(signArg) / timeClog;
+        resistantCurrent = resistantPrev + resistantDerivative * h;
+        if (resistantCurrent < 0){
+            resistantCurrent = 0;
+        }else if (resistantCurrent > 1){
+            resistantCurrent = 1;
+        }
+        //условие для устранения статической ошибки из-за signumFunc
+        if (resistantCurrent > resistantPrev && resistantCurrent > 0){
+            resistantCurrent = 0;
+        }else if (resistantCurrent < resistantPrev && resistantCurrent < 0){
+            resistantCurrent = 0;
+        }
+    }
+
+    //расчет выходного сопротивления
+    outResistance = 1 - ((1 - inResistance) * (1-resistantCurrent));
+    if (outResistance > 1){
+        outResistance = 1;
+    }
+
     //считывание входных значений эжектируемого газа
     passiveGasVolumeFlowRate = inPassiveGas->getInput()[0];//объемный расход эжектируемого газа, м^3/с
     passiveGasInputPressure = inPassiveGas->getInput()[1];//давление эжектируемого газа, Па
@@ -107,6 +194,12 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     //проверка соотношения давлений перед соплами
     if (activeGasInputPressure < passiveGasInputPressure){
         error = "Ошибка в значении давления активного газа!";
+    }
+    if (passiveGasVolumeFlowRate <= 0){
+        passiveGasVolumeFlowRate = 1e-12;
+    }
+    if (activeGasVolumeFlowRate <= 0){
+        activeGasVolumeFlowRate = 1e-12;
     }
 
     //расчет эжектора
@@ -164,6 +257,9 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     //объемная доля частиц в смеси газов, отн. ед.
     mixingGasParticleFractionCurrent = (passiveGasVolumeFlowRate * passiveGasInputParticleFraction + activeGasVolumeFlowRate * activeGasInputParticleFraction) /
             (passiveGasVolumeFlowRate + activeGasVolumeFlowRate);
+
+    resistantPrev = resistantCurrent;
+    situationClogPrev = isSituationActive("ejectorClog");
     //передача значений на выходные порты
     outMixingGas->setOut(0, mixingGasVolumeFlowRateCurrent);//объемный расход смеси газов, м^3/с
     outMixingGas->setOut(1, mixingGasOutputPressureCurrent);//давление смеси газов, Па
@@ -175,6 +271,8 @@ bool GCS_Ejector::process(double t, double h, std::string &error)
     outEjectorParameters->setOut(2, activeGasSpeed);//коэффициент эжекции
     outEjectorParameters->setOut(3, passiveGasTotalTemperature);//коэффициент эжекции
     outEjectorParameters->setOut(4, activeGasTotalTemperature);//коэффициент эжекции
+    //выходное сопротивление
+    outFeedback->setOut(0, outResistance);
     return true;
 }
 ICalcElement *Create()

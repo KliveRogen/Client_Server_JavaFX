@@ -24,6 +24,8 @@ private:
     IInputPort *inPort;
     IOutputPort *outPort;
     Signal *flowRateValue, *sensorFlowRateUnit;
+    double gasInputFlowRate, valueCoef;
+    int situationValueRandomPrev;
 
 };
 

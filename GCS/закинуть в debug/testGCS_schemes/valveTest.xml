@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="15" ModelingStep="1" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="15" ModelingStep="1" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
     <ExtData/>
     <Blocks>
-        <Block ID="0" x="1640" y="1432" Name_x="-60" Name_y="53" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+        <Block ID="0" x="1640" y="1432" Name_x="-35" Name_y="50" BlockType="GCS_SourceBlock" BlockName="Источник газа" Image="library//images//pump.png">
             <Parameters>
                 <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.026" Tab="Параметры" Visible="true"/>
                 <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
@@ -18,7 +18,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="3" x="1853" y="1225" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
+        <Block ID="3" x="1821" y="1230" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -32,7 +32,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="4" x="1945" y="1368" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
+        <Block ID="4" x="1970" y="1368" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -46,7 +46,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="5" x="1944" y="1327" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
+        <Block ID="5" x="1969" y="1327" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="1" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -85,7 +85,7 @@
             </Situations>
             <ExtData/>
         </Block>
-        <Block ID="1" x="1861" y="1509" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+        <Block ID="1" x="1861" y="1509" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Коэф. сопр." Image="library//images//const.png">
             <Parameters>
                 <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
             </Parameters>
@@ -100,9 +100,9 @@
             </Visual_Signals>
             <ExtData/>
         </Block>
-        <Block ID="2" x="1745" y="1306" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+        <Block ID="2" x="1750" y="1318" Name_x="-42" Name_y="49" BlockType="Const" BlockName="Зад. положение" Image="library//images//const.png">
             <Parameters>
-                <Parameter Code="CONST_VAL" Name="Значение" Value="0.9" Tab="" Visible="true"/>
+                <Parameter Code="CONST_VAL" Name="Значение" Value="0.6" Tab="" Visible="true"/>
             </Parameters>
             <Signals>
                 <Signal Code="ConstValue" Name="Константа" Type="double"/>
@@ -115,7 +115,7 @@
             </Visual_Signals>
             <ExtData/>
         </Block>
-        <Block ID="7" x="1503" y="1633" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
+        <Block ID="7" x="1972" y="1468" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="1" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -129,14 +129,6 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="8" x="2358" y="1716" Name_x="-18.5" Name_y="52" BlockType="Chart" BlockName="Самописец" Image="">
-            <Parameters/>
-            <Signals/>
-            <Ports>
-                <Port Input="true" Type="INFO" Dir="R" ToolTip="" x="-6" y="19"/>
-            </Ports>
-            <ExtData/>
-        </Block>
     </Blocks>
     <Links>
         <Link>
@@ -146,8 +138,8 @@
             <Points>
                 <Point x="1699" y="1447"/>
                 <Point x="1714" y="1447"/>
-                <Point x="1727" y="1447"/>
-                <Point x="1727" y="1445.6"/>
+                <Point x="1710" y="1447"/>
+                <Point x="1710" y="1445.6"/>
             </Points>
         </Link>
         <Link>
@@ -167,10 +159,10 @@
             <End Object="Port" Block="3" Port="0"/>
             <Source Block="0" Port="0"/>
             <Points>
-                <Point x="1727" y="1445.6"/>
-                <Point x="1727" y="1239"/>
-                <Point x="1830" y="1239"/>
-                <Point x="1845" y="1239"/>
+                <Point x="1710" y="1445.6"/>
+                <Point x="1710" y="1244"/>
+                <Point x="1798" y="1244"/>
+                <Point x="1813" y="1244"/>
             </Points>
         </Link>
         <Link>
@@ -178,7 +170,7 @@
             <End Object="Port" Block="6" Port="0"/>
             <Source Block="0" Port="0"/>
             <Points>
-                <Point x="1727" y="1445.6"/>
+                <Point x="1710" y="1445.6"/>
                 <Point x="1764.5" y="1445.6"/>
                 <Point x="1764.5" y="1436.5"/>
                 <Point x="1802" y="1436.5"/>
@@ -194,8 +186,8 @@
                 <Point x="1899" y="1436.5"/>
                 <Point x="1910.5" y="1436.5"/>
                 <Point x="1910.5" y="1382"/>
-                <Point x="1922" y="1382"/>
-                <Point x="1937" y="1382"/>
+                <Point x="1947" y="1382"/>
+                <Point x="1962" y="1382"/>
             </Points>
         </Link>
         <Link>
@@ -216,9 +208,9 @@
             <End Object="Port" Block="6" Port="2"/>
             <Source Block="2" Port="0"/>
             <Points>
-                <Point x="1802" y="1333"/>
-                <Point x="1817" y="1333"/>
-                <Point x="1833" y="1333"/>
+                <Point x="1807" y="1345"/>
+                <Point x="1822" y="1345"/>
+                <Point x="1833" y="1345"/>
                 <Point x="1833" y="1398.5"/>
                 <Point x="1833" y="1413.5"/>
             </Points>
@@ -239,43 +231,24 @@
             <Source Block="6" Port="5"/>
             <Points>
                 <Point x="1756.8" y="1469"/>
-                <Point x="1756.8" y="1561.5"/>
-                <Point x="1480" y="1561.5"/>
-                <Point x="1480" y="1647"/>
-                <Point x="1495" y="1647"/>
+                <Point x="1756.8" y="1590"/>
+                <Point x="1946" y="1590"/>
+                <Point x="1946" y="1482"/>
+                <Point x="1949" y="1482"/>
+                <Point x="1964" y="1482"/>
             </Points>
         </Link>
         <Link>
             <Begin Object="Port" Block="6" Port="3"/>
-            <End Object="Node" ID="2"/>
+            <End Object="Port" Block="5" Port="0"/>
             <Source Block="6" Port="3"/>
             <Points>
                 <Point x="1867" y="1412.5"/>
                 <Point x="1867" y="1397.5"/>
-                <Point x="1867" y="1319"/>
-                <Point x="2327" y="1319"/>
-            </Points>
-        </Link>
-        <Link>
-            <Begin Object="Node" ID="2"/>
-            <End Object="Port" Block="5" Port="0"/>
-            <Source Block="6" Port="3"/>
-            <Points>
-                <Point x="2327" y="1319"/>
-                <Point x="1921" y="1319"/>
-                <Point x="1921" y="1341"/>
-                <Point x="1936" y="1341"/>
-            </Points>
-        </Link>
-        <Link>
-            <Begin Object="Node" ID="2"/>
-            <End Object="Port" Block="8" Port="0"/>
-            <Source Block="6" Port="3"/>
-            <Points>
-                <Point x="2327" y="1319"/>
-                <Point x="2327" y="1735"/>
-                <Point x="2337" y="1735"/>
-                <Point x="2352" y="1735"/>
+                <Point x="1867" y="1340"/>
+                <Point x="1946" y="1340"/>
+                <Point x="1946" y="1341"/>
+                <Point x="1961" y="1341"/>
             </Points>
         </Link>
     </Links>

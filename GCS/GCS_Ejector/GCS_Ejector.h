@@ -21,8 +21,12 @@ public:
 	
 private:
 	// Put your variables here
-    IInputPort *inPassiveGas, *inActiveGas;
-    IOutputPort *outMixingGas, *outEjectorParameters;
+    IInputPort *inPassiveGas, *inActiveGas, *inFeedback;
+    IOutputPort *outMixingGas, *outEjectorParameters, *outFeedback;
+
+    double signumFunc(double argVal);
+    double situationClogPrev, resistantPrev, outResistance, resistantCurrent, timeCounterClog;
+    int flagClog;
 };
 
 #endif // PROJECT_H

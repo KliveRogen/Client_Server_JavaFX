@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="1" ModelingStep="0.001" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
+<Scheme Name="Без названия" Tab="Прочее" Descr="" Preview="schemes//preview//schemes//preview//schemes//preview//" Solver="ode1" StepsForUpdate="50" ModelingTime="1" ModelingStep="0.001" HydraulicAccuracy="0.1" HydroComponents="" HydroMass="">
     <ExtData/>
     <Blocks>
-        <Block ID="3" x="1620" y="1475" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+        <Block ID="3" x="1620" y="1475" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Коэф. сопр." Image="library//images//const.png">
             <Parameters>
                 <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
             </Parameters>
@@ -17,7 +17,7 @@
             </Visual_Signals>
             <ExtData/>
         </Block>
-        <Block ID="4" x="1619" y="1400" Name_x="-62" Name_y="50" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+        <Block ID="4" x="1619" y="1400" Name_x="-40" Name_y="48" BlockType="GCS_SourceBlock" BlockName="Источник газа 1" Image="library//images//pump.png">
             <Parameters>
                 <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.036" Tab="Параметры" Visible="true"/>
                 <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
@@ -46,7 +46,7 @@
             </Situations>
             <ExtData/>
         </Block>
-        <Block ID="1" x="1622" y="1577" Name_x="-60" Name_y="53" BlockType="GCS_SourceBlock" BlockName="Источник газа (насос)" Image="library//images//pump.png">
+        <Block ID="1" x="1622" y="1577" Name_x="-36" Name_y="51" BlockType="GCS_SourceBlock" BlockName="Источник газа 2" Image="library//images//pump.png">
             <Parameters>
                 <Parameter Code="gasFlowRate" Name="Объемный расход газа, м^3/с" Value="0.026" Tab="Параметры" Visible="true"/>
                 <Parameter Code="gasPressure" Name="Заданное давление газа, Па" Value="100000" Tab="Параметры" Visible="true"/>
@@ -62,7 +62,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="2" x="1621" y="1662" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Константа" Image="library//images//const.png">
+        <Block ID="2" x="1621" y="1662" Name_x="-17" Name_y="53" BlockType="Const" BlockName="Коэф. сопр." Image="library//images//const.png">
             <Parameters>
                 <Parameter Code="CONST_VAL" Name="Значение" Value="0" Tab="" Visible="true"/>
             </Parameters>
@@ -77,7 +77,7 @@
             </Visual_Signals>
             <ExtData/>
         </Block>
-        <Block ID="5" x="1958" y="1508" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="5" x="1958" y="1508" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -91,7 +91,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="6" x="1837" y="1402" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="6" x="1837" y="1402" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>
@@ -105,7 +105,7 @@
             </Ports>
             <ExtData/>
         </Block>
-        <Block ID="7" x="1818" y="1627" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="">
+        <Block ID="7" x="1818" y="1627" Name_x="35" Name_y="30" BlockType="Indicator" BlockName="" Image="library//images//">
             <Parameters>
                 <Parameter Code="SIZE" Name="Размер вектора" Value="5" Tab="" Visible="true"/>
                 <Parameter Code="SIGNS" Name="Количество значащих цифр" Value="3" Tab="" Visible="true"/>

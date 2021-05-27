@@ -15,7 +15,10 @@
 		<Port Input="true" Type="INFO" ToolTip="Вход 2 датчика" ID="1" Dir="R" x="-8" y="38"/>
 		<Port Input="false" Type="INFO" ToolTip="Выход датчика" ID="2" Dir="R" x="168" y="27"/>
     </Ports>
-    <Situations/>
+    <Situations>
+        <Situation Code="valueRandom" Name="Сдвиг показаний" Tab="Отказы"/>
+		<Situation Code="valueIgnore" Name="Игнорирование входных воздействий" Tab="Отказы"/>
+    </Situations>
     <Visual_Signals>
         <Visual_signal Code="pressureValue" Type="Value" Unit="" Quantity="10" SizeFont="10" x="15" y="39"/>
 		<Visual_signal Type="Image" Code="sensorPressureUnit" Value="0" x="121" y="0">

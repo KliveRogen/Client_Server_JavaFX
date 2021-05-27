@@ -1,4 +1,6 @@
 #include "GCS_SensorActivity.h"
+#include <cstdlib>
+#include <ctime>
 
 GCS_SensorActivity::GCS_SensorActivity()
 {
@@ -20,8 +22,10 @@ GCS_SensorActivity::GCS_SensorActivity()
     inPort = createInputPort(0, "UNKNOWN_NAME", "INFO");
     outPort = createOutputPort(1, "UNKNOWN_NAME", "INFO");
 
-	// Отказы блока
+    createSituation("valueRandom");
+    createSituation("valueIgnore");
 
+    // Отказы блока
 }
 
 void GCS_SensorActivity::setDataNames()
@@ -55,6 +59,9 @@ bool GCS_SensorActivity::init(std::string &error, double h)
     }
     //передача единиц измерения на датчик
     sensorActivityUnit->Value.intVal = 0;
+    gasInputActivity = 0;
+    valueCoef = 0;
+    situationValueRandomPrev = 0;
 	setDataNames();
     return true;
 }
@@ -62,46 +69,60 @@ bool GCS_SensorActivity::init(std::string &error, double h)
 bool GCS_SensorActivity::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double gasInputActivity, minimumValue, maximumValue, divisionValue;
+    double minimumValue, maximumValue, divisionValue;
     int physicalUnits, wholePartNumber;
-    gasInputActivity = inPort->getInput()[3]; //активность газа, Бк
-
+    if (!isSituationActive("valueIgnore")){
+        gasInputActivity = inPort->getInput()[3]; //активность газа, Бк
+    }
     physicalUnits = paramToInt("physicalUnits");
     minimumValue = paramToDouble("minimumValue");
     maximumValue = paramToDouble("maximumValue");
     divisionValue = paramToDouble("divisionValue");
+
+    //проверка на нажатие/отжатие кнопки аварии (утечка)
+    if (situationValueRandomPrev != isSituationActive("valueRandom")){
+        if (isSituationActive("valueRandom") > situationValueRandomPrev){
+            //генерация рандомный значений положения клапана+-0.4 от заданного положения
+            srand(time(0));
+            valueCoef = (double)(1 + rand() % 17 - 9) / 20 * gasInputActivity;
+        }else if (isSituationActive("valueRandom") < situationValueRandomPrev){
+            valueCoef = 0;
+        }
+    }
+    gasInputActivity = gasInputActivity + valueCoef;
+
+    //вывод необходимых единиц измерения
+    switch(physicalUnits){
+    case 0:
+        //выбраны Бк/м^3
+        sensorActivityUnit->Value.intVal = 0;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
+        break;
+    case 1:
+        //выбраны нКи/м^3
+        sensorActivityUnit->Value.intVal = 1;
+        gasInputActivity = gasInputActivity / 37;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
+        break;
+    default:
+        //выбраны Бк/м^3 по умолчанию
+        sensorActivityUnit->Value.intVal = 0;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
+        break;
+    }
     //проверки на пределы измеряемого значения и его вывод
     if (gasInputActivity > maximumValue){
         gasInputActivity = maximumValue;
     }else if (gasInputActivity < minimumValue){
         gasInputActivity = minimumValue;
-    }else{
-        //вывод необходимых единиц измерения
-        switch(physicalUnits){
-        case 0:
-            //выбраны Бк/м^3
-            sensorActivityUnit->Value.intVal = 0;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasInputActivity / divisionValue;
-            gasInputActivity = wholePartNumber * divisionValue;
-            break;
-        case 1:
-            //выбраны нКи/м^3
-            sensorActivityUnit->Value.intVal = 1;
-            gasInputActivity = gasInputActivity / 37;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasInputActivity / divisionValue;
-            gasInputActivity = wholePartNumber * divisionValue;
-            break;
-        default:
-            //выбраны Бк/м^3 по умолчанию
-            sensorActivityUnit->Value.intVal = 0;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasInputActivity / divisionValue;
-            gasInputActivity = wholePartNumber * divisionValue;
-            break;
-        }
-}
+    }
+    situationValueRandomPrev = isSituationActive("valueRandom");
     //передача значения давления на шкалу датчика
     outPort->setOut(0, gasInputActivity);
     activityValue->Value.doubleVal = gasInputActivity;

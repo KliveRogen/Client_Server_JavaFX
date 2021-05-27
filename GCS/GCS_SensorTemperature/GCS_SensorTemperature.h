@@ -24,6 +24,8 @@ private:
     IInputPort *inPort;
     IOutputPort *outPort;
     Signal *temperatureValue, *sensorTemperatureUnit;
+    double gasInputTemperature, valueCoef;
+    int situationValueRandomPrev;
 
 };
 

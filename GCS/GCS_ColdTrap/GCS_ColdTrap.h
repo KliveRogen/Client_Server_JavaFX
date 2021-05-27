@@ -21,10 +21,15 @@ public:
 	
 private:
 	// Put your variables here
-    IInputPort *inGasColdTrap;
-    IOutputPort *outGasColdTrap, *outColdTrapParameters;
+    IInputPort *inGasColdTrap, *inFeedback;
+    IOutputPort *outGasColdTrap, *outColdTrapParameters, *outFeedback;
 
-    double coldTrapParticleNumberPrev, coldTrapActivityCurrent;
+    double signumFunc(double argVal);
+    double inertionFunc(double operationTime, double valueGiven, double valuePrev,  double step);
+    double coldTrapParticleNumberPrev, coldTrapActivityCurrent, situationColdTrapLeakPrev, timeCounter, particleMassPrev, gasPressurePrev, gasFlowRatePrev, gasParticleFractionPrev, gasActivityPrev, coldTrapActivityPrev, timeCounterColdTrapLeak, timeCounterColdTrapClog;
+    double gasVolumeFlowRateCurrent, gasOutputPressureCurrent, gasTemperatureCurrent, gasActivityCurrent, gasParticleFractionCurrent, particleMassPrevWork, coldTrapActivityPrevWork,
+    situationColdTrapClogPrev, coldTrapResistantPrev, outColdTrapResistance, coldTrapResistantCurrent, gasTemperaturePrev;
+    int flagColdTrapLeak, flagColdTrapClog;
 
 };
 

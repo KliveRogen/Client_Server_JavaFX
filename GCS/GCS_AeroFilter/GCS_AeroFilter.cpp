@@ -234,7 +234,7 @@ bool GCS_AeroFilter::process(double t, double h, std::string &error)
     }else if (flagFilterBreak == -1){
         //замена фильтра после аварии
         timeCounterFilterBreak = timeCounterFilterBreak + h;
-        if (timeCounterFilterBreak > timeFilterBreak*3){
+        if (timeCounterFilterBreak > timeFilterBreak){
             flagFilterBreak = 0;
             timeCounterFilterBreak = 0;
             timeCounter = 0;

@@ -1,4 +1,6 @@
 #include "GCS_SensorDiffPressure.h"
+#include <cstdlib>
+#include <ctime>
 
 GCS_SensorDiffPressure::GCS_SensorDiffPressure()
 {
@@ -21,8 +23,9 @@ GCS_SensorDiffPressure::GCS_SensorDiffPressure()
     inPort2 = createInputPort(1, "UNKNOWN_NAME", "INFO");
     outPort = createOutputPort(2, "UNKNOWN_NAME", "INFO");
 
-	// Отказы блока
-
+    // Отказы блока
+    createSituation("valueRandom");
+    createSituation("valueIgnore");
 }
 
 void GCS_SensorDiffPressure::setDataNames()
@@ -54,6 +57,9 @@ bool GCS_SensorDiffPressure::init(std::string &error, double h)
     }
     //передача единиц измерения на датчик
     sensorPressureUnit->Value.intVal = 0;
+    gasDiffPressure = 0;
+    valueCoef = 0;
+    situationValueRandomPrev = 0;
 	setDataNames();
     return true;
 }
@@ -61,7 +67,7 @@ bool GCS_SensorDiffPressure::init(std::string &error, double h)
 bool GCS_SensorDiffPressure::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double gasInputPressure1, gasInputPressure2,gasDiffPressure, minimumValue, maximumValue, divisionValue;
+    double gasInputPressure1, gasInputPressure2, minimumValue, maximumValue, divisionValue;
     int physicalUnits, wholePartNumber;
     gasInputPressure1 = inPort1->getInput()[1]; //давление газа, Па
     gasInputPressure2 = inPort2->getInput()[1]; //давление газа, Па
@@ -71,47 +77,64 @@ bool GCS_SensorDiffPressure::process(double t, double h, std::string &error)
     maximumValue = paramToDouble("maximumValue");
     divisionValue = paramToDouble("divisionValue");
     //вычисление разности давалений
-    gasDiffPressure = gasInputPressure1 - gasInputPressure2;
+    if (!isSituationActive("valueIgnore")){
+        gasDiffPressure = gasInputPressure1 - gasInputPressure2;
+    }
+
+    //проверка на нажатие/отжатие кнопки аварии (утечка)
+    if (situationValueRandomPrev != isSituationActive("valueRandom")){
+        if (isSituationActive("valueRandom") > situationValueRandomPrev){
+            //генерация рандомный значений положения клапана+-0.4 от заданного положения
+            srand(time(0));
+            valueCoef = (double)(1 + rand() % 17 - 9) / 20 * gasDiffPressure;
+        }else if (isSituationActive("valueRandom") < situationValueRandomPrev){
+            valueCoef = 0;
+        }
+    }
+    gasDiffPressure = gasDiffPressure + valueCoef;
+
+    //вывод необходимых единиц измерения
+    switch(physicalUnits){
+    case 0:
+        //выбраны Па
+        sensorPressureUnit->Value.intVal = 0;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasDiffPressure / divisionValue;
+        gasDiffPressure = wholePartNumber * divisionValue;
+        break;
+    case 1:
+        //выбраны бар
+        sensorPressureUnit->Value.intVal = 1;
+        gasDiffPressure = gasDiffPressure / 100000;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasDiffPressure / divisionValue;
+        gasDiffPressure = wholePartNumber * divisionValue;
+        break;
+    case 2:
+        //выбраны атм
+        sensorPressureUnit->Value.intVal = 2;
+        gasDiffPressure = gasDiffPressure / 101325;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasDiffPressure / divisionValue;
+        gasDiffPressure = wholePartNumber * divisionValue;
+        break;
+    default:
+        //выбраны Па по умолчанию
+        sensorPressureUnit->Value.intVal = 0;
+        //приведение значение в соответствии с ценой деления
+        wholePartNumber = gasDiffPressure / divisionValue;
+        gasDiffPressure = wholePartNumber * divisionValue;
+        break;
+
     //проверки на пределы измеряемого значения и его вывод
     if (gasDiffPressure > maximumValue){
         gasDiffPressure = maximumValue;
     }else if (gasDiffPressure < minimumValue){
         gasDiffPressure = minimumValue;
-    }else{
-        //вывод необходимых единиц измерения
-        switch(physicalUnits){
-        case 0:
-            //выбраны Па
-            sensorPressureUnit->Value.intVal = 0;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasDiffPressure / divisionValue;
-            gasDiffPressure = wholePartNumber * divisionValue;
-            break;
-        case 1:
-            //выбраны бар
-            sensorPressureUnit->Value.intVal = 1;
-            gasDiffPressure = gasDiffPressure / 100000;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasDiffPressure / divisionValue;
-            gasDiffPressure = wholePartNumber * divisionValue;
-            break;
-        case 2:
-            //выбраны атм
-            sensorPressureUnit->Value.intVal = 2;
-            gasDiffPressure = gasDiffPressure / 101325;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasDiffPressure / divisionValue;
-            gasDiffPressure = wholePartNumber * divisionValue;
-            break;
-        default:
-            //выбраны Па по умолчанию
-            sensorPressureUnit->Value.intVal = 0;
-            //приведение значение в соответствии с ценой деления
-            wholePartNumber = gasDiffPressure / divisionValue;
-            gasDiffPressure = wholePartNumber * divisionValue;
-            break;
-        }
+    }
+
 }
+    situationValueRandomPrev = isSituationActive("valueRandom");
     //передача значения давления на шкалу датчика
     pressureValue->Value.doubleVal = gasDiffPressure;
     outPort->setOut(0, gasDiffPressure);

@@ -1,5 +1,7 @@
 #include "GCS_ControlValve.h"
 #include "../constants_list.h"
+#include <cstdlib>
+#include <ctime>
 
 GCS_ControlValve::GCS_ControlValve()
 {
@@ -22,8 +24,9 @@ GCS_ControlValve::GCS_ControlValve()
     inFeedbackGasValve=createInputPort(4, "UNKNOWN_NAME", "INFO");
     outFeedbackGasValve=createOutputPort(5, "UNKNOWN_NAME", "INFO");
 
-	// Отказы блока
-	createSituation("calcDist");
+    // Отказы блока
+    createSituation("valveRandom");
+    createSituation("valveIgnore");
 
 }
 
@@ -79,6 +82,11 @@ bool GCS_ControlValve::init(std::string &error, double h)
     gasActivityCurrent=0;
     gasParticleFractionCurrent=0;
     outValvesResistance=0;
+    valvePositionCoef = 0;
+    valvePositionGiven = paramToDouble("valveInitPos");
+    situationValveIgnorePrev = 0;
+    situationValveRandomPrev = 0;
+
 
     outPosition->setOut(0,valvePositionCurrent);
     outGasValve->setOut(0, gasVolumeFlowRateCurrent);
@@ -95,9 +103,10 @@ bool GCS_ControlValve::init(std::string &error, double h)
 bool GCS_ControlValve::process(double t, double h, std::string &error)
 {
     // Put your calculations here
-    double valvePositionGiven, valveTimeOpen, valveTransferCoef, valvePositionDerivative,
+    double valveTimeOpen, valveTransferCoef, valvePositionDerivative,
             gasInputVolumeFlowRate, gasInputPressure, gasInputTemperature, gasInputActivity, gasInputParticleFraction,signArg,
                inValvesResistance;
+
 
     valveTimeOpen = paramToDouble("valveTimeOpen"); //время открытия клапана, с
     valveTransferCoef = paramToDouble("valveTransferCoef"); //передаточный коэффициент клапана
@@ -107,13 +116,40 @@ bool GCS_ControlValve::process(double t, double h, std::string &error)
     gasInputTemperature = inGasValve->getInput()[2];//температура газа, град. Цел.
     gasInputActivity = inGasValve->getInput()[3];//активность газа, Бк
     gasInputParticleFraction = inGasValve->getInput()[4];//объемная доля частиц в газе, отн. ед.
-    valvePositionGiven = inGivenPosition->getInput()[0]; //заданная позиция клапана (от 0 до 1)
+    if (!isSituationActive("valveIgnore")){
+        valvePositionGiven = inGivenPosition->getInput()[0]; //заданная позиция клапана (от 0 до 1)
+    }
     inValvesResistance = inFeedbackGasValve->getInput()[0]; //общий коэффициент сопротивления от вентилей на линии (от 0 до 1)
     //проверка заданного положения клапана
     if (valvePositionGiven < 0 || valvePositionGiven > 1){
         error = "Ошибка в значении заданного положения клапана!\nОно должно быть в диапазоне от 0 до 1.";
         return false;
     }
+ //если авария сбоя задающего устройства, то при каждом переключении будет изменяться +-0.4 задающ. воздействие
+    if (isSituationActive("valveRandom") && (valvePositionGivenPrev != valvePositionGiven)){
+        srand(time(0));
+        valvePositionCoef = (double)(1 + rand() % 17 - 9) / 20;
+    }
+
+    //проверка на нажатие/отжатие кнопки аварии (утечка)
+    if (situationValveRandomPrev != isSituationActive("valveRandom")){
+        if (isSituationActive("valveRandom") > situationValveRandomPrev){
+            //генерация рандомный значений положения клапана+-0.4 от заданного положения
+            srand(time(0));
+            valvePositionCoef = (double)(1 + rand() % 17 - 9) / 20;
+        }else if (isSituationActive("valveRandom") < situationValveRandomPrev){
+            valvePositionCoef = 0;
+        }
+    }
+
+    valvePositionGivenPrev = valvePositionGiven;
+    valvePositionGiven = valvePositionGiven + valvePositionCoef;
+    if (valvePositionGiven < 0){
+        valvePositionGiven = 0;
+    }else if (valvePositionGiven > 1){
+        valvePositionGiven = 1;
+    }
+
     signArg = valvePositionGiven-valvePositionPrev; //направление движения (открывается или закрывается клапан)
     //решение уравнения клапана методом Эйлера
     valvePositionDerivative = valveTransferCoef * signumFunc(signArg) / valveTimeOpen;
@@ -144,8 +180,11 @@ bool GCS_ControlValve::process(double t, double h, std::string &error)
     if (outValvesResistance > 1){
         outValvesResistance = 1;
     }
+    situationValveRandomPrev = isSituationActive("valveRandom");
+    situationValveIgnorePrev = isSituationActive("valveIgnore");
     //передача значений на выходные порты
     outPosition->setNewOut(0, valvePositionCurrent);
+
     valvePositionPrev = valvePositionCurrent;
     outGasValve->setNewOut(0, gasVolumeFlowRateCurrent);
     outGasValve->setNewOut(1, gasOutputPressureCurrent);

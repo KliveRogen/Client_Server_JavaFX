@@ -1,21 +1,21 @@
-#include "GCS_SensorTemperature.h"
+#include "GCS_SensorActivityDevice.h"
 #include <cstdlib>
 #include <ctime>
 
-GCS_SensorTemperature::GCS_SensorTemperature()
+GCS_SensorActivityDevice::GCS_SensorActivityDevice()
 {
 	// Расчетный тип блока
     BlockCalcType = E_NEEDINPUT;
 
     // Параметры блока
     createParameter("physicalUnits", "0");
-    createParameter("minimumValue", "-273");
-    createParameter("maximumValue", "1000");
+    createParameter("minimumValue", "0");
+    createParameter("maximumValue", "1000000");
     createParameter("divisionValue", "0.1");
 
 	// Сигналы блока
-    temperatureValue = createSignal("temperatureValue", Signal::ST_DOUBLE);
-    sensorTemperatureUnit = createSignal("sensorTemperatureUnit", Signal::ST_DOUBLE);
+    activityValue = createSignal("activityValue", Signal::ST_DOUBLE);
+    sensorActivityUnit = createSignal("sensorActivityUnit", Signal::ST_DOUBLE);
 
 
 	// Порты блока
@@ -25,16 +25,17 @@ GCS_SensorTemperature::GCS_SensorTemperature()
 	// Отказы блока
     createSituation("valueRandom");
     createSituation("valueIgnore");
+
 }
 
-void GCS_SensorTemperature::setDataNames()
+void GCS_SensorActivityDevice::setDataNames()
 {
     std::vector<std::string> dn;
-    dn.push_back("Показание датчика температуры");
+    dn.push_back("Показание датчика об. активности");
     outPort->setDataNames(dn);
 }
 
-bool GCS_SensorTemperature::init(std::string &error, double h)
+bool GCS_SensorActivityDevice::init(std::string &error, double h)
 {
     // Put your initialization here
     //проверка корректности параметров
@@ -50,96 +51,95 @@ bool GCS_SensorTemperature::init(std::string &error, double h)
         error = "Ошибка в соотношении максимального и миминмального значений шкалы";
         return false;
     }
-    if (paramToDouble("divisionValue") < 0){
-        error = "Ошибка в значении цены деления";
-        return false;
+    for (int i = 0; i < (int)Parameters.size(); i++){
+        if (paramToDouble(Parameters[i])<0){
+            error = "Ошибка в заполнении исходных данных!";
+            return false;
+        }
     }
     //передача единиц измерения на датчик
-    sensorTemperatureUnit->Value.intVal = 0;
-    gasInputTemperature = 0;
+    sensorActivityUnit->Value.intVal = 0;
+    gasInputActivity = 0;
     valueCoef = 0;
     situationValueRandomPrev = 0;
 	setDataNames();
     return true;
 }
 
-bool GCS_SensorTemperature::process(double t, double h, std::string &error)
+bool GCS_SensorActivityDevice::process(double t, double h, std::string &error)
 {
     // Put your calculations here
     double minimumValue, maximumValue, divisionValue;
     int physicalUnits, wholePartNumber;
     if (!isSituationActive("valueIgnore")){
-        gasInputTemperature = inPort->getInput()[2]; //температура газа, град. Цельсия
+        gasInputActivity = inPort->getInput()[0]; //активность газа, Бк
     }
     physicalUnits = paramToInt("physicalUnits");
     minimumValue = paramToDouble("minimumValue");
     maximumValue = paramToDouble("maximumValue");
     divisionValue = paramToDouble("divisionValue");
-    //проверки на пределы измеряемого значения и его вывод
 
     //проверка на нажатие/отжатие кнопки аварии (утечка)
     if (situationValueRandomPrev != isSituationActive("valueRandom")){
         if (isSituationActive("valueRandom") > situationValueRandomPrev){
             //генерация рандомный значений положения клапана+-0.4 от заданного положения
             srand(time(0));
-            valueCoef = (double)(1 + rand() % 17 - 9) / 20 * gasInputTemperature;
+            valueCoef = (double)(1 + rand() % 17 - 9) / 20 * gasInputActivity;
         }else if (isSituationActive("valueRandom") < situationValueRandomPrev){
             valueCoef = 0;
         }
     }
-    gasInputTemperature = gasInputTemperature + valueCoef;
-
+    gasInputActivity = gasInputActivity + valueCoef;
     //вывод необходимых единиц измерения
     switch(physicalUnits){
     case 0:
-        //выбраны м3/с
-        sensorTemperatureUnit->Value.intVal = 0;
+        //выбраны Бк
+        sensorActivityUnit->Value.intVal = 0;
         //приведение значение в соответствии с ценой деления
-        wholePartNumber = gasInputTemperature / divisionValue;
-        gasInputTemperature = wholePartNumber * divisionValue;
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
         break;
     case 1:
-        //выбраны л/с
-        sensorTemperatureUnit->Value.intVal = 1;
-        gasInputTemperature = gasInputTemperature + 273.15;
+        //выбраны нКи
+        sensorActivityUnit->Value.intVal = 1;
+        gasInputActivity = gasInputActivity / 37;
         //приведение значение в соответствии с ценой деления
-        wholePartNumber = gasInputTemperature / divisionValue;
-        gasInputTemperature = wholePartNumber * divisionValue;
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
         break;
     default:
-        //выбраны Па по умолчанию
-        sensorTemperatureUnit->Value.intVal = 0;
+        //выбраны Бк/м^3 по умолчанию
+        sensorActivityUnit->Value.intVal = 0;
         //приведение значение в соответствии с ценой деления
-        wholePartNumber = gasInputTemperature / divisionValue;
-        gasInputTemperature = wholePartNumber * divisionValue;
+        wholePartNumber = gasInputActivity / divisionValue;
+        gasInputActivity = wholePartNumber * divisionValue;
         break;
     }
-
-    if (gasInputTemperature > maximumValue){
-        gasInputTemperature = maximumValue;
-    }else if (gasInputTemperature < minimumValue){
-        gasInputTemperature = minimumValue;
+    //проверки на пределы измеряемого значения и его вывод
+    if (gasInputActivity > maximumValue){
+        gasInputActivity = maximumValue;
+    }else if (gasInputActivity < minimumValue){
+        gasInputActivity = minimumValue;
     }
-
     situationValueRandomPrev = isSituationActive("valueRandom");
     //передача значения давления на шкалу датчика
-    outPort->setOut(0, gasInputTemperature);
-    temperatureValue->Value.doubleVal = gasInputTemperature;
+    outPort->setOut(0, gasInputActivity);
+    activityValue->Value.doubleVal = gasInputActivity;
     return true;
 }
 
 
 ICalcElement *Create()
 {
-    return new GCS_SensorTemperature();
+    return new GCS_SensorActivityDevice();
 }
 
 void Release(ICalcElement *block)
 {
-    if(block->type() == "GCS_SensorTemperature") delete block;
+    if(block->type() == "GCS_SensorActivityDevice") delete block;
 }
 
 std::string Type()
 {
-    return "GCS_SensorTemperature";
+    return "GCS_SensorActivityDevice";
 }

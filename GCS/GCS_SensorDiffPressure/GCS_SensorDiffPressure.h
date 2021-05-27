@@ -24,7 +24,8 @@ private:
     IInputPort *inPort1, *inPort2;
     IOutputPort *outPort;
     Signal *pressureValue, *sensorPressureUnit;
-
+    double gasDiffPressure, valueCoef;
+    int situationValueRandomPrev;
 };
 
 #endif // PROJECT_H

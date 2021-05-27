@@ -4,12 +4,17 @@
         <Parameter Code="pipeDiameter" Name="Диаметр трубы, м" Value="0.05" Tab="Параметры" Visible="true" Checkable="true"/>
         <Parameter Code="frictionCoef" Name="Коэффициент трения, отн. ед." Value="1" Tab="Параметры" Visible="true" Checkable="true"/>
 		<Parameter Code="pipeLength" Name="Длина трубы, м" Value="10" Tab="Параметры" Visible="true" Checkable="true"/>
+		<Parameter Code="timeClog" Name="Время забивки трубы, с" Value="50" Tab="Настройки аварий" Visible="true" Checkable="true"/>
     </Parameters>
     <Signals/>
     <Ports>
-        <Port Input="true" Type="INFO" ToolTip="Входной поток газа" ID="0" Dir="R" x="-7" y="21.5"/>
-        <Port Input="false" Type="INFO" ToolTip="Выходной поток газа" ID="1" Dir="R" x="109" y="22.5"/>
+        <Port Input="true" Type="INFO" ToolTip="Входной поток газа" ID="0" Dir="R" x="-7" y="15"/>
+        <Port Input="false" Type="INFO" ToolTip="Выходной поток газа" ID="1" Dir="R" x="108" y="15"/>
+		<Port Input="true" Type="INFO" ToolTip="Входной коэффициент сопротивления (от 0 до 1)" ID="2" Dir="L" x="107" y="30"/>
+		<Port Input="false" Type="INFO" ToolTip="Выходной коэффициент сопротивления (от 0 до 1)" ID="3" Dir="L" x="-7" y="30"/>
     </Ports>
-    <Situations/>
+	<Situations>
+		<Situation Code="pipeClog" Name="Забивка трубы" Tab="Отказы"/>
+    </Situations>
     <Visual_Signals/>
 </Block>

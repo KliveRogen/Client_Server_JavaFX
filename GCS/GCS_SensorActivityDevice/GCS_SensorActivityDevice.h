@@ -8,10 +8,10 @@ extern "C" ICalcElement* __declspec(dllexport) Create();
 extern "C" void __declspec(dllexport) Release(ICalcElement *block);
 extern "C" std::string __declspec(dllexport) Type();
 
-class GCS_SensorActivity : public CalcElement
+class GCS_SensorActivityDevice : public CalcElement
 {
 public:
-    GCS_SensorActivity();
+    GCS_SensorActivityDevice();
 
     // ICalcElement interface
 public:

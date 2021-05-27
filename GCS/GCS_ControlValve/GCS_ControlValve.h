@@ -26,10 +26,12 @@ private:
 
     double signumFunc(double argVal);
     Signal *valvePositionBar;
-    double valvePositionPrev;
+    double valvePositionPrev, valvePositionCoef, valvePositionGiven;
     //выходы
     double valvePositionCurrent, gasVolumeFlowRateCurrent, gasOutputPressureCurrent,
-    gasTemperatureCurrent, gasActivityCurrent,gasParticleFractionCurrent, outValvesResistance;
+    gasTemperatureCurrent, gasActivityCurrent,gasParticleFractionCurrent, outValvesResistance, valvePositionGivenPrev;
+    int situationValveRandomPrev, situationValveIgnorePrev;
+
 };
 
 #endif // PROJECT_H

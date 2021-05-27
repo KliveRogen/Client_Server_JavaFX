@@ -15,7 +15,8 @@ SUBDIRS = GCS_ControlValve \
     GCS_SensorDiffPressure \
     GCS_SensorVolumeFlowRate \
     GCS_SensorTemperature \
-    GCS_SensorActivity
+    GCS_SensorActivity \
+    GCS_SensorActivityDevice
 
 
 CONFIG += ordered
