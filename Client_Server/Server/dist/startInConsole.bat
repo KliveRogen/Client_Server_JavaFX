@@ -1,0 +1,1 @@
+java -jar ServerTest.jar 7777
